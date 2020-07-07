@@ -6,10 +6,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Bishojo_Game_Launcher {
-	/// <summary>
-	/// App.xaml の相互作用ロジック
-	/// </summary>
-	public partial class App : Application {
-	}
+namespace WindowChromeSample
+{
+    /// <summary>
+    /// App.xaml の相互作用ロジック
+    /// </summary>
+    public partial class App : Application
+    {
+    }
 }
