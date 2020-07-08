@@ -19,12 +19,11 @@ namespace Bishojo_Game_Launcher {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
-        private string state = "Normal";
 
-        public string State {
-            get { return state; }
-            set { state = value; }
-		}
+        private WindowState state { get; set; }
+        private Size normalSize { get; set; }
+
+
 
         public MainWindow() {
             InitializeComponent();
@@ -45,17 +44,19 @@ namespace Bishojo_Game_Launcher {
         }
 
         private void WindowClose_Maxmize(object sender, RoutedEventArgs e) {
-            switch (this.State) {
-                case "Normal":
+            switch (this.state) {
+                case WindowState.Normal:
+                    normalSize = new Size(this.Width, this.Height);
                     this.Width = SystemParameters.WorkArea.Width;
                     this.Height = SystemParameters.WorkArea.Height;
                     this.Left = 0;
                     this.Top = 0;
-                    this.State = "Max";
+                    this.state = WindowState.Maximized;
                     break;
-                case "Max":
-                    this.WindowState = WindowState.Normal;
-                    this.State = " Normal";
+                case WindowState.Maximized:
+                    this.Width = normalSize.Width;
+                    this.Height = normalSize.Height;
+                    this.state = WindowState.Normal;
                     break;
             }
         }
