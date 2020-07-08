@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bishojo_Game_Launcher.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,7 +72,8 @@ namespace Bishojo_Game_Launcher {
 
 
 		private void AddGame_Click(object sender, RoutedEventArgs e) {
-
+            var addGameWindow = new AddGameWindow();
+            addGameWindow.Show();
 		}
 	}
 }
