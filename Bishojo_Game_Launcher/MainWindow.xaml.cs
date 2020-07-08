@@ -22,8 +22,8 @@ namespace Bishojo_Game_Launcher {
 
         private WindowState state { get; set; }
         private Size normalSize { get; set; }
-
-
+        private double normalTop { get; set; }
+        private double normalLeft { get; set; }
 
         public MainWindow() {
             InitializeComponent();
@@ -46,16 +46,20 @@ namespace Bishojo_Game_Launcher {
         private void WindowMaxmize_Click(object sender, RoutedEventArgs e) {
             switch (this.state) {
                 case WindowState.Normal:
-                    normalSize = new Size(this.Width, this.Height);
+                    this.normalSize = new Size(this.Width, this.Height);
+                    this.normalTop = this.Top;
+                    this.normalLeft = this.Left;
                     this.Width = SystemParameters.WorkArea.Width;
                     this.Height = SystemParameters.WorkArea.Height;
-                    this.Left = 0;
                     this.Top = 0;
+                    this.Left = 0;
                     this.state = WindowState.Maximized;
                     break;
                 case WindowState.Maximized:
-                    this.Width = normalSize.Width;
-                    this.Height = normalSize.Height;
+                    this.Width = this.normalSize.Width;
+                    this.Height = this.normalSize.Height;
+                    this.Top = this.normalTop;
+                    this.Left = this.normalLeft;
                     this.state = WindowState.Normal;
                     break;
             }
