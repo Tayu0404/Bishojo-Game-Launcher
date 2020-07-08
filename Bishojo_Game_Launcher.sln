@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowChromeSample", "WindowChromeSample\WindowChromeSample.csproj", "{3AA62849-762E-49D0-925B-D88F79545328}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bishojo_Game_Launcher", "Bishojo_Game_Launcher\Bishojo_Game_Launcher.csproj", "{3AA62849-762E-49D0-925B-D88F79545328}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6459B0C-8020-49FF-8A7B-BC7AFC4BEBAF}
 	EndGlobalSection
 EndGlobal

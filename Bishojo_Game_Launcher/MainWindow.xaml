@@ -1,8 +1,8 @@
-﻿<Window x:Name="window" x:Class="WindowChromeSample.MainWindow"
+﻿<Window x:Name="window" x:Class="Bishojo_Game_Launcher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="720" Width="1280" Style="{DynamicResource DefaultWindowStyle}"
-        StateChanged="window_StateChanged" 
+        StateChanged="window_StateChanged"
         AllowsTransparency="True"
 		WindowStyle="None">
 	<Grid x:Name="LayoutRoot">
