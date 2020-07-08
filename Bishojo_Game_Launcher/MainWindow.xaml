@@ -19,7 +19,8 @@
 				<ColumnDefinition Width="36"/>
 			</Grid.ColumnDefinitions>
 			<Button Grid.Column="3" Content="X" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click"/>
-			<Button Grid.Column="2" Content="□" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Maxmize"/>
+			<Button Grid.Column="2" Content="□" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMaxmize_Click"/>
+			<Button Grid.Column="1" Content="ー" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMiniMize_Click"/>
 		</Grid>
 
 		<Grid Grid.Row="1">
@@ -89,8 +90,8 @@
 				BorderBrush="#00000000"
 				Background="#00000000"
 				FontSize="15"
-				x:Name="AddGane"
-				Click="AddGane_Click">
+				x:Name="AddGame"
+				Click="AddGame_Click">
 				Add Game
 			</Button>
 		</Grid>

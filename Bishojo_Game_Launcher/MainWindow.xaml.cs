@@ -43,7 +43,7 @@ namespace Bishojo_Game_Launcher {
             this.Close();
         }
 
-        private void WindowClose_Maxmize(object sender, RoutedEventArgs e) {
+        private void WindowMaxmize_Click(object sender, RoutedEventArgs e) {
             switch (this.state) {
                 case WindowState.Normal:
                     normalSize = new Size(this.Width, this.Height);
@@ -61,7 +61,13 @@ namespace Bishojo_Game_Launcher {
             }
         }
 
-        private void AddGane_Click(object sender, RoutedEventArgs e) {
-        }
-    }
+		private void WindowMiniMize_Click(object sender, RoutedEventArgs e) {
+            this.WindowState = WindowState.Minimized;
+		}
+
+
+		private void AddGame_Click(object sender, RoutedEventArgs e) {
+
+		}
+	}
 }
