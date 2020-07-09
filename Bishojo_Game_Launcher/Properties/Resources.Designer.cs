@@ -61,6 +61,60 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Browse... に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Browse {
+            get {
+                return ResourceManager.GetString("Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cancel に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Executable File に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ExecutableFile {
+            get {
+                return ResourceManager.GetString("ExecutableFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Add Game に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string GameRegistry {
+            get {
+                return ResourceManager.GetString("GameRegistry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Game Title に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string GameTitle {
+            get {
+                return ResourceManager.GetString("GameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Save Data に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SaveData {
+            get {
+                return ResourceManager.GetString("SaveData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Close に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string WindowCloseToolTip {

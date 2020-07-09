@@ -21,7 +21,7 @@
 			</Grid.ColumnDefinitions>
 			<Button Grid.Column="3" Content="X" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}"/>
 			<Button Grid.Column="2" Content="□" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMaxmize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMaxmizeToolTip}"/>
-				<Button Grid.Column="1" Content="ー" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMiniMize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMinimizeToolTip}"/>
+			<Button Grid.Column="1" Content="ー" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMiniMize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMinimizeToolTip}"/>
 		</Grid>
 
 		<Grid Grid.Row="1">
