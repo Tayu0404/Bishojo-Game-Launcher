@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Bishojo_Game_Launcher.Game.ErogameScape {
-	class ErogameScape {
+	 class ErogameScape {
         static ErogameScape() {
             client = new HttpClient();
         }
