@@ -14,9 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace Bishojo_Game_Launcher.Windows {
-	/// <summary>
-	/// Window2.xaml の相互作用ロジック
-	/// </summary>
 	public partial class AddGameWindow : Window {
 		public AddGameWindow() {
 			InitializeComponent();
@@ -26,8 +23,23 @@ namespace Bishojo_Game_Launcher.Windows {
 			this.Close();
 		}
 
-		private void GameRegistry_Click(object sender, RoutedEventArgs e) {
-			Game.Game.Add("サクラ").GetAwaiter().GetResult();
+		private async void GameRegistry_Click(object sender, RoutedEventArgs e) {
+			try {
+				var result = await Game.Game.Search("サクラ");
+				if (result.Count == 1) {
+					
+				} else {
+					
+				}
+			} catch {
+				return;
+			}
+		}
+
+		private async void GameDetaileRegistry_Click(object sender, RoutedEventArgs e) {
+			var result = await Game.Game.Search(GameTitle.Text);
+			var selectGameSearchResultsWindow = new SelectGameSearchResultsWindow(result);
+			selectGameSearchResultsWindow.Show();
 		}
 	}
 }

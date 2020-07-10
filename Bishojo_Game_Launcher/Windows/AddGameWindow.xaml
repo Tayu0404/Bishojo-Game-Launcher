@@ -24,7 +24,7 @@
 			<Button Grid.Column="1" Content="X" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}"/>
 		</Grid>
 
-		<Grid Grid.Row="1" Margin="10">
+		<Grid Grid.Row="1" Margin="5">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="30"/>
 				<RowDefinition Height="*"/>
@@ -41,7 +41,7 @@
 						<ColumnDefinition Width="*"/>
 					</Grid.ColumnDefinitions>
 					<TextBlock Grid.Column="0" Margin="1,0,0,0" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#00000000" Text="{x:Static properties:Resources.GameTitle}"/>
-					<TextBox Grid.Column="1" FontSize="15" Background="#00000000" BorderBrush="#00000000" VerticalAlignment="Center" Foreground="White"/>
+					<TextBox Grid.Column="1" x:Name="GameTitle" FontSize="15" Background="#00000000" BorderBrush="#00000000" VerticalAlignment="Center" Foreground="White"/>
 				</Grid>
 			</Border>
 
@@ -77,9 +77,12 @@
 					<ColumnDefinition Width="80"/>
 					<ColumnDefinition Width="10"/>
 					<ColumnDefinition Width="80"/>
+					<ColumnDefinition Width="10"/>
+					<ColumnDefinition Width="80"/>
 				</Grid.ColumnDefinitions>
-				<Button Grid.Column="1" Content="{x:Static properties:Resources.GameRegistry}" FontSize="15" BorderBrush="Black" Background="#5B5B5B" Foreground="White" Click="GameRegistry_Click"/>
-				<Button Grid.Column="3" Content="{x:Static properties:Resources.Cancel}" FontSize="15" BorderBrush="Black" Background="#5B5B5B" Foreground="White"/>
+				<Button Grid.Column="1" Content="{x:Static properties:Resources.GameDetaileRegistry}" FontSize="15" BorderBrush="Black" Background="#5B5B5B" Foreground="White" Click="GameDetaileRegistry_Click"/>
+				<Button Grid.Column="3" Content="{x:Static properties:Resources.GameRegistry}" FontSize="15" BorderBrush="Black" Background="#5B5B5B" Foreground="White" Click="GameRegistry_Click"/>
+				<Button Grid.Column="5" Content="{x:Static properties:Resources.Cancel}" FontSize="15" BorderBrush="Black" Background="#5B5B5B" Foreground="White"/>
 			</Grid>
 		</Grid>
 	</Grid>
