@@ -118,7 +118,7 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
             return await response.Content.ReadAsStringAsync();
         }
 
-        public async Task<List<Dictionary<string, string>>> SeachGame(string gameName) {
+        public async Task<List<Dictionary<string, string>>> SearchGame(string gameName) {
             var url = $"https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/kensaku.php?category=game&word_category=name&word={gameName}&mode=normal";
             var source = await getAsync(url);
 
