@@ -78,7 +78,7 @@
 					<ColumnDefinition Width="10"/>
 					<ColumnDefinition Width="80"/>
 				</Grid.ColumnDefinitions>
-				<Button Grid.Column="1" Content="{x:Static properties:Resources.GameRegistry}" FontSize="15" BorderBrush="Black" Background="#5B5B5B" Foreground="White"/>
+				<Button Grid.Column="1" Content="{x:Static properties:Resources.GameRegistry}" FontSize="15" BorderBrush="Black" Background="#5B5B5B" Foreground="White" Click="GameRegistry_Click"/>
 				<Button Grid.Column="3" Content="{x:Static properties:Resources.Cancel}" FontSize="15" BorderBrush="Black" Background="#5B5B5B" Foreground="White"/>
 			</Grid>
 		</Grid>

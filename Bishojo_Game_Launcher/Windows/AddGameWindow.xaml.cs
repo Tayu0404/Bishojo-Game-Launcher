@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bishojo_Game_Launcher.Game;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,10 @@ namespace Bishojo_Game_Launcher.Windows {
 
 		private void WindowClose_Click(object sender, RoutedEventArgs e) {
 			this.Close();
+		}
+
+		private void GameRegistry_Click(object sender, RoutedEventArgs e) {
+			Game.Game.Add("サクラ").GetAwaiter().GetResult();
 		}
 	}
 }

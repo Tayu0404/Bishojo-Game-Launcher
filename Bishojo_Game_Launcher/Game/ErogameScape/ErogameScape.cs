@@ -1,14 +1,11 @@
 ﻿using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using MihaZupan;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Windows.Markup;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Media3D;
 
 namespace Bishojo_Game_Launcher.Game.ErogameScape {
     class ErogameScape {
@@ -129,22 +126,68 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
             var parser = new HtmlParser();
             doc = await parser.ParseDocumentAsync(source);
 
-            var detaileList = new List<Dictionary<string, string>>(); 
+            var detaileList = new List<Dictionary<string, string>>();
             var detaileElements = doc.QuerySelectorAll("#result > table > tbody > tr");
+            var head = true;
             foreach (var detaileElemet in detaileElements) {
-                var title = detaileElemet.QuerySelector("td:nth-child(1) > a").TextContent;
-                var brand = detaileElemet.QuerySelector("td:nth-child(2) > a").TextContent;
-                var sellday = detaileElemet.QuerySelector("td:nth-child(3)").TextContent;
-                var detaileurl = detaileElemet.QuerySelector("td:nth-child(1) > a").GetAttribute("href");
+                string title, brand, sellday, detaileurl;
+                Dictionary<string, string> detaile = new Dictionary<string, string>();
+                if (head) {
+                    head = false;
+                    continue;
+                }
+                var data = detaileElemet.QuerySelectorAll("a");
+                Console.WriteLine(data.Length);
+                switch (data.Length) {
+                    case 2:
+                        title = data[0].TextContent;
+                        brand = data[1].TextContent;
+                        sellday = detaileElemet.QuerySelectorAll("td")[2].TextContent;
+                        detaileurl = data[0].GetAttribute("href");
 
-                var detaile = new Dictionary<string, string>() {
-                    { "Title", title },
-                    { "Brand", brand },
-                    { "Sellday", sellday },
-                    { "Detaileurl", detaileurl },
-                };
+                        detaile = new Dictionary<string, string>() {
+                        { "Title", title },
+                        { "Brand", brand },
+                        { "Sellday", sellday },
+                        { "Detaileurl", detaileurl },
+                    };
+                        break;
+
+                    case 3:
+                        title = data[0].TextContent;
+                        brand = data[2].TextContent;
+                        sellday = detaileElemet.QuerySelectorAll("td")[2].TextContent;
+                        detaileurl = data[0].GetAttribute("href");
+
+                        detaile = new Dictionary<string, string>() {
+                        { "Title", title },
+                        { "Brand", brand },
+                        { "Sellday", sellday },
+                        { "Detaileurl", detaileurl },
+                    };
+                        break;
+
+                    case (4):
+                        title = data[0].TextContent;
+                        brand = data[3].TextContent;
+                        sellday = detaileElemet.QuerySelectorAll("td")[2].TextContent;
+                        detaileurl = data[0].GetAttribute("href");
+
+                        detaile = new Dictionary<string, string>() {
+                        { "Title", title },
+                        { "Brand", brand },
+                        { "Sellday", sellday },
+                        { "Detaileurl", detaileurl },
+                    };
+                        break;
+                }
                 detaileList.Add(detaile);
+                Console.WriteLine(detaile["Title"]);
+                Console.WriteLine(detaile["Brand"]);
+                Console.WriteLine(detaile["Sellday"]);
+                Console.WriteLine(detaile["Detaileurl"]);
             }
+            Console.WriteLine(detaileList);
             return detaileList;
         }
 
@@ -154,14 +197,14 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
             if (mode == Mode.ID) {
                 url = $"https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/{detaileURL}";
             }
-            
+
             var source = await getAsync(url);
             var doc = default(IHtmlDocument);
             var parser = new HtmlParser();
             doc = await parser.ParseDocumentAsync(source);
 
             var detaile = new Detaile();
-            
+
             detaile.Title = doc.QuerySelector("#game_title > a").TextContent;
             detaile.Brand = doc.QuerySelector("#brand > td > a").TextContent;
             detaile.Sellday = doc.QuerySelector("#sellday > td > a").TextContent;
