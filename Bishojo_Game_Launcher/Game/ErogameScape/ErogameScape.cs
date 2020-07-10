@@ -2,73 +2,85 @@
 using AngleSharp.Html.Parser;
 using MihaZupan;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Windows.Markup;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Media3D;
 
 namespace Bishojo_Game_Launcher.Game.ErogameScape {
-	 class ErogameScape {
+    class ErogameScape {
         static ErogameScape() {
             client = new HttpClient();
         }
 
         private static HttpClient client;
-        private string title, brand, sellday, mainImage, erogame;
-        private List<string> illustrators, scenarios, composers, voices, singers, sampleCGs;
 
-        public string Title {
-            get { return title; }
-            set { title = value; }
+        public enum Mode {
+            URL = 0,
+            ID = 1,
         }
 
-        public string Brand {
-            get { return brand; }
-            set { brand = value; }
-        }
+        public class Detaile {
+            private string title, brand, sellday, mainImage, erogame;
+            private List<string> illustrators, scenarios, composers, voices, singers, sampleCGs;
 
-        public string Sellday {
-            get { return sellday; }
-            set { sellday = value; }
-        }
+            public string Title {
+                get { return title; }
+                set { title = value; }
+            }
 
-        public string MainImage {
-            get { return mainImage; }
-            set { mainImage = value; }
-        }
+            public string Brand {
+                get { return brand; }
+                set { brand = value; }
+            }
 
-        public string Erogame {
-            get { return erogame; }
-            set { erogame = value; }
-        }
+            public string Sellday {
+                get { return sellday; }
+                set { sellday = value; }
+            }
 
-        public List<string> Illustrators {
-            get { return illustrators; }
-            set { illustrators = value; }
-        }
+            public string MainImage {
+                get { return mainImage; }
+                set { mainImage = value; }
+            }
 
-        public List<string> Scenarios {
-            get { return scenarios; }
-            set { scenarios = value; }
-        }
+            public string Erogame {
+                get { return erogame; }
+                set { erogame = value; }
+            }
 
-        public List<string> Composers {
-            get { return composers; }
-            set { composers = value; }
-        }
+            public List<string> Illustrators {
+                get { return illustrators; }
+                set { illustrators = value; }
+            }
 
-        public List<string> Voices {
-            get { return voices; }
-            set { voices = value; }
-        }
+            public List<string> Scenarios {
+                get { return scenarios; }
+                set { scenarios = value; }
+            }
 
-        public List<string> Singers {
-            get { return singers; }
-            set { singers = value; }
-        }
+            public List<string> Composers {
+                get { return composers; }
+                set { composers = value; }
+            }
 
-        public List<string> SampleCGs {
-            get { return sampleCGs; }
-            set { sampleCGs = value; }
+            public List<string> Voices {
+                get { return voices; }
+                set { voices = value; }
+            }
+
+            public List<string> Singers {
+                get { return singers; }
+                set { singers = value; }
+            }
+
+            public List<string> SampleCGs {
+                get { return sampleCGs; }
+                set { sampleCGs = value; }
+            }
         }
 
         public void UseHTTPProxy(string address, int port) {
@@ -109,31 +121,52 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
             return await response.Content.ReadAsStringAsync();
         }
 
-        private async Task<string> findGame(string gameName) {
+        public async Task<List<Dictionary<string, string>>> SeachGame(string gameName) {
             var url = $"https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/kensaku.php?category=game&word_category=name&word={gameName}&mode=normal";
             var source = await getAsync(url);
 
             var doc = default(IHtmlDocument);
             var parser = new HtmlParser();
             doc = await parser.ParseDocumentAsync(source);
-            var detaileURL = doc.QuerySelector("a.tooltip").GetAttribute("href");
-            return detaileURL;
+
+            var detaileList = new List<Dictionary<string, string>>(); 
+            var detaileElements = doc.QuerySelectorAll("#result > table > tbody > tr");
+            foreach (var detaileElemet in detaileElements) {
+                var title = detaileElemet.QuerySelector("td:nth-child(1) > a").TextContent;
+                var brand = detaileElemet.QuerySelector("td:nth-child(2) > a").TextContent;
+                var sellday = detaileElemet.QuerySelector("td:nth-child(3)").TextContent;
+                var detaileurl = detaileElemet.QuerySelector("td:nth-child(1) > a").GetAttribute("href");
+
+                var detaile = new Dictionary<string, string>() {
+                    { "Title", title },
+                    { "Brand", brand },
+                    { "Sellday", sellday },
+                    { "Detaileurl", detaileurl },
+                };
+                detaileList.Add(detaile);
+            }
+            return detaileList;
         }
 
-        public async Task GetGameDetails(string gameName) {
-            var detaileURL = await findGame(gameName);
-            var url = $"https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/{detaileURL}";
-            var source = await getAsync(url);
+        public async Task<Detaile> GetGameDetails(string detaileURL, Mode mode = Mode.URL) {
+            var url = detaileURL;
 
+            if (mode == Mode.ID) {
+                url = $"https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/{detaileURL}";
+            }
+            
+            var source = await getAsync(url);
             var doc = default(IHtmlDocument);
             var parser = new HtmlParser();
             doc = await parser.ParseDocumentAsync(source);
 
-            this.Title = doc.QuerySelector("#game_title > a").TextContent;
-            this.Brand = doc.QuerySelector("#brand > td > a").TextContent;
-            this.Sellday = doc.QuerySelector("#sellday > td > a").TextContent;
-            this.MainImage = doc.QuerySelector("#main_image > a > img").GetAttribute("src");
-            this.Erogame = doc.QuerySelector("#erogame > td").TextContent;
+            var detaile = new Detaile();
+            
+            detaile.Title = doc.QuerySelector("#game_title > a").TextContent;
+            detaile.Brand = doc.QuerySelector("#brand > td > a").TextContent;
+            detaile.Sellday = doc.QuerySelector("#sellday > td > a").TextContent;
+            detaile.MainImage = doc.QuerySelector("#main_image > a > img").GetAttribute("src");
+            detaile.Erogame = doc.QuerySelector("#erogame > td").TextContent;
 
             var illustratorElements = doc.QuerySelectorAll("#genga > td > a");
             var illustrators = new List<string>();
@@ -141,7 +174,7 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
                 var illustrator = illustratorElement.TextContent;
                 illustrators.Add(illustrator);
             }
-            this.Illustrators = illustrators;
+            detaile.Illustrators = illustrators;
 
             var scenarioElements = doc.QuerySelectorAll("#shinario > td > a");
             var scenarios = new List<string>();
@@ -149,7 +182,7 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
                 var scenario = scenarioElement.TextContent;
                 scenarios.Add(scenario);
             }
-            this.Scenarios = scenarios;
+            detaile.Scenarios = scenarios;
 
             var composerElements = doc.QuerySelectorAll("#ongaku > td > a");
             var composers = new List<string>();
@@ -157,7 +190,7 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
                 var compose = composeElement.TextContent;
                 composers.Add(compose);
             }
-            this.Composers = composers;
+            detaile.Composers = composers;
 
             var voiceElements = doc.QuerySelectorAll("#seiyu > td > a");
             var voices = new List<string>();
@@ -165,7 +198,7 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
                 var voice = voiceElement.TextContent;
                 voices.Add(voice);
             }
-            this.Voices = voices;
+            detaile.Voices = voices;
 
             var singerElements = doc.QuerySelectorAll("#kasyu > td > a");
             var singers = new List<string>();
@@ -173,7 +206,7 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
                 var singer = singerElement.TextContent;
                 singers.Add(singer);
             }
-            this.Singers = singers;
+            detaile.Singers = singers;
 
             var dmmSampleCGElements = doc.QuerySelectorAll("#dmm_sample_cg_main > a > img");
             var dlsiteSampleCGElements = doc.QuerySelectorAll("#dlsite_sample_cg_1_main > a > img");
@@ -186,7 +219,9 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
                 var sampleCG = sampleCGElement.GetAttribute("src");
                 sampleCGs.Add(sampleCG);
             }
-            this.SampleCGs = sampleCGs;
+            detaile.SampleCGs = sampleCGs;
+
+            return detaile;
         }
     }
 }

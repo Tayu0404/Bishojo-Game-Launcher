@@ -13,7 +13,7 @@ namespace Bishojo_Game_Launcher.Game {
 		private static ErogameScape.ErogameScape erogameScape;
 
 		public void Add(string gameTitle) {
-			erogameScape.GetGameDetails(gameTitle);
+			erogameScape.SeachGame(gameTitle);
 			var gameTitleMD5 = generateHash(gameTitle);
 		}
 		private string generateHash(string gameTitle) {
