@@ -1,4 +1,7 @@
 ﻿using Bishojo_Game_Launcher.Game.ErogameScape;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Security.AccessControl;
 using System.Security.Cryptography;
 using System.Text;
@@ -12,9 +15,13 @@ namespace Bishojo_Game_Launcher.Game {
 		
 		private static ErogameScape.ErogameScape erogameScape;
 
+		public static async Task<List<Dictionary<string, string>>> Search(string searchWord) {
+			return await erogameScape.SearchGame(searchWord);
+		} 
+
 		public static async Task Add(string gameTitle) {
-			erogameScape = new ErogameScape.ErogameScape();
-			await erogameScape.SeachGame(gameTitle);
+			var searchList = await erogameScape.SearchGame(gameTitle);
+			Console.WriteLine(searchList[0]["Title"]);
 			var gameTitleMD5 = generateHash(gameTitle);
 		}
 		private static string generateHash(string gameTitle) {
