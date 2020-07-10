@@ -126,11 +126,23 @@
   <data name="ExecutableFile" xml:space="preserve">
     <value>実行ファイル</value>
   </data>
+  <data name="GameBrand" xml:space="preserve">
+    <value>ブランド</value>
+  </data>
+  <data name="GameDetaileRegistry" xml:space="preserve">
+    <value>詳細を追加</value>
+  </data>
   <data name="GameRegistry" xml:space="preserve">
     <value>ゲームを追加</value>
   </data>
+  <data name="GameReleaseDate" xml:space="preserve">
+    <value>発売日</value>
+  </data>
   <data name="GameTitle" xml:space="preserve">
-    <value>ゲーム名</value>
+    <value>タイトル</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="SaveData" xml:space="preserve">
     <value>セーブデータ</value>

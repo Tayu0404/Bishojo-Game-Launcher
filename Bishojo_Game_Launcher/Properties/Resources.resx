@@ -126,11 +126,23 @@
   <data name="ExecutableFile" xml:space="preserve">
     <value>Executable File</value>
   </data>
+  <data name="GameBrand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="GameDetaileRegistry" xml:space="preserve">
+    <value>Add Detaile</value>
+  </data>
   <data name="GameRegistry" xml:space="preserve">
     <value>Add Game</value>
   </data>
+  <data name="GameReleaseDate" xml:space="preserve">
+    <value>Release Date</value>
+  </data>
   <data name="GameTitle" xml:space="preserve">
-    <value>Game Title</value>
+    <value>Title</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="SaveData" xml:space="preserve">
     <value>Save Data</value>

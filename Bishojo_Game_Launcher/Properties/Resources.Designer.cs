@@ -88,6 +88,24 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Brand に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string GameBrand {
+            get {
+                return ResourceManager.GetString("GameBrand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Add Detaile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string GameDetaileRegistry {
+            get {
+                return ResourceManager.GetString("GameDetaileRegistry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Add Game に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string GameRegistry {
@@ -97,11 +115,29 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Game Title に類似しているローカライズされた文字列を検索します。
+        ///   Release Date に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string GameReleaseDate {
+            get {
+                return ResourceManager.GetString("GameReleaseDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Title に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string GameTitle {
             get {
                 return ResourceManager.GetString("GameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   OK に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string OK {
+            get {
+                return ResourceManager.GetString("OK", resourceCulture);
             }
         }
         
