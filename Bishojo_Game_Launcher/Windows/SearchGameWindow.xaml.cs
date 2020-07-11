@@ -17,7 +17,7 @@ namespace Bishojo_Game_Launcher.Windows {
 	/// SelectGameSearchResultsWindow.xaml の相互作用ロジック
 	/// </summary>
 	public partial class SearchGameWindow: Window {
-		static List<Dictionary<string, string>> gameList;
+		private static List<Dictionary<string, string>> gameList;
 		public SearchGameWindow(List<Dictionary<string, string>> resultList) {
 			gameList = resultList;
 			InitializeComponent();

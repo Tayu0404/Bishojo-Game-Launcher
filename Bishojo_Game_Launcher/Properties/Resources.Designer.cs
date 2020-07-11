@@ -133,6 +133,15 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Not Found に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   OK に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string OK {

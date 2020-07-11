@@ -141,6 +141,9 @@
   <data name="GameTitle" xml:space="preserve">
     <value>タイトル</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>見つかりませんでした</value>
+  </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>

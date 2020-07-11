@@ -141,6 +141,9 @@
   <data name="GameTitle" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Not Found</value>
+  </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>

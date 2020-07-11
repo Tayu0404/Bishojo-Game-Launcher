@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Bishojo_Game_Launcher.Windows"
 		xmlns:properties="clr-namespace:Bishojo_Game_Launcher.Properties"
         mc:Ignorable="d"
-        Height="250" Width="500" Style="{DynamicResource DefaultWindowStyle}"
+        Height="450" Width="500" Style="{DynamicResource DefaultWindowStyle}"
         AllowsTransparency="True"
 		WindowStyle="None"
         ResizeMode="NoResize">
@@ -31,12 +31,12 @@
 				<RowDefinition Height="30"/>
 				<RowDefinition Height="5"/>
 				<RowDefinition Height="30"/>
-				<RowDefinition Height="5"/>
 				<RowDefinition Height="*"/>
+				<RowDefinition Height="90"/>
 				<RowDefinition Height="5"/>
 				<RowDefinition Height="30"/>
 			</Grid.RowDefinitions>
-			
+
 			<Border Grid.Row="0" Style="{DynamicResource DefaultBorderStyle}">
 				<Grid>
 					<Grid.ColumnDefinitions>
@@ -47,7 +47,7 @@
 					<Button Grid.Column="1" Content="{x:Static properties:Resources.Browse}" Style="{DynamicResource DefaultButtonStyle}"/>
 				</Grid>
 			</Border>
-			
+
 			<Border Grid.Row="2" Style="{DynamicResource DefaultBorderStyle}">
 				<Grid>
 					<Grid.ColumnDefinitions>
@@ -66,9 +66,11 @@
 						<ColumnDefinition Width="80"/>
 					</Grid.ColumnDefinitions>
 					<TextBox Grid.Column="0" x:Name="SearchWord" FontSize="15" Tag="{x:Static properties:Resources.SearchGameDetaile}" Style="{DynamicResource DefaultTextBoxStyle}"/>
-					<Button Grid.Column="1" Content="{x:Static properties:Resources.Search}" Style="{DynamicResource DefaultButtonStyle}"/>
+					<Button Grid.Column="1" Click="SearchGame_Click" Content="{x:Static properties:Resources.Search}" Style="{DynamicResource DefaultButtonStyle}"/>
 				</Grid>
 			</Border>
+
+			<ListBox Grid.Row="5" x:Name="GameList" SelectionChanged="GameList_SelectionChanged" Style="{DynamicResource DefaultListBoxStyle}"/>
 
 			<Grid Grid.Row="6">
 				<Grid.RowDefinitions>
@@ -77,9 +79,9 @@
 					<RowDefinition Height="*"/>
 					<RowDefinition Height="*"/>
 				</Grid.RowDefinitions>
-				<TextBlock Grid.Row="0" FontSize="15" Text="{x:Static properties:Resources.GameTitle}" Style="{DynamicResource DefaultTextBlockStyle}"/>
-				<TextBlock Grid.Row="1" x:Name="Title" FontSize="15" Style="{DynamicResource DefaultTextBlockStyle}"/>
-				<Grid Grid.Row="2">
+				<TextBlock Grid.Row="0" FontSize="15" Text="{x:Static properties:Resources.GameTitle}" Style="{DynamicResource DefaultTextBlockStyle}" Grid.ColumnSpan="3"/>
+				<TextBlock Grid.Row="1" x:Name="GameTitle" FontSize="15" Style="{DynamicResource DefaultTextBlockStyle}"/>
+				<Grid Grid.Row="2" Grid.ColumnSpan="3">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="*"/>
@@ -87,13 +89,13 @@
 					<TextBlock Grid.Column="0" FontSize="15" Text="{x:Static properties:Resources.GameBrand}" Style="{DynamicResource DefaultTextBlockStyle}"/>
 					<TextBlock Grid.Column="1" FontSize="15" Text="{x:Static properties:Resources.GameReleaseDate}" Style="{DynamicResource DefaultTextBlockStyle}"/>
 				</Grid>
-				<Grid Grid.Row="3">
+				<Grid Grid.Row="3" Grid.ColumnSpan="3">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="*"/>
 					</Grid.ColumnDefinitions>
-					<TextBlock Grid.Column="0" x:Name="Brand" FontSize="15" Style="{DynamicResource DefaultTextBlockStyle}"/>
-					<TextBlock Grid.Column="1" x:Name="ReleaseData" FontSize="15" Style="{DynamicResource DefaultTextBlockStyle}"/>
+					<TextBlock Grid.Column="0" x:Name="GameBrand" FontSize="15" Style="{DynamicResource DefaultTextBlockStyle}"/>
+					<TextBlock Grid.Column="1" x:Name="GameReleaseData" FontSize="15" Style="{DynamicResource DefaultTextBlockStyle}"/>
 				</Grid>
 			</Grid>
 

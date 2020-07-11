@@ -19,29 +19,45 @@ namespace Bishojo_Game_Launcher.Windows {
 			InitializeComponent();
 		}
 
+		private static List<Dictionary<string, string>> gameList;
+
 		private void WindowClose_Click(object sender, RoutedEventArgs e) {
 			this.Close();
 		}
 
-		private async void GameRegistry_Click(object sender, RoutedEventArgs e) {
+		private async void SearchGame_Click(object sender, RoutedEventArgs e) {
+			GameList.Items.Clear();
+			if (SearchWord.Text == "") {
+				return;
+			}
 			try {
-				var result = await Game.Game.Search("サクラ");
-				if (result.Count == 1) {
-					
+				gameList = await Game.Game.Search(SearchWord.Text);
+				if (gameList.Count == 0) {
+					GameList.Items.Add(Properties.Resources.NotFound);
 				} else {
-					
+					foreach (var game in gameList) {
+						GameList.Items.Add(game["Title"]);
+					}
+					GameList.SelectedIndex = 0;
 				}
-			} catch {
+			}
+			catch {
 				return;
 			}
 		}
 
-		private async void GameDetaileRegistry_Click(object sender, RoutedEventArgs e) {
-		/*
-			var result = await Game.Game.Search(GameTitle.Text);
-			var selectGameSearchResultsWindow = new SearchGameWindow(result);
-			selectGameSearchResultsWindow.Show();
-		*/
+		private void GameList_SelectionChanged(object sender, RoutedEventArgs e) {
+			var listBox = sender as ListBox;
+			if (listBox.Items.Count == 0) {
+				GameTitle.Text = "";
+				GameBrand.Text = "";
+				GameReleaseData.Text = "";
+				return;
+			} else {
+				GameTitle.Text = gameList[listBox.SelectedIndex]["Title"];
+				GameBrand.Text = gameList[listBox.SelectedIndex]["Brand"];
+				GameReleaseData.Text = gameList[listBox.SelectedIndex]["Sellday"];
+			}
 		}
 	}
 }
