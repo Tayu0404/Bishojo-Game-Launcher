@@ -153,8 +153,8 @@
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="SaveData" xml:space="preserve">
-    <value>セーブデータ</value>
+  <data name="SaveDataFolder" xml:space="preserve">
+    <value>セーブデータフォルダー</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>検索</value>

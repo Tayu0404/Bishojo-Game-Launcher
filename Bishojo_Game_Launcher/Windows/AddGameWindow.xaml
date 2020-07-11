@@ -54,7 +54,7 @@
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="80"/>
 					</Grid.ColumnDefinitions>
-					<TextBox Grid.Column="0" x:Name="SaveDataPath" FontSize="15" Tag="{x:Static properties:Resources.SaveData}" Style="{DynamicResource DefaultTextBoxStyle}"/>
+					<TextBox Grid.Column="0" x:Name="SaveDataPath" FontSize="15" Drop="SaveDataPath_Drop" PreviewDragOver="SaveDataPath_PreviewDragOver" Tag="{x:Static properties:Resources.SaveDataFolder}" Style="{DynamicResource DefaultTextBoxStyle}"/>
 					<Button Grid.Column="1" Content="{x:Static properties:Resources.Browse}" Style="{DynamicResource DefaultButtonStyle}"/>
 				</Grid>
 			</Border>

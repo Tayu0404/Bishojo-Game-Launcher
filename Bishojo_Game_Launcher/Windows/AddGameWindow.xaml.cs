@@ -1,6 +1,7 @@
 ﻿using Bishojo_Game_Launcher.Game.ErogameScape;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -83,7 +84,27 @@ namespace Bishojo_Game_Launcher.Windows {
 		}
 
 		private void ExecutableFilePath_Drop(object sender, DragEventArgs e) {
+			var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+			if (!File.Exists(files[0])){
+				return;
+			}
+			ExecutableFilePath.Text = files[0];
+		}
 
+		private void SaveDataPath_PreviewDragOver(object sender, DragEventArgs e) {
+			if (e.Data.GetDataPresent(DataFormats.FileDrop, true))
+				e.Effects = DragDropEffects.Copy;
+			else
+				e.Effects = DragDropEffects.None;
+			e.Handled = true;
+		}
+
+		private void SaveDataPath_Drop(object sender, DragEventArgs e) {
+			var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+			if (File.Exists(files[0])) {
+				return;
+			}
+			SaveDataPath.Text = files[0];
 		}
 	}
 }

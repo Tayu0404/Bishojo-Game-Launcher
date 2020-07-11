@@ -169,11 +169,11 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Save Data に類似しているローカライズされた文字列を検索します。
+        ///   Save Data Folder に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string SaveData {
+        public static string SaveDataFolder {
             get {
-                return ResourceManager.GetString("SaveData", resourceCulture);
+                return ResourceManager.GetString("SaveDataFolder", resourceCulture);
             }
         }
         

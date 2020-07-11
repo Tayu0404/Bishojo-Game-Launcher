@@ -153,8 +153,8 @@
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="SaveData" xml:space="preserve">
-    <value>Save Data</value>
+  <data name="SaveDataFolder" xml:space="preserve">
+    <value>Save Data Folder</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
