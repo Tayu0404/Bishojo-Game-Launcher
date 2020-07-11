@@ -37,9 +37,11 @@ namespace Bishojo_Game_Launcher.Windows {
 		}
 
 		private async void GameDetaileRegistry_Click(object sender, RoutedEventArgs e) {
+		/*
 			var result = await Game.Game.Search(GameTitle.Text);
 			var selectGameSearchResultsWindow = new SearchGameWindow(result);
 			selectGameSearchResultsWindow.Show();
+		*/
 		}
 	}
 }

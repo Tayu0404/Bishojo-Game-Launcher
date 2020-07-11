@@ -160,6 +160,15 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Search Detaile by Game Title に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SearchGameDetaile {
+            get {
+                return ResourceManager.GetString("SearchGameDetaile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Close に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string WindowCloseToolTip {

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Bishojo_Game_Launcher.Windows"
 		xmlns:properties="clr-namespace:Bishojo_Game_Launcher.Properties"
         mc:Ignorable="d"
-        Height="230" Width="500" Style="{DynamicResource DefaultWindowStyle}"
+        Height="250" Width="500" Style="{DynamicResource DefaultWindowStyle}"
         AllowsTransparency="True"
 		WindowStyle="None"
         ResizeMode="NoResize">
@@ -21,69 +21,93 @@
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="36"/>
 			</Grid.ColumnDefinitions>
-			<Button Grid.Column="1" Content="X" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}"/>
+			<Button Grid.Column="1" Content="X" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}" Style="{DynamicResource CloseButtonStyle}"/>
 		</Grid>
 
-		<Grid Grid.Row="1" Margin="5">
+		<Grid Grid.Row="1" Margin="5, 0 ,5 ,5">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="30"/>
-				<RowDefinition Height="*"/>
+				<RowDefinition Height="5"/>
 				<RowDefinition Height="30"/>
-				<RowDefinition Height="*"/>
+				<RowDefinition Height="5"/>
 				<RowDefinition Height="30"/>
+				<RowDefinition Height="5"/>
 				<RowDefinition Height="*"/>
+				<RowDefinition Height="5"/>
 				<RowDefinition Height="30"/>
 			</Grid.RowDefinitions>
-			<Border Grid.Row="0" BorderThickness="1" BorderBrush="Black">
-				<Grid Background="#5B5B5B">
+			
+			<Border Grid.Row="0" Style="{DynamicResource DefaultBorderStyle}">
+				<Grid>
 					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="80"/>
-						<ColumnDefinition Width="*"/>
 					</Grid.ColumnDefinitions>
-					<TextBlock Grid.Column="0" Margin="1,0,0,0" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#00000000" Text="{x:Static properties:Resources.GameTitle}"/>
-					<TextBox Grid.Column="1" x:Name="GameTitle" FontSize="15" Background="#00000000" BorderBrush="#00000000" VerticalAlignment="Center" Foreground="White"/>
+					<TextBox Grid.Column="0" x:Name="ExecutableFilePath" FontSize="15" Tag="{x:Static properties:Resources.ExecutableFile}" Style="{DynamicResource DefaultTextBoxStyle}"/>
+					<Button Grid.Column="1" Content="{x:Static properties:Resources.Browse}" Style="{DynamicResource DefaultButtonStyle}"/>
+				</Grid>
+			</Border>
+			
+			<Border Grid.Row="2" Style="{DynamicResource DefaultBorderStyle}">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="80"/>
+					</Grid.ColumnDefinitions>
+					<TextBox Grid.Column="0" x:Name="SaveDataPath" FontSize="15" Tag="{x:Static properties:Resources.SaveData}" Style="{DynamicResource DefaultTextBoxStyle}"/>
+					<Button Grid.Column="1" Content="{x:Static properties:Resources.Browse}" Style="{DynamicResource DefaultButtonStyle}"/>
 				</Grid>
 			</Border>
 
-			<Border Grid.Row="2" BorderThickness="1" BorderBrush="Black">
-				<Grid Background="#5B5B5B">
+			<Border Grid.Row="4" Style="{DynamicResource DefaultBorderStyle}">
+				<Grid>
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="100"/>
 						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="60"/>
+						<ColumnDefinition Width="80"/>
 					</Grid.ColumnDefinitions>
-					<TextBlock Grid.Column="0" Margin="1,0,0,0" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#00000000" Text="{x:Static properties:Resources.ExecutableFile}"/>
-					<TextBox Grid.Column="1" FontSize="15" Background="#00000000" BorderBrush="#00000000" VerticalAlignment="Center" Foreground="White"/>
-					<Button Grid.Column="2" FontSize="15" Background="#00000000" BorderBrush="#00000000" Foreground="White" Content="{x:Static properties:Resources.Browse}"/>
-				</Grid>
-			</Border>
-
-			<Border Grid.Row="4" BorderThickness="1" BorderBrush="Black">
-				<Grid Background="#5B5B5B">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="100"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="60"/>
-					</Grid.ColumnDefinitions>
-					<TextBlock Grid.Column="0" Margin="1,0,0,0" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#00000000" Text="{x:Static properties:Resources.SaveData}"/>
-					<TextBox Grid.Column="1" FontSize="15" Background="#00000000" BorderBrush="#00000000" VerticalAlignment="Center" Foreground="White"/>
-					<Button Grid.Column="2" FontSize="15" Background="#00000000" BorderBrush="#00000000" Foreground="White" Content="{x:Static properties:Resources.Browse}"/>
+					<TextBox Grid.Column="0" x:Name="SearchWord" FontSize="15" Tag="{x:Static properties:Resources.SearchGameDetaile}" Style="{DynamicResource DefaultTextBoxStyle}"/>
+					<Button Grid.Column="1" Content="{x:Static properties:Resources.Search}" Style="{DynamicResource DefaultButtonStyle}"/>
 				</Grid>
 			</Border>
 
 			<Grid Grid.Row="6">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+				<TextBlock Grid.Row="0" FontSize="15" Text="{x:Static properties:Resources.GameTitle}" Style="{DynamicResource DefaultTextBlockStyle}"/>
+				<TextBlock Grid.Row="1" x:Name="Title" FontSize="15" Style="{DynamicResource DefaultTextBlockStyle}"/>
+				<Grid Grid.Row="2">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<TextBlock Grid.Column="0" FontSize="15" Text="{x:Static properties:Resources.GameBrand}" Style="{DynamicResource DefaultTextBlockStyle}"/>
+					<TextBlock Grid.Column="1" FontSize="15" Text="{x:Static properties:Resources.GameReleaseDate}" Style="{DynamicResource DefaultTextBlockStyle}"/>
+				</Grid>
+				<Grid Grid.Row="3">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<TextBlock Grid.Column="0" x:Name="Brand" FontSize="15" Style="{DynamicResource DefaultTextBlockStyle}"/>
+					<TextBlock Grid.Column="1" x:Name="ReleaseData" FontSize="15" Style="{DynamicResource DefaultTextBlockStyle}"/>
+				</Grid>
+			</Grid>
+
+			<Grid Grid.Row="8">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="80"/>
 					<ColumnDefinition Width="10"/>
 					<ColumnDefinition Width="80"/>
-					<ColumnDefinition Width="10"/>
-					<ColumnDefinition Width="80"/>
 				</Grid.ColumnDefinitions>
-				<Button Grid.Column="1" Content="{x:Static properties:Resources.GameDetaileRegistry}" FontSize="15" BorderBrush="Black" Background="#5B5B5B" Foreground="White" Click="GameDetaileRegistry_Click"/>
-				<Button Grid.Column="3" Content="{x:Static properties:Resources.GameRegistry}" FontSize="15" BorderBrush="Black" Background="#5B5B5B" Foreground="White" Click="GameRegistry_Click"/>
-				<Button Grid.Column="5" Content="{x:Static properties:Resources.Cancel}" FontSize="15" BorderBrush="Black" Background="#5B5B5B" Foreground="White"/>
+				<Button Grid.Column="1" Content="{x:Static properties:Resources.GameRegistry}" FontSize="15" Style="{DynamicResource BackgroundColerButtonStyle}"/>
+				<Button Grid.Column="3" Content="{x:Static properties:Resources.Cancel}" FontSize="15" Style="{DynamicResource BackgroundColerButtonStyle}"/>
 			</Grid>
+
 		</Grid>
 	</Grid>
 </Window>

@@ -150,6 +150,9 @@
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="SearchGameDetaile" xml:space="preserve">
+    <value>Search Detaile by Game Title</value>
+  </data>
   <data name="WindowCloseToolTip" xml:space="preserve">
     <value>Close</value>
   </data>
