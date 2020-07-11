@@ -123,6 +123,12 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ErogameScapeSearchModeBrand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="ErogameScapeSearchModeTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
   <data name="ExecutableFile" xml:space="preserve">
     <value>Executable File</value>
   </data>
@@ -154,7 +160,7 @@
     <value>Search</value>
   </data>
   <data name="SearchGameDetaile" xml:space="preserve">
-    <value>Search Detaile by Game Title</value>
+    <value>Search Detaile by Game</value>
   </data>
   <data name="WindowCloseToolTip" xml:space="preserve">
     <value>Close</value>

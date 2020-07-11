@@ -79,6 +79,24 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Brand に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ErogameScapeSearchModeBrand {
+            get {
+                return ResourceManager.GetString("ErogameScapeSearchModeBrand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Title に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ErogameScapeSearchModeTitle {
+            get {
+                return ResourceManager.GetString("ErogameScapeSearchModeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Executable File に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ExecutableFile {
@@ -169,7 +187,7 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Search Detaile by Game Title に類似しているローカライズされた文字列を検索します。
+        ///   Search Detaile by Game に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SearchGameDetaile {
             get {

@@ -1,22 +1,25 @@
-﻿using Bishojo_Game_Launcher.Game;
+﻿using Bishojo_Game_Launcher.Game.ErogameScape;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Bishojo_Game_Launcher.Windows {
 	public partial class AddGameWindow : Window {
 		public AddGameWindow() {
 			InitializeComponent();
+			SearchMode.ItemsSource = new List<SearchGameMode> {
+				new SearchGameMode { Mode = ErogameScape.SearchGameMode.Title, ModeName = Properties.Resources.ErogameScapeSearchModeTitle },
+				new SearchGameMode { Mode = ErogameScape.SearchGameMode.Brand, ModeName = Properties.Resources.ErogameScapeSearchModeBrand }
+			};
+			SearchMode.SelectedIndex = 0;
+		}
+
+		private class SearchGameMode {
+			public ErogameScape.SearchGameMode Mode { get; set; }
+			public string ModeName { get; set; }
 		}
 
 		private static List<Dictionary<string, string>> gameList;
@@ -26,24 +29,7 @@ namespace Bishojo_Game_Launcher.Windows {
 		}
 
 		private async void SearchGame_Click(object sender, RoutedEventArgs e) {
-			GameList.Items.Clear();
-			if (SearchWord.Text == "") {
-				return;
-			}
-			try {
-				gameList = await Game.Game.Search(SearchWord.Text);
-				if (gameList.Count == 0) {
-					GameList.Items.Add(Properties.Resources.NotFound);
-				} else {
-					foreach (var game in gameList) {
-						GameList.Items.Add(game["Title"]);
-					}
-					GameList.SelectedIndex = 0;
-				}
-			}
-			catch {
-				return;
-			}
+			await searchGame();
 		}
 
 		private void GameList_SelectionChanged(object sender, RoutedEventArgs e) {
@@ -58,6 +44,46 @@ namespace Bishojo_Game_Launcher.Windows {
 				GameBrand.Text = gameList[listBox.SelectedIndex]["Brand"];
 				GameReleaseData.Text = gameList[listBox.SelectedIndex]["Sellday"];
 			}
+		}
+
+		private async void SearchWord_KeyDown(object sender, System.Windows.Input.KeyEventArgs e) {
+			if (e.Key == Key.Return) {
+				await searchGame();
+			}
+		}
+
+		private async Task searchGame() {
+			GameList.Items.Clear();
+			if (SearchWord.Text == "") {
+				return;
+			}
+			try {
+				var mode = SearchMode.SelectedItem as SearchGameMode;
+				gameList = await Game.Game.Search(SearchWord.Text, mode.Mode);
+				if (gameList.Count == 0) {
+					GameList.Items.Add(Properties.Resources.NotFound);
+				} else {
+					foreach (var game in gameList) {
+						GameList.Items.Add(game["Title"]);
+					}
+					GameList.SelectedIndex = 0;
+				}
+			}
+			catch {
+				return;
+			}
+		}
+
+		private void ExecutableFilePath_PreviewDragOver(object sender, DragEventArgs e) {
+			if (e.Data.GetDataPresent(DataFormats.FileDrop, true))
+				e.Effects = DragDropEffects.Copy;
+			else
+				e.Effects = DragDropEffects.None;
+			e.Handled = true;
+		}
+
+		private void ExecutableFilePath_Drop(object sender, DragEventArgs e) {
+
 		}
 	}
 }

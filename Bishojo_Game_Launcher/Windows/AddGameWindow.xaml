@@ -43,7 +43,7 @@
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="80"/>
 					</Grid.ColumnDefinitions>
-					<TextBox Grid.Column="0" x:Name="ExecutableFilePath" FontSize="15" Tag="{x:Static properties:Resources.ExecutableFile}" Style="{DynamicResource DefaultTextBoxStyle}"/>
+					<TextBox Grid.Column="0" x:Name="ExecutableFilePath" FontSize="15" Drop="ExecutableFilePath_Drop" PreviewDragOver="ExecutableFilePath_PreviewDragOver" Tag="{x:Static properties:Resources.ExecutableFile}" Style="{DynamicResource DefaultTextBoxStyle}"/>
 					<Button Grid.Column="1" Content="{x:Static properties:Resources.Browse}" Style="{DynamicResource DefaultButtonStyle}"/>
 				</Grid>
 			</Border>
@@ -64,10 +64,12 @@
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="80"/>
+						<ColumnDefinition Width="60"/>
 					</Grid.ColumnDefinitions>
-					<TextBox Grid.Column="0" x:Name="SearchWord" FontSize="15" Tag="{x:Static properties:Resources.SearchGameDetaile}" Style="{DynamicResource DefaultTextBoxStyle}"/>
-					<Button Grid.Column="1" Click="SearchGame_Click" Content="{x:Static properties:Resources.Search}" Style="{DynamicResource DefaultButtonStyle}"/>
-				</Grid>
+					<TextBox Grid.Column="0" x:Name="SearchWord" FontSize="15" KeyDown="SearchWord_KeyDown" Tag="{x:Static properties:Resources.SearchGameDetaile}" Style="{DynamicResource DefaultTextBoxStyle}"/>
+					<Button Grid.Column="1" x:Name="SearchGame" Click="SearchGame_Click" Content="{x:Static properties:Resources.Search}" Style="{DynamicResource DefaultButtonStyle}"/>
+					<ComboBox Grid.Column="2" x:Name="SearchMode" SelectedValuePath="Mode" DisplayMemberPath="ModeName" Style="{DynamicResource DefaultComboBoxStyle}"/>
+				</Grid> 
 			</Border>
 
 			<ListBox Grid.Row="5" x:Name="GameList" SelectionChanged="GameList_SelectionChanged" Style="{DynamicResource DefaultListBoxStyle}"/>

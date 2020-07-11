@@ -118,10 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Browse" xml:space="preserve">
-    <value>参照....</value>
+    <value>参照...</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
+  </data>
+  <data name="ErogameScapeSearchModeBrand" xml:space="preserve">
+    <value>ブランド</value>
+  </data>
+  <data name="ErogameScapeSearchModeTitle" xml:space="preserve">
+    <value>タイトル</value>
   </data>
   <data name="ExecutableFile" xml:space="preserve">
     <value>実行ファイル</value>
@@ -154,7 +160,7 @@
     <value>検索</value>
   </data>
   <data name="SearchGameDetaile" xml:space="preserve">
-    <value>タイトルで詳細を検索</value>
+    <value>ゲームの詳細を検索</value>
   </data>
   <data name="WindowCloseToolTip" xml:space="preserve">
     <value>閉じる</value>

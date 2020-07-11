@@ -15,8 +15,8 @@ namespace Bishojo_Game_Launcher.Game {
 		
 		private static ErogameScape.ErogameScape erogameScape;
 
-		public static async Task<List<Dictionary<string, string>>> Search(string searchWord) {
-			return await erogameScape.SearchGame(searchWord);
+		public static async Task<List<Dictionary<string, string>>> Search(string searchWord, ErogameScape.ErogameScape.SearchGameMode mode=ErogameScape.ErogameScape.SearchGameMode.Title) {
+			return await erogameScape.SearchGame(searchWord, mode);
 		} 
 
 		public static async Task Add(string gameTitle) {

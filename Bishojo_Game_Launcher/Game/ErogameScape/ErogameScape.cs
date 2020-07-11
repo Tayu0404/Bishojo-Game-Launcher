@@ -15,10 +15,15 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
 
         private static HttpClient client;
 
-        public enum Mode {
+        public enum GetDetaileMode {
             URL = 0,
             ID = 1,
         }
+
+        public enum SearchGameMode {
+            Title = 0,
+            Brand = 1,
+		}
 
         public class Detaile {
             public Detaile(
@@ -108,9 +113,14 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
             return await response.Content.ReadAsStringAsync();
         }
 
-        public async Task<List<Dictionary<string, string>>> SearchGame(string gameTitle) {
-            Console.WriteLine("SearchGame");
-            var url = $"https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/kensaku.php?category=game&word_category=name&word={gameTitle}&mode=normal";
+        public async Task<List<Dictionary<string, string>>> SearchGame(string searchWord, SearchGameMode mode= SearchGameMode.Brand) {
+            string url;
+            if (mode == SearchGameMode.Brand) {
+                url = $"https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/kensaku.php?category=brand&word_category=name&word={searchWord}&mode=normal";
+            } else {
+                url = $"https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/kensaku.php?category=game&word_category=name&word={searchWord}&mode=normal";
+            }
+            
             var source = await getAsync(url);
 
             var doc = default(IHtmlDocument);
@@ -121,32 +131,36 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
             var detaileElements = doc.QuerySelectorAll("#result > table > tbody > tr");
             var head = true;
             foreach (var detaileElemet in detaileElements) {
-                Dictionary<string, string> detaile = new Dictionary<string, string>();
                 if (head) {
                     head = false;
                     continue;
                 }
                 var data = detaileElemet.QuerySelectorAll("td");
-                detaile = new Dictionary<string, string>() {
+                if (mode == SearchGameMode.Brand) {
+                    var detaile = new Dictionary<string, string>() {
+                        { "Title", data[0].TextContent.Replace("OHP", "") },
+                        { "Brand", doc.QuerySelector("#result > h3 > a").TextContent },
+                        { "Sellday", data[1].TextContent },
+                        { "Detaileurl", data[0].QuerySelector("a").GetAttribute("href") },
+                    };
+                    detaileList.Add(detaile);
+                } else {
+                    var detaile = new Dictionary<string, string>() {
                         { "Title", data[0].TextContent.Replace("OHP", "") },
                         { "Brand", data[1].TextContent },
                         { "Sellday", data[2].TextContent },
                         { "Detaileurl", data[0].QuerySelector("a").GetAttribute("href") },
-                };
-                detaileList.Add(detaile);
-                Console.WriteLine(detaile["Title"]);
-                Console.WriteLine(detaile["Brand"]);
-                Console.WriteLine(detaile["Sellday"]);
-                Console.WriteLine(detaile["Detaileurl"]);
+                    };
+                    detaileList.Add(detaile);
+                }
             }
-            Console.WriteLine(detaileList);
             return detaileList;
         }
 
-        public async Task<Detaile> GetGameDetails(string detaileURL, Mode mode = Mode.URL) {
+        public async Task<Detaile> GetGameDetails(string detaileURL, GetDetaileMode mode = GetDetaileMode.URL) {
             var url = detaileURL;
 
-            if (mode == Mode.ID) {
+            if (mode == GetDetaileMode.ID) {
                 url = $"https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/{detaileURL}";
             }
 
