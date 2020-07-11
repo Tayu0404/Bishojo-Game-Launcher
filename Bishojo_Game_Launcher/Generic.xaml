@@ -3,17 +3,105 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:System="clr-namespace:System;assembly=mscorlib">
     <!-- リソース ディクショナリのエントリはここで定義します。-->
     <System:Double x:Key="CaptionHeight">26</System:Double>
-    <Style TargetType="{x:Type Window}" x:Key="DefaultWindowStyle">
-        <Setter Property="WindowChrome.WindowChrome">
-            <Setter.Value>
-                <WindowChrome CornerRadius="3" GlassFrameThickness="0" ResizeBorderThickness="8" UseAeroCaptionButtons="False" CaptionHeight="{DynamicResource CaptionHeight}"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="UseLayoutRounding" Value="True"/>
-        <Setter Property="Background" Value="#FF494949"/>
-        <Setter Property="BorderBrush" Value="#FF14A9FF"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Foreground" Value="White"/>
-    </Style>
+	<Style TargetType="{x:Type Window}" x:Key="DefaultWindowStyle">
+		<Setter Property="WindowChrome.WindowChrome">
+			<Setter.Value>
+				<WindowChrome CornerRadius="3" GlassFrameThickness="0" ResizeBorderThickness="8" UseAeroCaptionButtons="False" CaptionHeight="{DynamicResource CaptionHeight}"/>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+		<Setter Property="UseLayoutRounding" Value="True"/>
+		<Setter Property="Background" Value="#FF494949"/>
+		<Setter Property="BorderBrush" Value="#FF14A9FF"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Foreground" Value="White"/>
+	</Style>
+
+	<Style TargetType="{x:Type Button}" x:Key="DefaultButtonStyle">
+		<Setter Property="Background" Value="#00000000"/>
+		<Setter Property="BorderBrush" Value="#00000000"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border x:Name="Border" Background="{TemplateBinding Background}">
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="#707070" TargetName="Border" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="{x:Type Button}" x:Key="CloseButtonStyle">
+		<Setter Property="Background" Value="#00000000"/>
+		<Setter Property="BorderBrush" Value="#00000000"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border x:Name="Border" Background="{TemplateBinding Background}">
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="IndianRed" TargetName="Border" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="{x:Type Button}" x:Key="BackgroundColerButtonStyle">
+		<Setter Property="Background" Value="#555555"/>
+		<Setter Property="BorderBrush" Value="#00000000"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border x:Name="Border" Background="{TemplateBinding Background}">
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="#707070" TargetName="Border" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="{x:Type TextBlock}" x:Key="DefaultTextBlockStyle">
+		<Setter Property="Background" Value="#00000000"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<Style TargetType="{x:Type ListBox}" x:Key="DefaultListBoxStyle">
+		<Setter Property="Background" Value="#505050"/>
+		<Setter Property="BorderBrush" Value="Black"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+	</Style>
+
+	<Style TargetType="{x:Type TextBox}" x:Key="DefaultTextBoxStyle">
+		<Setter Property="Background" Value="#00000000"/>
+		<Setter Property="BorderBrush" Value="#00000000"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<Style TargetType="{x:Type Border}" x:Key="DefaultBorderStyle">
+		<Setter Property="Background" Value="#454545"/>
+		<Setter Property="BorderBrush" Value="Black"/>
+		<Setter Property="BorderThickness" Value="1"/>
+	</Style>
 </ResourceDictionary>

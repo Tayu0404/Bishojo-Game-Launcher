@@ -147,6 +147,9 @@
   <data name="SaveData" xml:space="preserve">
     <value>Save Data</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
   <data name="WindowCloseToolTip" xml:space="preserve">
     <value>Close</value>
   </data>
