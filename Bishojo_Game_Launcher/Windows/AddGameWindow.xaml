@@ -12,14 +12,14 @@
         ResizeMode="NoResize">
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="24"/>
+			<RowDefinition Height="30"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
 		<Grid Grid.Row="0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="36"/>
+				<ColumnDefinition Width="45"/>
 			</Grid.ColumnDefinitions>
 			<Button Grid.Column="1" Content="X" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}" Style="{DynamicResource CloseButtonStyle}"/>
 		</Grid>

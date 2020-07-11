@@ -8,16 +8,16 @@
 		WindowStyle="None">
 	<Grid x:Name="LayoutRoot">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="24"/>
+			<RowDefinition Height="30"/>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="40"/>
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="36"/>
-				<ColumnDefinition Width="36"/>
-				<ColumnDefinition Width="36"/>
+				<ColumnDefinition Width="45"/>
+				<ColumnDefinition Width="45"/>
+				<ColumnDefinition Width="45"/>
 			</Grid.ColumnDefinitions>
 			<Button Grid.Column="3" Content="X" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}" Style="{DynamicResource CloseButtonStyle}"/>
 			<Button Grid.Column="2" Content="□" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMaxmize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMaxmizeToolTip}"/>
