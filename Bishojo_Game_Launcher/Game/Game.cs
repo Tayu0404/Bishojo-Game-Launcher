@@ -15,13 +15,12 @@ namespace Bishojo_Game_Launcher.Game {
 		
 		private static ErogameScape.ErogameScape erogameScape;
 
-		public static async Task<List<Dictionary<string, string>>> Search(string searchWord, ErogameScape.ErogameScape.SearchGameMode mode=ErogameScape.ErogameScape.SearchGameMode.Title) {
+		public static async Task<List<ErogameScape.ErogameScape.SearchResult>> Search(string searchWord, ErogameScape.ErogameScape.SearchGameMode mode=ErogameScape.ErogameScape.SearchGameMode.Title) {
 			return await erogameScape.SearchGame(searchWord, mode);
 		} 
 
 		public static async Task Add(string gameTitle) {
 			var searchList = await erogameScape.SearchGame(gameTitle);
-			Console.WriteLine(searchList[0]["Title"]);
 			var gameTitleMD5 = generateHash(gameTitle);
 		}
 		private static string generateHash(string gameTitle) {

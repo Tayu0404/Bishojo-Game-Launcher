@@ -23,7 +23,7 @@ namespace Bishojo_Game_Launcher.Windows {
 			public string ModeName { get; set; }
 		}
 
-		private static List<Dictionary<string, string>> gameList;
+		private static List<ErogameScape.SearchResult> gameList;
 
 		private void WindowClose_Click(object sender, RoutedEventArgs e) {
 			this.Close();
@@ -41,9 +41,9 @@ namespace Bishojo_Game_Launcher.Windows {
 				GameReleaseData.Text = "";
 				return;
 			} else {
-				GameTitle.Text = gameList[listBox.SelectedIndex]["Title"];
-				GameBrand.Text = gameList[listBox.SelectedIndex]["Brand"];
-				GameReleaseData.Text = gameList[listBox.SelectedIndex]["Sellday"];
+				GameTitle.Text = gameList[listBox.SelectedIndex].Title;
+				GameBrand.Text = gameList[listBox.SelectedIndex].Brand;
+				GameReleaseData.Text = gameList[listBox.SelectedIndex].Sellday;
 			}
 		}
 
@@ -65,7 +65,7 @@ namespace Bishojo_Game_Launcher.Windows {
 					GameList.Items.Add(Properties.Resources.NotFound);
 				} else {
 					foreach (var game in gameList) {
-						GameList.Items.Add(game["Title"]);
+						GameList.Items.Add(game.Title);
 					}
 					GameList.SelectedIndex = 0;
 				}

@@ -23,11 +23,33 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
         public enum SearchGameMode {
             Title = 0,
             Brand = 1,
-		}
+        }
+
+        public class SearchResult {
+            public SearchResult(
+                string title,
+                string brand,
+                string sellday,
+                string detaileirl
+            ) {
+                this.Title = title;
+                this.Brand = brand;
+                this.Sellday = sellday;
+                this.Detaileurl = detaileirl;
+            }
+            public string Title { get; private set; }
+
+            public string Brand { get; private set; }
+
+            public string Sellday { get; private set; }
+
+            public string Detaileurl { get; private set; }
+        }
 
         public class Detaile {
             public Detaile(
                 string title,
+                string web,
                 string brand,
                 string sellday,
                 string mainImage,
@@ -36,10 +58,12 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
                 List<string> scenarios,
                 List<string> composers,
                 List<string> voices,
+                List<string> characters,
                 List<string> singers,
                 List<string> sampleCGs
             ) {
                 this.Title = title;
+                this.Web = web;
                 this.Brand = brand;
                 this.Sellday = sellday;
                 this.MainImage = mainImage;
@@ -48,11 +72,14 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
                 this.Scenarios = scenarios;
                 this.Composers = composers;
                 this.Voices = voices;
+                this.Characters = characters;
                 this.Singers = singers;
                 this.SampleCGs = sampleCGs;
-			}
+            }
 
             public string Title { get; private set; }
+
+            public string Web { get; private set; }
 
             public string Brand { get; private set; }
 
@@ -69,6 +96,8 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
             public List<string> Composers { get; private set; }
 
             public List<string> Voices { get; private set; }
+
+            public List<string> Characters { get; private set; }
 
             public List<string> Singers { get; private set; }
 
@@ -113,21 +142,21 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
             return await response.Content.ReadAsStringAsync();
         }
 
-        public async Task<List<Dictionary<string, string>>> SearchGame(string searchWord, SearchGameMode mode= SearchGameMode.Brand) {
+        public async Task<List<SearchResult>> SearchGame(string searchWord, SearchGameMode mode = SearchGameMode.Title) {
             string url;
             if (mode == SearchGameMode.Brand) {
                 url = $"https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/kensaku.php?category=brand&word_category=name&word={searchWord}&mode=normal";
             } else {
                 url = $"https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/kensaku.php?category=game&word_category=name&word={searchWord}&mode=normal";
             }
-            
+
             var source = await getAsync(url);
 
             var doc = default(IHtmlDocument);
             var parser = new HtmlParser();
             doc = await parser.ParseDocumentAsync(source);
 
-            var detaileList = new List<Dictionary<string, string>>();
+            var detaileList = new List<SearchResult>();
             var detaileElements = doc.QuerySelectorAll("#result > table > tbody > tr");
             var head = true;
             foreach (var detaileElemet in detaileElements) {
@@ -137,20 +166,20 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
                 }
                 var data = detaileElemet.QuerySelectorAll("td");
                 if (mode == SearchGameMode.Brand) {
-                    var detaile = new Dictionary<string, string>() {
-                        { "Title", data[0].TextContent.Replace("OHP", "") },
-                        { "Brand", doc.QuerySelector("#result > h3 > a").TextContent },
-                        { "Sellday", data[1].TextContent },
-                        { "Detaileurl", data[0].QuerySelector("a").GetAttribute("href") },
-                    };
+                    var detaile = new SearchResult(
+                        data[0].TextContent.Replace("OHP", ""),
+                        doc.QuerySelector("#result > h3 > a").TextContent,
+                        data[1].TextContent,
+                        data[0].QuerySelector("a").GetAttribute("href")
+                    );
                     detaileList.Add(detaile);
                 } else {
-                    var detaile = new Dictionary<string, string>() {
-                        { "Title", data[0].TextContent.Replace("OHP", "") },
-                        { "Brand", data[1].TextContent },
-                        { "Sellday", data[2].TextContent },
-                        { "Detaileurl", data[0].QuerySelector("a").GetAttribute("href") },
-                    };
+                    var detaile = new SearchResult(
+                        data[0].TextContent.Replace("OHP", ""),
+                        data[1].TextContent,
+                        data[2].TextContent,
+                        data[0].QuerySelector("a").GetAttribute("href")
+                    );
                     detaileList.Add(detaile);
                 }
             }
@@ -170,6 +199,7 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
             doc = await parser.ParseDocumentAsync(source);
 
             var title = doc.QuerySelector("#game_title > a").TextContent;
+            var web = doc.QuerySelector("#game_title > a").GetAttribute("href");
             var brand = doc.QuerySelector("#brand > td > a").TextContent;
             var sellday = doc.QuerySelector("#sellday > td > a").TextContent;
             var mainImage = doc.QuerySelector("#main_image > a > img").GetAttribute("src");
@@ -203,6 +233,13 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
                 voices.Add(voice);
             }
 
+            var characterElements = doc.QuerySelectorAll("#seiyu > td > span");
+            var characters = new List<string>();
+            foreach (var characterElement in characterElements) {
+                var character = characterElement.TextContent;
+                characters.Add(character);
+            }
+
             var singerElements = doc.QuerySelectorAll("#kasyu > td > a");
             var singers = new List<string>();
             foreach (var singerElement in singerElements) {
@@ -224,6 +261,7 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
 
             var detaile = new Detaile(
                 title,
+                web,
                 brand,
                 sellday,
                 mainImage,
@@ -232,6 +270,7 @@ namespace Bishojo_Game_Launcher.Game.ErogameScape {
                 scenarios,
                 composers,
                 voices,
+                characters,
                 singers,
                 sampleCGs
             );
