@@ -23,7 +23,7 @@ namespace Bishojo_Game_Launcher.Windows {
 			public string ModeName { get; set; }
 		}
 
-		private static List<ErogameScape.SearchResult> gameList;
+		private static List<Game.Game.SearchResult> gameList;
 
 		private void WindowClose_Click(object sender, RoutedEventArgs e) {
 			this.Close();
