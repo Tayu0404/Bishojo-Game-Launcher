@@ -1,4 +1,4 @@
-﻿using Bishojo_Game_Launcher.Game.ErogameScape;
+﻿using Bishojo_Game_Launcher.Game;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -60,7 +60,8 @@ namespace Bishojo_Game_Launcher.Windows {
 			}
 			try {
 				var mode = SearchMode.SelectedItem as SearchGameMode;
-				gameList = await Game.Game.Search(SearchWord.Text, mode.Mode);
+				var erogameScape = new ErogameScape();
+				gameList = await erogameScape.SearchGame(SearchWord.Text, mode.Mode);
 				if (gameList.Count == 0) {
 					GameList.Items.Add(Properties.Resources.NotFound);
 				} else {

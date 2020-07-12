@@ -87,8 +87,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Game\ErogameScape\ErogameScape.cs" />
-    <Compile Include="Game\Game.cs" />
+    <Compile Include="Game\ErogameScape.cs" />
+    <Compile Include="Game\Add.cs" />
+    <Compile Include="Game\List.cs" />
     <Compile Include="Properties\Resources.ja-JP.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
