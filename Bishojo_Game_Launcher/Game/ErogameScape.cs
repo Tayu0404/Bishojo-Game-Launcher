@@ -25,85 +25,6 @@ namespace Bishojo_Game_Launcher.Game {
             Brand = 1,
         }
 
-        public class SearchResult {
-            public SearchResult(
-                string title,
-                string brand,
-                string sellday,
-                string detaileirl
-            ) {
-                this.Title = title;
-                this.Brand = brand;
-                this.Sellday = sellday;
-                this.Detaileurl = detaileirl;
-            }
-            public string Title { get; private set; }
-
-            public string Brand { get; private set; }
-
-            public string Sellday { get; private set; }
-
-            public string Detaileurl { get; private set; }
-        }
-
-        public class Detaile {
-            public Detaile(
-                string title,
-                string web,
-                string brand,
-                string sellday,
-                string mainImage,
-                string erogame,
-                List<string> illustrators,
-                List<string> scenarios,
-                List<string> composers,
-                List<string> voices,
-                List<string> characters,
-                List<string> singers,
-                List<string> sampleCGs
-            ) {
-                this.Title = title;
-                this.Web = web;
-                this.Brand = brand;
-                this.Sellday = sellday;
-                this.MainImage = mainImage;
-                this.Erogame = erogame;
-                this.Illustrators = illustrators;
-                this.Scenarios = scenarios;
-                this.Composers = composers;
-                this.Voices = voices;
-                this.Characters = characters;
-                this.Singers = singers;
-                this.SampleCGs = sampleCGs;
-            }
-
-            public string Title { get; private set; }
-
-            public string Web { get; private set; }
-
-            public string Brand { get; private set; }
-
-            public string Sellday { get; private set; }
-
-            public string MainImage { get; private set; }
-
-            public string Erogame { get; private set; }
-
-            public List<string> Illustrators { get; private set; }
-
-            public List<string> Scenarios { get; private set; }
-
-            public List<string> Composers { get; private set; }
-
-            public List<string> Voices { get; private set; }
-
-            public List<string> Characters { get; private set; }
-
-            public List<string> Singers { get; private set; }
-
-            public List<string> SampleCGs { get; private set; }
-        }
-
         public void UseHTTPProxy(string address, int port) {
             var handler = new HttpClientHandler();
             handler.Proxy = new WebProxy($"{address}:{port}");
@@ -142,7 +63,7 @@ namespace Bishojo_Game_Launcher.Game {
             return await response.Content.ReadAsStringAsync();
         }
 
-        public async Task<List<SearchResult>> SearchGame(string searchWord, SearchGameMode mode = SearchGameMode.Title) {
+        public async Task<List<Game.SearchResult>> SearchGame(string searchWord, SearchGameMode mode = SearchGameMode.Title) {
             string url;
             if (mode == SearchGameMode.Brand) {
                 url = $"https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/kensaku.php?category=brand&word_category=name&word={searchWord}&mode=normal";
@@ -156,7 +77,7 @@ namespace Bishojo_Game_Launcher.Game {
             var parser = new HtmlParser();
             doc = await parser.ParseDocumentAsync(source);
 
-            var detaileList = new List<SearchResult>();
+            var detaileList = new List<Game.SearchResult>();
             var detaileElements = doc.QuerySelectorAll("#result > table > tbody > tr");
             var head = true;
             foreach (var detaileElemet in detaileElements) {
@@ -166,7 +87,7 @@ namespace Bishojo_Game_Launcher.Game {
                 }
                 var data = detaileElemet.QuerySelectorAll("td");
                 if (mode == SearchGameMode.Brand) {
-                    var detaile = new SearchResult(
+                    var detaile = new Game.SearchResult(
                         data[0].TextContent.Replace("OHP", ""),
                         doc.QuerySelector("#result > h3 > a").TextContent,
                         data[1].TextContent,
@@ -174,7 +95,7 @@ namespace Bishojo_Game_Launcher.Game {
                     );
                     detaileList.Add(detaile);
                 } else {
-                    var detaile = new SearchResult(
+                    var detaile = new Game.SearchResult(
                         data[0].TextContent.Replace("OHP", ""),
                         data[1].TextContent,
                         data[2].TextContent,
@@ -186,7 +107,7 @@ namespace Bishojo_Game_Launcher.Game {
             return detaileList;
         }
 
-        public async Task<Detaile> GetGameDetails(string detaileURL, GetDetaileMode mode = GetDetaileMode.URL) {
+        public async Task<Game.Detaile> GetGameDetails(string detaileURL, GetDetaileMode mode = GetDetaileMode.URL) {
             var url = detaileURL;
 
             if (mode == GetDetaileMode.ID) {
@@ -259,7 +180,7 @@ namespace Bishojo_Game_Launcher.Game {
                 sampleCGs.Add(sampleCG);
             }
 
-            var detaile = new Detaile(
+            var detaile = new Game.Detaile(
                 title,
                 web,
                 brand,

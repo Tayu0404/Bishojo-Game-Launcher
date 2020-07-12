@@ -89,6 +89,7 @@
     </ApplicationDefinition>
     <Compile Include="Game\ErogameScape.cs" />
     <Compile Include="Game\Add.cs" />
+    <Compile Include="Game\Game.cs" />
     <Compile Include="Game\List.cs" />
     <Compile Include="Properties\Resources.ja-JP.Designer.cs">
       <AutoGen>True</AutoGen>
