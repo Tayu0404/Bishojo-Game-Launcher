@@ -123,6 +123,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
   <data name="ErogameScapeSearchModeBrand" xml:space="preserve">
     <value>Brand</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="GameTitle" xml:space="preserve">
     <value>Title</value>
+  </data>
+  <data name="Library" xml:space="preserve">
+    <value>Library</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Not Found</value>

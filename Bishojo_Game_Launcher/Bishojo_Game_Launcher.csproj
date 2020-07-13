@@ -96,8 +96,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.ja-JP.resx</DependentUpon>
     </Compile>
+    <Compile Include="Property\Folder.cs" />
+    <Compile Include="Property\Path.cs" />
     <Compile Include="Windows\AddGameWindow.xaml.cs">
       <DependentUpon>AddGameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindowDownloadList.xaml.cs">
+      <DependentUpon>MainWindowDownloadList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindowGameList.xaml.cs">
+      <DependentUpon>MainWindowGameList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SearchGameWindow.xaml.cs">
       <DependentUpon>SearchGameWindow.xaml</DependentUpon>
@@ -119,6 +127,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\AddGameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindowDownloadList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindowGameList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

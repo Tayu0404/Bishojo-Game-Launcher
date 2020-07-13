@@ -2,7 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:properties="clr-namespace:Bishojo_Game_Launcher.Properties"
-        Title="MainWindow" Height="720" Width="1280" Style="{DynamicResource DefaultWindowStyle}"
+		xmlns:windows="clr-namespace:Bishojo_Game_Launcher.Windows"
+		Title="MainWindow" Height="720" Width="1280"
+		Style="{DynamicResource DefaultWindowStyle}"
         StateChanged="window_StateChanged"
         AllowsTransparency="True"
 		WindowStyle="None">
@@ -10,7 +12,6 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="30"/>
 			<RowDefinition Height="*"/>
-			<RowDefinition Height="40"/>
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
 			<Grid.ColumnDefinitions>
@@ -20,81 +21,41 @@
 				<ColumnDefinition Width="45"/>
 			</Grid.ColumnDefinitions>
 			<Button Grid.Column="3" Content="X" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}" Style="{DynamicResource CloseButtonStyle}"/>
-			<Button Grid.Column="2" Content="□" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMaxmize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMaxmizeToolTip}"/>
-			<Button Grid.Column="1" Content="ー" BorderBrush="#00000000" Background="#00000000" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMiniMize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMinimizeToolTip}"/>
+			<Button Grid.Column="2" Content="□" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMaxmize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMaxmizeToolTip}" Style="{DynamicResource DefaultButtonStyle}"/>
+			<Button Grid.Column="1" Content="ー" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMiniMize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMinimizeToolTip}" Style="{DynamicResource DefaultButtonStyle}"/>
 		</Grid>
 
 		<Grid Grid.Row="1">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="300"/>
-				<ColumnDefinition Width="*"/>
-			</Grid.ColumnDefinitions>
-
-			<Grid Grid.Column="0">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="30"/>
-					<RowDefinition Height="30"/>
-					<RowDefinition Height="*"/>
-				</Grid.RowDefinitions>
-
-				<TextBlock Grid.Row="0" FontSize="24">Game List</TextBlock>
-
-				<Border Grid.Row="1" Margin="5,0,0,0" BorderThickness="1" BorderBrush="Black">
-					<Grid Background="#5B5B5B">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="30"/>
-							<ColumnDefinition Width="*"/>
-						</Grid.ColumnDefinitions>
-						<TextBlock Grid.Column="0" Background="#00000000"></TextBlock>
-						<TextBox Grid.Column="1" FontSize="15" Background="#00000000" BorderBrush="#00000000" x:Name="SeachGameTitle"/>
-					</Grid>
-				</Border>
-				<ListBox Grid.Row="2" Margin="5,0,0,0" FontSize="15" Background="#5B5B5B" BorderBrush="Black" x:Name="GameList"></ListBox>
-
+			<Grid.RowDefinitions>
+				<RowDefinition Height="50"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="40"/>
+			</Grid.RowDefinitions>
+			<Grid Grid.Row="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="150"/>
+					<ColumnDefinition Width="150"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Button Grid.Column="0" FontSize="25" Click="ChangeGameListWindow_Click" Content="{x:Static properties:Resources.Library}" Style="{DynamicResource DefaultButtonStyle}"/>
 			</Grid>
 
-			<Grid Grid.Column="1">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="30"/>
-					<RowDefinition Height="70"/>
-					<RowDefinition Height="30"/>
-					<RowDefinition Height="*"/>
-				</Grid.RowDefinitions>
-
-				<Grid Grid.Row="0">
-					<TextBlock FontSize="24">Game Name</TextBlock>
-					<Image Grid.RowSpan="2"></Image>
-				</Grid>
-
-				<Grid Grid.Row="2" Background="#5B5B5B">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="70"/>
-						<ColumnDefinition Width="30"/>
-						<ColumnDefinition Width="10"/>
-					</Grid.ColumnDefinitions>
-
-					<Button Grid.Column="1" FontSize="20" BorderBrush="#00000000" Background="#00000000" Foreground="White" x:Name="Play">Play</Button>
-					<Button Grid.Column="2" FontSize="20" BorderBrush="#00000000" Background="#00000000" Foreground="White" x:Name="Setting" >⚙</Button>
-				</Grid>
+			<Grid Grid.Row="1">
+				<windows:MainWindowGameList x:Name="GameListWindow"/>
+				<windows:MainWindowDownloadList x:Name="DownloadListWindow" Visibility="Hidden"/>
 			</Grid>
-		</Grid>
 
-		<Grid Grid.Row="2">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="150"/>
-				<ColumnDefinition Width="*"/>
-			</Grid.ColumnDefinitions>
-			<Button
-				Grid.Column="0"
-				Margin="10,10,10,10"
-				BorderBrush="#00000000"
-				Background="#00000000"
-				FontSize="15"
-				x:Name="AddGame"
-				Click="AddGame_Click">
-				Add Game
-			</Button>
+			<Grid Grid.Row="2">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="150"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="150"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="150"/>
+				</Grid.ColumnDefinitions>
+				<Button Grid.Column="0" FontSize="15" Click="AddGame_Click" Content="{x:Static properties:Resources.GameRegistry}" Style="{DynamicResource DefaultButtonStyle}"/>
+				<Button Grid.Column="2" FontSize="15" Click="ChangeDownloadListWindow_Click" Content="{x:Static properties:Resources.Download}" Style="{DynamicResource DefaultButtonStyle}"/>
+			</Grid>
 		</Grid>
 	</Grid>
 </Window>

@@ -75,5 +75,15 @@ namespace Bishojo_Game_Launcher {
             var addGameWindow = new AddGameWindow();
             addGameWindow.Show();
 		}
+
+        private void ChangeGameListWindow_Click(object sender, RoutedEventArgs e) {
+            this.GameListWindow.Visibility = Visibility.Visible;
+            this.DownloadListWindow.Visibility = Visibility.Hidden;
+        }
+        
+		private void ChangeDownloadListWindow_Click(object sender, RoutedEventArgs e) {
+            this.GameListWindow.Visibility = Visibility.Hidden;
+            this.DownloadListWindow.Visibility = Visibility.Visible;
+		}
 	}
 }

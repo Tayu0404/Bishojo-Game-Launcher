@@ -123,6 +123,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>ダウンロード</value>
+  </data>
   <data name="ErogameScapeSearchModeBrand" xml:space="preserve">
     <value>ブランド</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="GameTitle" xml:space="preserve">
     <value>タイトル</value>
+  </data>
+  <data name="Library" xml:space="preserve">
+    <value>ライブラリ</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>見つかりませんでした</value>

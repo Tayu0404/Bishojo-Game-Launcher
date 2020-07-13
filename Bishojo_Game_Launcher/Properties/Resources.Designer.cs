@@ -79,6 +79,15 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Download に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Download {
+            get {
+                return ResourceManager.GetString("Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Brand に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ErogameScapeSearchModeBrand {
@@ -147,6 +156,15 @@ namespace Bishojo_Game_Launcher.Properties {
         public static string GameTitle {
             get {
                 return ResourceManager.GetString("GameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Library に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Library {
+            get {
+                return ResourceManager.GetString("Library", resourceCulture);
             }
         }
         
