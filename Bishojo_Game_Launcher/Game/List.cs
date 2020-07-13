@@ -9,13 +9,17 @@ using System.Xml.Linq;
 
 namespace Bishojo_Game_Launcher.Game {
 	class List {
-		static List<GameList> games;
-		public class GameList {
+		static List<GameDetaile> games;
+		public class GameDetaile {
+			public GameDetaile(string hash, Game.Detaile detaile) {
+				this.Hash = hash;
+				this.Detaile = detaile;
+			}
 			public string Hash { get; private set; }
 			public Game.Detaile Detaile { get; private set; }
 		}
 
-		public List<GameList> Games {
+		public List<GameDetaile> Games {
 			get { return games; }
 			private set { games = value; }
 		}
@@ -58,6 +62,11 @@ namespace Bishojo_Game_Launcher.Game {
 			var xElement = new XElement("Games", boxedLunchRows);
 			var xDocument = new XDocument(xElement);
 			xDocument.Save(Path.GamesFolder + @"list.xml");
+		}
+
+		public void Add(string hash, Game.Detaile detaile) {
+			var gameDetaile = new GameDetaile(hash, detaile);
+			this.Games.Add(gameDetaile);
 		}
 	}
 }
