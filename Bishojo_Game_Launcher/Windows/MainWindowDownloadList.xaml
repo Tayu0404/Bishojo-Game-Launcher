@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Bishojo_Game_Launcher.Windows"
-             mc:Ignorable="d" 
+			 xmlns:CustomControl="clr-namespace:Bishojo_Game_Launcher.CustomControl"
+			 mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 	<Grid Margin="5,0,5,0">
 		<Grid.RowDefinitions>
@@ -12,15 +13,6 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<Border Grid.Row="0" Style="{DynamicResource DefaultBorderStyle}"/>
-		<ListView Grid.Row="1">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Width="100"/>
-					<GridViewColumn Width="200"/>
-					<GridViewColumn Width="100"/>
-					<GridViewColumn Width="100"/>
-				</GridView>
-			</ListView.View>
-		</ListView>
+		<CustomControl:DownloadList Grid.Row="1" x:Name="DownloadList"/>
 	</Grid>
 </UserControl>
