@@ -13,6 +13,36 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<Border Grid.Row="0" Style="{DynamicResource DefaultBorderStyle}"/>
-		<CustomControl:DownloadList Grid.Row="1" x:Name="DownloadList"/>
+		<ListBox Grid.Row="1" x:Name="DownlaodList" Style="{DynamicResource DownlaodListStyle}"/>
+		<!--ListBox Grid.Row="1" x:Name="DownloadList" Background="Aqua" BorderBrush="Transparent" HorizontalContentAlignment="Stretch">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid Height="100" Background="#505050">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="100"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="40"/>
+						</Grid.ColumnDefinitions>
+						<Image Grid.Column="0" Margin="5" Source="{Binding AppIcon}"/>
+						<Grid Grid.Column="1" Margin="5">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="2*"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+							<TextBlock FontSize="20" Grid.Row="0" Background="Transparent" Foreground="White" Text="{Binding Title}" VerticalAlignment="Center"/>
+							<Grid Grid.Row="1">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock Grid.Column="0" FontSize="15" Background="Transparent" Foreground="White" Text="{Binding Brand}" />
+								<TextBlock Grid.Column="1" FontSize="15" Background="Transparent" Foreground="White" Text="{Binding ReleaseData}"/>
+							</Grid>
+						</Grid>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</-->
 	</Grid>
 </UserControl>

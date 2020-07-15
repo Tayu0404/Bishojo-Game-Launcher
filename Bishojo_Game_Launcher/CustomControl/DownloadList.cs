@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bishojo_Game_Launcher.Game;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,18 +49,5 @@ namespace Bishojo_Game_Launcher.CustomControl {
 		static DownloadList() {
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(DownloadList), new FrameworkPropertyMetadata(typeof(DownloadList)));
 		}
-
-		public ItemCollection Items {
-			get { return (ItemCollection)GetValue(ItemsProperty); }
-			set { SetValue(ItemsProperty, value); }
-		}
-
-		public static readonly DependencyProperty ItemsProperty =
-			DependencyProperty.Register(
-				"Items",
-				typeof(ItemCollection),
-				typeof(DownloadList),
-				new PropertyMetadata(null)
-			);
 	}
 }

@@ -20,8 +20,8 @@ namespace Bishojo_Game_Launcher.Windows {
 	public partial class MainWindowDownloadList : UserControl {
 		public MainWindowDownloadList() {
 			InitializeComponent();
-			var test = new { AppIcon = "", Title = "Test", Brand = "00A0", RelaseData = "2020-07-14" };
-			DownloadList.Items.Add(test);
+			var test = new { AppIcon = "", Title = "Test", Brand = "00A0", ReleaseData = "2020-07-14" };
+			DownlaodList.Items.Add(test);
 		}
 	}
 }
