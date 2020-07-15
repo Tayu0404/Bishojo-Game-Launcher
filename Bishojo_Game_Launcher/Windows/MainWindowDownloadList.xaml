@@ -13,7 +13,7 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<Border Grid.Row="0" Style="{DynamicResource DefaultBorderStyle}"/>
-		<ListBox Grid.Row="1" x:Name="DownlaodList" Style="{DynamicResource DownlaodListStyle}"/>
+		<ListBox Grid.Row="1" x:Name="DownlaodList" Style="{DynamicResource DownloadListStyle}"/>
 		<!--ListBox Grid.Row="1" x:Name="DownloadList" Background="Aqua" BorderBrush="Transparent" HorizontalContentAlignment="Stretch">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
