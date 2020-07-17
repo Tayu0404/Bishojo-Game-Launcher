@@ -1,8 +1,11 @@
-﻿using Bishojo_Game_Launcher.Property;
+﻿using AngleSharp.Dom;
+using AngleSharp.Html.Dom.Events;
+using Bishojo_Game_Launcher.Property;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Runtime.Remoting.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -10,12 +13,24 @@ using System.Xml.Linq;
 namespace Bishojo_Game_Launcher.Game {
 	class List {
 		static List<GameDetaile> games;
+
+		public List() {
+			games = new List<GameDetaile>();
+		}
+
 		public class GameDetaile {
-			public GameDetaile(string hash, Game.Detaile detaile) {
+			public GameDetaile(string hash, string executableFile, string saveFolder, Game.Detaile detaile) {
 				this.Hash = hash;
+				this.ExecutableFile = executableFile;
+				this.SaveFolder = saveFolder;
 				this.Detaile = detaile;
 			}
 			public string Hash { get; private set; }
+
+			public string ExecutableFile { get; private set; }
+
+			public string SaveFolder { get; private set; }
+
 			public Game.Detaile Detaile { get; private set; }
 		}
 
@@ -28,6 +43,8 @@ namespace Bishojo_Game_Launcher.Game {
 			var boxedLunchRows = this.Games.Select(x =>
 				new XElement("Game",
 					new XElement("Hash", x.Hash),
+					new XElement("ExecutableFile", x.ExecutableFile),
+					new XElement("SaveFolder", x.SaveFolder),
 					new XElement("Detaile",
 						new XElement("Title", x.Detaile.Title),
 						new XElement("Web", x.Detaile.Web),
@@ -64,9 +81,71 @@ namespace Bishojo_Game_Launcher.Game {
 			xDocument.Save(Path.GamesFolder + @"list.xml");
 		}
 
-		public void Add(string hash, Game.Detaile detaile) {
-			var gameDetaile = new GameDetaile(hash, detaile);
-			this.Games.Add(gameDetaile);
+		public void Read() {
+			try {
+				var xDocument = XDocument.Load(Path.GamesFolder + @"list.xml");
+				var xElements = xDocument.Root.Elements();
+				foreach(var xElement in xElements) {
+					var hash = xElement.Element("Hash").Value;
+					var executableFile = xElement.Element("ExecutableFile").Value;
+					var saveFolder = xElement.Element("SaveFolder").Value;
+					var detaile = xElement.Element("Detaile");
+					var title = detaile.Element("Title").Value;
+					var web = detaile.Element("Web").Value;
+					var brand = detaile.Element("Brand").Value;
+					var sellday  = detaile.Element("Sellday").Value;
+					var mainImage = detaile.Element("MainImage").Value;
+					var erogame = detaile.Element("Erogame").Value;
+					var illustrators = detaile.Element("Illustrators").Elements("Illustrator").Select(element =>
+						element.Value
+					).ToList();
+					var scenarios = detaile.Element("Scenarios").Elements("Scenario").Select(element =>
+						element.Value
+					).ToList();
+					var composers = detaile.Element("Composers").Elements("Composer").Select(element =>
+						element.Value
+					).ToList();
+					var voices = detaile.Element("Voices").Elements("Voice").Select(element =>
+						element.Value
+					).ToList();
+					var characters = detaile.Element("Characters").Elements("Character").Select(element =>
+						element.Value
+					).ToList();
+					var singers = detaile.Element("Singers").Elements("Singer").Select(element =>
+						element.Value
+					).ToList();
+					var sampleCGs = detaile.Element("SampleCGs").Elements("SampleCG").Select(element =>
+						element.Value
+					).ToList();
+					this.Add(
+						hash,
+						executableFile,
+						saveFolder,
+						new Game.Detaile(
+							title,
+							web,
+							brand,
+							sellday,
+							mainImage,
+							erogame,
+							illustrators,
+							scenarios,
+							composers,
+							voices,
+							characters,
+							singers,
+							sampleCGs
+						)
+					);
+				}
+			} catch {
+				return;
+			}
+		}
+
+		public void Add(string hash, string executableFile, string saveFolder, Game.Detaile detaile) {
+			var gameDetaile = new GameDetaile(hash, executableFile, saveFolder, detaile);
+			games.Add(gameDetaile);
 		}
 	}
 }
