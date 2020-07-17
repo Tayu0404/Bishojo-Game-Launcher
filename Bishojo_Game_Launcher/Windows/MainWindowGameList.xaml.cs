@@ -18,8 +18,24 @@ namespace Bishojo_Game_Launcher.Windows {
 	/// MainWindowGameList.xaml の相互作用ロジック
 	/// </summary>
 	public partial class MainWindowGameList : UserControl {
+		private static List<Game.List.GameDetaile> gamelist;
+
 		public MainWindowGameList() {
 			InitializeComponent();
+			GameListReload();
+		}
+
+		public void GameListReload() {
+			GameList.Items.Clear();
+			var list = new Game.List();
+			list.Read();
+			gamelist = list.Games;
+			Console.WriteLine(gamelist[0].Detaile.Title);
+			Console.WriteLine("Test");
+			gamelist.Select(x =>
+				GameList.Items.Add(x.Detaile.Title)
+			);
+			GameList.SelectedItem = 0;
 		}
 	}
 }

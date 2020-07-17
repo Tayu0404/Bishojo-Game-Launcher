@@ -20,7 +20,6 @@ namespace Bishojo_Game_Launcher {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
-
         private WindowState state { get; set; }
         private Size normalSize { get; set; }
         private double normalTop { get; set; }

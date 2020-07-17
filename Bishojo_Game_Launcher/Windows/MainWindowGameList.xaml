@@ -31,7 +31,7 @@
 					</Grid>
 				</Border>
 
-				<ListBox Grid.Row="1" Style="{DynamicResource DefaultListBoxStyle}"/>
-			</Grid>
+			<ListBox Grid.Row="1" x:Name="GameList" Style="{DynamicResource DefaultListBoxStyle}"/>
 		</Grid>
+	</Grid>
 </UserControl>
