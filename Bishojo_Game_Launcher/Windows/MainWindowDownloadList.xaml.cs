@@ -21,7 +21,7 @@ namespace Bishojo_Game_Launcher.Windows {
 		public MainWindowDownloadList() {
 			InitializeComponent();
 			var test = new { AppIcon = "", Title = "Test", Brand = "00A0", ReleaseData = "2020-07-14" };
-			DownlaodList.Items.Add(test);
+			DownloadList.Items.Add(test);
 		}
 	}
 }
