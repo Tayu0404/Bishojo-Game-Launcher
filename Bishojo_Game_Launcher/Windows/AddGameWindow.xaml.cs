@@ -9,7 +9,10 @@ using System.Windows.Input;
 
 namespace Bishojo_Game_Launcher.Windows {
 	public partial class AddGameWindow : Window {
+		static Game.List gameList;
 		public AddGameWindow() {
+			gameList = new Game.List();
+			gameList.Read();
 			InitializeComponent();
 			SearchMode.ItemsSource = new List<SearchGameMode> {
 				new SearchGameMode { Mode = ErogameScape.SearchGameMode.Title, ModeName = Properties.Resources.ErogameScapeSearchModeTitle },
@@ -23,7 +26,7 @@ namespace Bishojo_Game_Launcher.Windows {
 			public string ModeName { get; set; }
 		}
 
-		private static List<Game.Game.SearchResult> gameList;
+		private static List<Game.Game.SearchResult> searchGameList;
 
 		private void WindowClose_Click(object sender, RoutedEventArgs e) {
 			this.Close();
@@ -41,9 +44,9 @@ namespace Bishojo_Game_Launcher.Windows {
 				GameReleaseData.Text = "";
 				return;
 			} else {
-				GameTitle.Text = gameList[listBox.SelectedIndex].Title;
-				GameBrand.Text = gameList[listBox.SelectedIndex].Brand;
-				GameReleaseData.Text = gameList[listBox.SelectedIndex].Sellday;
+				GameTitle.Text = searchGameList[listBox.SelectedIndex].Title;
+				GameBrand.Text = searchGameList[listBox.SelectedIndex].Brand;
+				GameReleaseData.Text = searchGameList[listBox.SelectedIndex].Sellday;
 			}
 		}
 
@@ -61,11 +64,12 @@ namespace Bishojo_Game_Launcher.Windows {
 			try {
 				var mode = SearchMode.SelectedItem as SearchGameMode;
 				var erogameScape = new ErogameScape();
-				gameList = await erogameScape.SearchGame(SearchWord.Text, mode.Mode);
-				if (gameList.Count == 0) {
+				erogameScape.UseSocks5Proxy("localhost", 8080);
+				searchGameList = await erogameScape.SearchGame(SearchWord.Text, mode.Mode);
+				if (searchGameList.Count == 0) {
 					GameList.Items.Add(Properties.Resources.NotFound);
 				} else {
-					foreach (var game in gameList) {
+					foreach (var game in searchGameList) {
 						GameList.Items.Add(game.Title);
 					}
 					GameList.SelectedIndex = 0;
@@ -106,6 +110,25 @@ namespace Bishojo_Game_Launcher.Windows {
 				return;
 			}
 			SaveDataPath.Text = files[0];
+		}
+
+		private async void GameRegistry_Click(object sender, RoutedEventArgs e) {
+			var erogameScape = new ErogameScape();
+			erogameScape.UseSocks5Proxy("localhost", 8080);
+
+			var detaile = await erogameScape.GetGameDetails(
+				searchGameList[GameList.SelectedIndex].Detaileurl,
+				ErogameScape.GetDetaileMode.ID
+			);
+
+			gameList.Add(
+				Game.Game.GenerateHash(detaile.Title),
+				ExecutableFilePath.Text,
+				SaveDataPath.Text,
+				detaile
+			);
+			gameList.Write();
+			this.Close();
 		}
 	}
 }

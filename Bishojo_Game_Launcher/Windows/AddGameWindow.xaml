@@ -108,7 +108,7 @@
 					<ColumnDefinition Width="10"/>
 					<ColumnDefinition Width="80"/>
 				</Grid.ColumnDefinitions>
-				<Button Grid.Column="1" Content="{x:Static properties:Resources.GameRegistry}" FontSize="15" Style="{DynamicResource BackgroundColerButtonStyle}"/>
+				<Button Grid.Column="1" Content="{x:Static properties:Resources.GameRegistry}" Click="GameRegistry_Click" FontSize="15" Style="{DynamicResource BackgroundColerButtonStyle}"/>
 				<Button Grid.Column="3" Content="{x:Static properties:Resources.Cancel}" FontSize="15" Style="{DynamicResource BackgroundColerButtonStyle}"/>
 			</Grid>
 

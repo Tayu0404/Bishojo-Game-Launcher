@@ -87,7 +87,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CustomControl\DownloadList.cs" />
     <Compile Include="Game\ErogameScape.cs" />
     <Compile Include="Game\Add.cs" />
     <Compile Include="Game\Game.cs" />
@@ -111,10 +110,6 @@
     <Compile Include="Windows\SearchGameWindow.xaml.cs">
       <DependentUpon>SearchGameWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="CustomControl\Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
