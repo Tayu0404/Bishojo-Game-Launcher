@@ -86,6 +86,7 @@
 	</Style>
 
 	<Style TargetType="{x:Type ListBox}" x:Key="DefaultListBoxStyle">
+		<Setter Property="FontSize" Value="15"/>
 		<Setter Property="Background" Value="#505050"/>
 		<Setter Property="BorderBrush" Value="Black"/>
 		<Setter Property="BorderThickness" Value="1"/>

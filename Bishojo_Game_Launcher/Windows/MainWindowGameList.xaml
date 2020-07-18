@@ -31,7 +31,18 @@
 					</Grid>
 				</Border>
 
-			<ListBox Grid.Row="1" x:Name="GameList" Style="{DynamicResource DefaultListBoxStyle}"/>
+			<ListBox Grid.Row="1" x:Name="GameList" Style="{DynamicResource DefaultListBoxStyle}">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Grid Height="25">
+							<StackPanel Orientation="Horizontal" Tag="{Binding Hash}">
+								<Image Source="{Binding AppIcon}" Width="25"/>
+								<TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding Title}"/>
+							</StackPanel>
+						</Grid>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
 		</Grid>
 	</Grid>
 </UserControl>
