@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Bishojo_Game_Launcher.Property;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,6 +88,26 @@ namespace Bishojo_Game_Launcher.Game {
 
             public List<string> SampleCGs { get; private set; }
         }
+
+        public class GameDetaile {
+            public GameDetaile(string hash, string executableFile, string saveFolder, Game.Detaile detaile, bool downloadComplete = false) {
+                this.Hash = hash;
+                this.ExecutableFile = executableFile;
+                this.SaveFolder = saveFolder;
+                this.DownloadComplete = downloadComplete;
+                this.Detaile = detaile;
+            }
+            public string Hash { get; private set; }
+
+            public string ExecutableFile { get; private set; }
+
+            public string SaveFolder { get; private set; }
+
+            public bool DownloadComplete { get; set; }
+
+            public Detaile Detaile { get; private set; }
+        }
+
         public static string GenerateHash(string gameTitle) {
             MD5 md5 = MD5.Create();
             var gameTitleBytes = Encoding.UTF8.GetBytes(gameTitle);
@@ -96,5 +119,35 @@ namespace Bishojo_Game_Launcher.Game {
             }
             return stringBuilder.ToString();
         }
+
+        public static async Task Downlaod(Game.GameDetaile detaile) {
+            //MainImageDownload
+            await Task.Run(() => {
+                Folder.ExistsGameFolder(detaile.Hash);
+                var wevClient = new WebClient();
+                wevClient.DownloadFile(
+                    detaile.Detaile.MainImage,
+                    AppPath.GamesFolder +
+                    detaile.Hash + @"\" +
+                    detaile.Hash + Path.GetExtension(detaile.Detaile.MainImage)
+                );
+                wevClient.Dispose();
+            });
+            await Task.Run(() => {
+                var count = 0;
+                foreach (var sampleCG in detaile.Detaile.SampleCGs) {
+                    var wevClient = new WebClient();
+                    wevClient.DownloadFile(
+                        sampleCG,
+                        AppPath.GamesFolder +
+                        detaile.Hash + @"\" +
+                        @"sample\" +
+                        "sample" + count.ToString() + Path.GetExtension(detaile.Detaile.MainImage)
+                    );
+                    wevClient.Dispose();
+                    count++;
+                }
+            });
+		}
     }
 }

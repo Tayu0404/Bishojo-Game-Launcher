@@ -187,6 +187,15 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Play に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Play {
+            get {
+                return ResourceManager.GetString("Play", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Save Data Folder に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SaveDataFolder {

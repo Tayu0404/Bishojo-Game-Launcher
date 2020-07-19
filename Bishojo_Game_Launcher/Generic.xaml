@@ -280,4 +280,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+	<Style TargetType="{x:Type Grid}" x:Key="DefaultGridStyle">
+		<Setter Property="Background" Value="#FF494949"/>
+	</Style>
 </ResourceDictionary>

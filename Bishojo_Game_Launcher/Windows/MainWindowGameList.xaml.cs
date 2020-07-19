@@ -17,7 +17,7 @@ namespace Bishojo_Game_Launcher.Windows {
 
 		public MainWindowGameList() {
 			InitializeComponent();
-			GameListReload();
+			ReloadGameList();
 		}
 		private class ListItem {
 			public ListItem(string hash, BitmapSource appIcon, string title) {
@@ -33,7 +33,7 @@ namespace Bishojo_Game_Launcher.Windows {
 			public string Title { get; private set; }
 		}
 
-		public void GameListReload() {
+		public void ReloadGameList() {
 			GameList.Items.Clear();
 			var list = new Game.List();
 			list.Read();

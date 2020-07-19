@@ -125,6 +125,7 @@ namespace Bishojo_Game_Launcher.Windows {
 				Game.Game.GenerateHash(detaile.Title),
 				ExecutableFilePath.Text,
 				SaveDataPath.Text,
+				false,
 				detaile
 			);
 			gameList.Write();

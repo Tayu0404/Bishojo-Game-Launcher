@@ -159,6 +159,9 @@
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="Play" xml:space="preserve">
+    <value>Play</value>
+  </data>
   <data name="SaveDataFolder" xml:space="preserve">
     <value>Save Data Folder</value>
   </data>

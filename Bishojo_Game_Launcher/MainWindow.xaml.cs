@@ -72,7 +72,8 @@ namespace Bishojo_Game_Launcher {
 
 		private void AddGame_Click(object sender, RoutedEventArgs e) {
             var addGameWindow = new AddGameWindow();
-            addGameWindow.Show();
+            addGameWindow.Owner = GetWindow(this);
+            addGameWindow.ShowDialog();
 		}
 
         private void ChangeGameListWindow_Click(object sender, RoutedEventArgs e) {

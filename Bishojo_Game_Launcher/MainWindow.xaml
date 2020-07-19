@@ -7,7 +7,8 @@
 		Style="{DynamicResource DefaultWindowStyle}"
         StateChanged="window_StateChanged"
         AllowsTransparency="True"
-		WindowStyle="None">
+		WindowStyle="None"
+		WindowStartupLocation="CenterScreen">
 	<Grid x:Name="LayoutRoot">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="30"/>

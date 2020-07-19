@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Html.Dom.Events;
+using AngleSharp.Text;
 using Bishojo_Game_Launcher.Property;
 using System;
 using System.Collections.Generic;
@@ -12,29 +13,13 @@ using System.Xml.Linq;
 
 namespace Bishojo_Game_Launcher.Game {
 	class List {
-		static List<GameDetaile> games;
+		static List<Game.GameDetaile> games;
 
 		public List() {
-			games = new List<GameDetaile>();
+			games = new List<Game.GameDetaile>();
 		}
 
-		public class GameDetaile {
-			public GameDetaile(string hash, string executableFile, string saveFolder, Game.Detaile detaile) {
-				this.Hash = hash;
-				this.ExecutableFile = executableFile;
-				this.SaveFolder = saveFolder;
-				this.Detaile = detaile;
-			}
-			public string Hash { get; private set; }
-
-			public string ExecutableFile { get; private set; }
-
-			public string SaveFolder { get; private set; }
-
-			public Game.Detaile Detaile { get; private set; }
-		}
-
-		public List<GameDetaile> Games {
+		public List<Game.GameDetaile> Games {
 			get { return games; }
 			private set { games = value; }
 		}
@@ -45,6 +30,7 @@ namespace Bishojo_Game_Launcher.Game {
 					new XElement("Hash", x.Hash),
 					new XElement("ExecutableFile", x.ExecutableFile),
 					new XElement("SaveFolder", x.SaveFolder),
+					new XElement("DownloadComplete", x.DownloadComplete),
 					new XElement("Detaile",
 						new XElement("Title", x.Detaile.Title),
 						new XElement("Web", x.Detaile.Web),
@@ -78,17 +64,18 @@ namespace Bishojo_Game_Launcher.Game {
 			);
 			var xElement = new XElement("Games", boxedLunchRows);
 			var xDocument = new XDocument(xElement);
-			xDocument.Save(Path.GamesFolder + @"list.xml");
+			xDocument.Save(AppPath.GamesFolder + @"list.xml");
 		}
 
 		public void Read() {
 			try {
-				var xDocument = XDocument.Load(Path.GamesFolder + @"list.xml");
+				var xDocument = XDocument.Load(AppPath.GamesFolder + @"list.xml");
 				var xElements = xDocument.Root.Elements();
 				foreach(var xElement in xElements) {
 					var hash = xElement.Element("Hash").Value;
 					var executableFile = xElement.Element("ExecutableFile").Value;
 					var saveFolder = xElement.Element("SaveFolder").Value;
+					var downloadComplete = xElement.Element("DownloadComplete").Value.ToBoolean();
 					var detaile = xElement.Element("Detaile");
 					var title = detaile.Element("Title").Value;
 					var web = detaile.Element("Web").Value;
@@ -121,6 +108,7 @@ namespace Bishojo_Game_Launcher.Game {
 						hash,
 						executableFile,
 						saveFolder,
+						downloadComplete,
 						new Game.Detaile(
 							title,
 							web,
@@ -143,8 +131,20 @@ namespace Bishojo_Game_Launcher.Game {
 			}
 		}
 
-		public void Add(string hash, string executableFile, string saveFolder, Game.Detaile detaile) {
-			var gameDetaile = new GameDetaile(hash, executableFile, saveFolder, detaile);
+		public void Add(
+			string hash,
+			string executableFile,
+			string saveFolder,
+			bool downloadComplete,
+			Game.Detaile detaile
+		) {
+			var gameDetaile = new Game.GameDetaile(
+				hash,
+				executableFile,
+				saveFolder,
+				detaile,
+				downloadComplete
+				);
 			games.Add(gameDetaile);
 		}
 	}
