@@ -9,7 +9,8 @@
         Height="450" Width="500" Style="{DynamicResource DefaultWindowStyle}"
         AllowsTransparency="True"
 		WindowStyle="None"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+		WindowStartupLocation="CenterOwner">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="30"/>

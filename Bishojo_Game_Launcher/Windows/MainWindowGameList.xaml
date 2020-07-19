@@ -9,8 +9,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
 	<Grid Margin="5, 0, 5, 0">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="300"/>
-				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="350"/>
+			<ColumnDefinition Width="10"/>
+			<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
 			<Grid Grid.Column="0">
 				<Grid.RowDefinitions>
@@ -31,11 +32,11 @@
 					</Grid>
 				</Border>
 
-			<ListBox Grid.Row="1" x:Name="GameList" Style="{DynamicResource DefaultListBoxStyle}">
+			<ListBox Grid.Row="1" x:Name="GameList" SelectionChanged="GameList_SelectionChanged" Style="{DynamicResource DefaultListBoxStyle}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
-						<Grid Height="25">
-							<StackPanel Orientation="Horizontal" Tag="{Binding Hash}">
+						<Grid Height="25" x:Name="Hash" Tag="{Binding Hash}">
+							<StackPanel Orientation="Horizontal">
 								<Image Source="{Binding AppIcon}" Width="25"/>
 								<TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding Title}"/>
 							</StackPanel>
@@ -44,5 +45,28 @@
 				</ListBox.ItemTemplate>
 			</ListBox>
 		</Grid>
+		<Border Grid.Column="2" BorderBrush="Black" BorderThickness="1">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="2*"/>
+					<RowDefinition Height="50"/>
+					<RowDefinition Height="3*"/>
+				</Grid.RowDefinitions>
+				<Image Grid.Row="0" Grid.RowSpan="3" x:Name="MainImage" Stretch="UniformToFill"/>
+				<Border Grid.Row="1" Opacity="0.8" Style="{DynamicResource DefaultBorderStyle}">
+					<Grid Margin="5">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="5"/>
+							<ColumnDefinition Width="100"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="40"/>
+						</Grid.ColumnDefinitions>
+						<Button Grid.Column="1" Opacity="1" FontSize="25" Content="{x:Static properties:Resources.Play}" Style="{DynamicResource BackgroundColerButtonStyle}"/>
+						<Button Grid.Column="3" Opacity="1" FontSize="20" Content="⚙" Style="{DynamicResource DefaultButtonStyle}"/>
+					</Grid>
+				</Border>
+				<Grid Grid.Row="2" Opacity="0.8" Style="{DynamicResource DefaultGridStyle}"/>
+			</Grid>
+		</Border>
 	</Grid>
 </UserControl>
