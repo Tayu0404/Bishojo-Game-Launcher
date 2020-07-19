@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bishojo_Game_Launcher.Property {
-	static class Path {
+	static class AppPath {
 		public static string AppFolder {
 			get { return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Bishojo Game Launcher\"; }
 		}
