@@ -15,56 +15,37 @@
 		<ListBox 
 			x:Name="DownloadList"
 			Grid.Row="1"
-			Background="#454545"
-			BorderBrush="Transparent"
-			HorizontalContentAlignment="Stretch">
+			HorizontalContentAlignment="Stretch"
+			Style="{DynamicResource DefaultListBoxStyle}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Grid 
-						Height="100"
-						Background="#505050">
+					<Grid Height="50">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="100"/>
+							<ColumnDefinition Width="50"/>
 							<ColumnDefinition Width="*"/>
 							<ColumnDefinition Width="*"/>
 							<ColumnDefinition Width="40"/>
 						</Grid.ColumnDefinitions>
 						<Image
 							Grid.Column="0"
-							Margin="5"
+							Width="50"
 							Source="{Binding AppIcon}"/>
 						<Grid 
 							Grid.Column="1"
 							Margin="5">
 							<Grid.RowDefinitions>
-								<RowDefinition Height="2*"/>
+								<RowDefinition Height="*"/>
 								<RowDefinition Height="*"/>
 							</Grid.RowDefinitions>
 							<TextBlock
-								FontSize="15"
 								Grid.Row="0"
-								Background="Transparent"
-								Foreground="White"
+								FontSize="20"
 								Text="{Binding Title}" 
 								VerticalAlignment="Center"/>
-							<Grid Grid.Row="1">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="*"/>
-									<ColumnDefinition Width="*"/>
-								</Grid.ColumnDefinitions>
-								<TextBlock 
-									Grid.Column="0"
-									FontSize="15"
-									Background="Transparent"
-									Foreground="White"
-									Text="{Binding Brand}"/>
-								<TextBlock
-									Grid.Column="1"
-									FontSize="15"
-									Background="Transparent"
-									Foreground="White"
-									Text="{Binding ReleaseData}"/>
-							</Grid>
+							<TextBlock 
+								Grid.Row="1"
+								FontSize="15"
+								Text="{Binding Brand}"/>
 						</Grid>
 					</Grid>
 				</DataTemplate>
