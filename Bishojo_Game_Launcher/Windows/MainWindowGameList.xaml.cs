@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,11 +59,14 @@ namespace Bishojo_Game_Launcher.Windows {
 			var listBox = sender as ListBox;
 			var selectedItem = listBox.Items[listBox.SelectedIndex] as ListItem;
 			var detaile = gamelist.Find(x => x.Hash == selectedItem.Hash);
+
+			Title.Text = detaile.Detaile.Title;
+
 			MainImage.Source = new BitmapImage(
 				new Uri(
 					AppPath.GamesFolder +
 					detaile.Hash + @"\" +
-					detaile.Hash + ".jpg"
+					detaile.Hash + Path.GetExtension(detaile.Detaile.MainImage)
 				)
 			);
 		}

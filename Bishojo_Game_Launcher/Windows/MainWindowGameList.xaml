@@ -56,16 +56,20 @@
 				<Border Grid.Row="1" Opacity="0.8" Style="{DynamicResource DefaultBorderStyle}">
 					<Grid Margin="5">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="5"/>
-							<ColumnDefinition Width="100"/>
 							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="100"/>
+							<ColumnDefinition Width="5"/>
 							<ColumnDefinition Width="40"/>
 						</Grid.ColumnDefinitions>
+						<TextBlock x:Name="Title" FontSize="30" HorizontalAlignment="Left" Style="{DynamicResource DefaultTextBlockStyle}"/>
 						<Button Grid.Column="1" Opacity="1" FontSize="25" Content="{x:Static properties:Resources.Play}" Style="{DynamicResource BackgroundColerButtonStyle}"/>
 						<Button Grid.Column="3" Opacity="1" FontSize="20" Content="⚙" Style="{DynamicResource DefaultButtonStyle}"/>
 					</Grid>
 				</Border>
-				<Grid Grid.Row="2" Opacity="0.8" Style="{DynamicResource DefaultGridStyle}"/>
+				<Grid Grid.Row="2" Opacity="0.8" Style="{DynamicResource DefaultGridStyle}">
+					<Grid Margin="5">
+					</Grid>
+				</Grid>
 			</Grid>
 		</Border>
 	</Grid>
