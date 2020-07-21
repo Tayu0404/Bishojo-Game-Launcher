@@ -54,6 +54,7 @@ namespace Bishojo_Game_Launcher {
                     this.Top = 0;
                     this.Left = 0;
                     this.state = WindowState.Maximized;
+                    WindowMaxmize.Tag = "Maxmize";
                     break;
                 case WindowState.Maximized:
                     this.Width = this.normalSize.Width;
@@ -61,6 +62,7 @@ namespace Bishojo_Game_Launcher {
                     this.Top = this.normalTop;
                     this.Left = this.normalLeft;
                     this.state = WindowState.Normal;
+                    WindowMaxmize.Tag = "Normal";
                     break;
             }
         }
