@@ -22,14 +22,20 @@
 				<Border Grid.Row="0" Style="{DynamicResource DefaultBorderStyle}">
 					<Grid>
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="25"/>
+						<ColumnDefinition Width="*"/>
 							<ColumnDefinition Width="80"/>
 							<ColumnDefinition Width="40"/>
 						</Grid.ColumnDefinitions>
-						<TextBox Grid.Column="0" FontSize="15" Tag="{x:Static properties:Resources.SearchGameDetaile}" Style="{DynamicResource DefaultTextBoxStyle}"/>
-						<Button Grid.Column="1" FontSize="15" Content="{x:Static properties:Resources.Search}" Style="{DynamicResource DefaultButtonStyle}"/>
-						<Button Grid.Column="2" FontSize="15" Content="⚙" Style="{DynamicResource DefaultButtonStyle}"/>
-					</Grid>
+					<Button Grid.Column="0" Click="SearchIcon_Click" Style="{DynamicResource AllTransparentButtonStyle}">
+						<Path Style="{DynamicResource SearchPathStyle}"/>
+					</Button>
+					<TextBox Grid.Column="1" x:Name="GameSearchWord" FontSize="15" Tag="{x:Static properties:Resources.SearchGameDetaile}" Style="{DynamicResource DefaultTextBoxStyle}"/>
+						<Button Grid.Column="2" FontSize="15" Content="{x:Static properties:Resources.Search}" Style="{DynamicResource DefaultButtonStyle}"/>
+					<Button Grid.Column="3" FontSize="15" Style="{DynamicResource DefaultButtonStyle}">
+						<Path Style="{DynamicResource GearPathStyle}"/>
+					</Button>
+				</Grid>
 				</Border>
 
 			<ListBox Grid.Row="1" x:Name="GameList" SelectionChanged="GameList_SelectionChanged" Style="{DynamicResource DefaultListBoxStyle}">
@@ -63,7 +69,9 @@
 						</Grid.ColumnDefinitions>
 						<TextBlock x:Name="Title" FontSize="30" HorizontalAlignment="Left" Style="{DynamicResource DefaultTextBlockStyle}"/>
 						<Button Grid.Column="1" Opacity="1" FontSize="25" Content="{x:Static properties:Resources.Play}" Style="{DynamicResource BackgroundColerButtonStyle}"/>
-						<Button Grid.Column="3" Opacity="1" FontSize="20" Content="⚙" Style="{DynamicResource DefaultButtonStyle}"/>
+						<Button Grid.Column="3" Opacity="1" FontSize="20" Style="{DynamicResource DefaultButtonStyle}">
+							<Path Style="{DynamicResource GearPathStyle}"/>
+						</Button>
 					</Grid>
 				</Border>
 				<Grid Grid.Row="2" Opacity="0.8" Style="{DynamicResource DefaultGridStyle}">
@@ -80,8 +88,7 @@
 							<TextBlock Grid.Column="0" x:Name="Brand" FontSize="20" VerticalAlignment="Center" Style="{DynamicResource DefaultTextBlockStyle}"/>
 							<TextBlock Grid.Column="1" x:Name="ReleseData" FontSize="20" VerticalAlignment="Center" Style="{DynamicResource DefaultTextBlockStyle}"/>
 						</Grid>
-						<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" CanContentScroll="True"
-							Background="Transparent" BorderBrush="Transparent">
+						<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Style="{DynamicResource DefaultScrollViewerStyle}">
 							<Border Style="{DynamicResource DefaultBorderStyle}">
 								<Grid Margin="5">
 									<Grid.ColumnDefinitions>
@@ -101,18 +108,14 @@
 									<StackPanel Grid.Column="1" Orientation="Vertical">
 										<StackPanel>
 											<TextBlock FontSize="17" Text="{x:Static properties:Resources.VoiceActor }" Style="{DynamicResource DefaultTextBlockStyle}"/>
-											<ListBox x:Name="VoiceActor" FontSize="15" Focusable="False" IsHitTestVisible="False" Style="{DynamicResource ClearListBoxStyle}">
+											<ListBox x:Name="VoiceActor" FontSize="15" Focusable="False" IsHitTestVisible="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource ClearListBoxStyle}">
 												<ListBox.ItemTemplate>
 													<DataTemplate>
-														<Grid Height="25">
-															<Grid.ColumnDefinitions>
-																<ColumnDefinition Width="*"/>
-																<ColumnDefinition Width="*"/>
-															</Grid.ColumnDefinitions>
-															<Image Source="{Binding AppIcon}" Width="25"/>
-															<TextBlock Grid.Column="0" VerticalAlignment="Center" Text="{Binding Voice}"/>
-															<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding Character}"/>
-														</Grid>
+														<StackPanel Orientation="Horizontal">
+															<TextBlock VerticalAlignment="Center" Text="{Binding Voice}"/>
+															<TextBlock VerticalAlignment="Center" Text=" : "/>
+															<TextBlock VerticalAlignment="Center" Text="{Binding Character}"/>
+														</StackPanel>
 													</DataTemplate>
 												</ListBox.ItemTemplate>
 											</ListBox>

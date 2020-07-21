@@ -106,5 +106,9 @@ namespace Bishojo_Game_Launcher.Windows {
 				return;
 			}
 		}
+
+		private void SearchIcon_Click(object sender, RoutedEventArgs e) {
+			GameSearchWord.Focus();
+		}
 	}
 }
