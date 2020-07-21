@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Bishojo_Game_Launcher.Windows {
@@ -56,19 +57,54 @@ namespace Bishojo_Game_Launcher.Windows {
 		}
 
 		private void GameList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			Title.Text = "";
+			Brand.Text = "";
+			ReleseData.Text = "";
+			MainImage.Source = null;
+			Illustrator.Items.Clear();
+			Scenarios.Items.Clear();
+			Composer.Items.Clear();
+			VoiceActor.Items.Clear();
+			Singer.Items.Clear();
 			var listBox = sender as ListBox;
 			var selectedItem = listBox.Items[listBox.SelectedIndex] as ListItem;
 			var detaile = gamelist.Find(x => x.Hash == selectedItem.Hash);
 
 			Title.Text = detaile.Detaile.Title;
+			Brand.Text = detaile.Detaile.Brand;
+			ReleseData.Text = detaile.Detaile.Sellday;
+			foreach (var illustrator in detaile.Detaile.Illustrators) {
+				Illustrator.Items.Add(illustrator);
+			}
+			foreach (var scenarios in detaile.Detaile.Scenarios) {
+				Scenarios.Items.Add(scenarios);
+			}
+			foreach (var composer in detaile.Detaile.Composers) {
+				Composer.Items.Add(composer);
+			}
+			for (var i = 0; i < detaile.Detaile.Voices.Count; i++) {
+				VoiceActor.Items.Add(
+					new {
+						Voice = detaile.Detaile.Voices[i],
+						Character = detaile.Detaile.Characters[i]
+					}
+				);
+			}
+			foreach (var singer in detaile.Detaile.Singers) {
+				Singer.Items.Add(singer);
+			}
 
-			MainImage.Source = new BitmapImage(
-				new Uri(
-					AppPath.GamesFolder +
-					detaile.Hash + @"\" +
-					detaile.Hash + Path.GetExtension(detaile.Detaile.MainImage)
-				)
-			);
+			try {
+				MainImage.Source = new BitmapImage(
+					new Uri(
+						AppPath.GamesFolder +
+						detaile.Hash + @"\" +
+						detaile.Hash + Path.GetExtension(detaile.Detaile.MainImage)
+					)
+				);
+			} catch {
+				return;
+			}
 		}
 	}
 }

@@ -79,6 +79,15 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Composer に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Composer {
+            get {
+                return ResourceManager.GetString("Composer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Download に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Download {
@@ -160,6 +169,15 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Illustrator に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Illustrator {
+            get {
+                return ResourceManager.GetString("Illustrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Library に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Library {
@@ -205,6 +223,15 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Scenario に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Scenario {
+            get {
+                return ResourceManager.GetString("Scenario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Search に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Search {
@@ -219,6 +246,24 @@ namespace Bishojo_Game_Launcher.Properties {
         public static string SearchGameDetaile {
             get {
                 return ResourceManager.GetString("SearchGameDetaile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Singer に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Singer {
+            get {
+                return ResourceManager.GetString("Singer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Voice Actor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string VoiceActor {
+            get {
+                return ResourceManager.GetString("VoiceActor", resourceCulture);
             }
         }
         

@@ -68,6 +68,59 @@
 				</Border>
 				<Grid Grid.Row="2" Opacity="0.8" Style="{DynamicResource DefaultGridStyle}">
 					<Grid Margin="5">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="30"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+						<Grid Grid.Row="0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock Grid.Column="0" x:Name="Brand" FontSize="20" VerticalAlignment="Center" Style="{DynamicResource DefaultTextBlockStyle}"/>
+							<TextBlock Grid.Column="1" x:Name="ReleseData" FontSize="20" VerticalAlignment="Center" Style="{DynamicResource DefaultTextBlockStyle}"/>
+						</Grid>
+						<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" CanContentScroll="True"
+							Background="Transparent" BorderBrush="Transparent">
+							<Border Style="{DynamicResource DefaultBorderStyle}">
+								<Grid Margin="5">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="*"/>
+									</Grid.ColumnDefinitions>
+									<StackPanel Grid.Column="0" Orientation="Vertical">
+										<TextBlock FontSize="17" Text="{x:Static properties:Resources.Illustrator}" Style="{DynamicResource DefaultTextBlockStyle}"/>
+										<ListBox FontSize="15" x:Name="Illustrator" Focusable="False" IsHitTestVisible="False" Style="{DynamicResource ClearListBoxStyle}"/>
+										<TextBlock FontSize="17" Margin="0,5,0,0" Text="{x:Static properties:Resources.Scenario}" Style="{DynamicResource DefaultTextBlockStyle}"/>
+										<ListBox FontSize="15" x:Name="Scenarios" Focusable="False" IsHitTestVisible="False" Style="{DynamicResource ClearListBoxStyle}"/>
+										<TextBlock FontSize="17" Margin="0,5,0,0" Text="{x:Static properties:Resources.Singer}" Style="{DynamicResource DefaultTextBlockStyle}"/>
+										<ListBox FontSize="15" x:Name="Singer" Focusable="False" IsHitTestVisible="False" Style="{DynamicResource ClearListBoxStyle}"/>
+										<TextBlock FontSize="17" Margin="0,5,0,0" Text="{x:Static properties:Resources.Composer}" Style="{DynamicResource DefaultTextBlockStyle}"/>
+										<ListBox FontSize="15" x:Name="Composer" Focusable="False" IsHitTestVisible="False" Style="{DynamicResource ClearListBoxStyle}"/>
+									</StackPanel>
+									<StackPanel Grid.Column="1" Orientation="Vertical">
+										<StackPanel>
+											<TextBlock FontSize="17" Text="{x:Static properties:Resources.VoiceActor }" Style="{DynamicResource DefaultTextBlockStyle}"/>
+											<ListBox x:Name="VoiceActor" FontSize="15" Focusable="False" IsHitTestVisible="False" Style="{DynamicResource ClearListBoxStyle}">
+												<ListBox.ItemTemplate>
+													<DataTemplate>
+														<Grid Height="25">
+															<Grid.ColumnDefinitions>
+																<ColumnDefinition Width="*"/>
+																<ColumnDefinition Width="*"/>
+															</Grid.ColumnDefinitions>
+															<Image Source="{Binding AppIcon}" Width="25"/>
+															<TextBlock Grid.Column="0" VerticalAlignment="Center" Text="{Binding Voice}"/>
+															<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding Character}"/>
+														</Grid>
+													</DataTemplate>
+												</ListBox.ItemTemplate>
+											</ListBox>
+										</StackPanel>
+									</StackPanel>
+								</Grid>
+							</Border>
+						</ScrollViewer>
 					</Grid>
 				</Grid>
 			</Grid>

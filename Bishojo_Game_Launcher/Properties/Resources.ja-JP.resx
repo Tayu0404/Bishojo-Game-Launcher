@@ -123,6 +123,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>
+  <data name="Composer" xml:space="preserve">
+    <value>作曲</value>
+  </data>
   <data name="Download" xml:space="preserve">
     <value>ダウンロード</value>
   </data>
@@ -150,6 +153,9 @@
   <data name="GameTitle" xml:space="preserve">
     <value>タイトル</value>
   </data>
+  <data name="Illustrator" xml:space="preserve">
+    <value>原画</value>
+  </data>
   <data name="Library" xml:space="preserve">
     <value>ライブラリ</value>
   </data>
@@ -165,11 +171,20 @@
   <data name="SaveDataFolder" xml:space="preserve">
     <value>セーブデータフォルダー</value>
   </data>
+  <data name="Scenario" xml:space="preserve">
+    <value>シナリオ</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>検索</value>
   </data>
   <data name="SearchGameDetaile" xml:space="preserve">
     <value>ゲームの詳細を検索</value>
+  </data>
+  <data name="Singer" xml:space="preserve">
+    <value>歌手</value>
+  </data>
+  <data name="VoiceActor" xml:space="preserve">
+    <value>声優</value>
   </data>
   <data name="WindowCloseToolTip" xml:space="preserve">
     <value>閉じる</value>

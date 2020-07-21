@@ -122,46 +122,50 @@ namespace Bishojo_Game_Launcher.Game {
 
         public static async Task Downlaod(Game.GameDetaile detaile) {
             //MainImage Download
-            await Task.Run(() => {
-                Folder.ExistsGameFolder(detaile.Hash);
-                var wevClient = new WebClient();
-                string url;
-                if (detaile.Detaile.MainImage.StartsWith("http", StringComparison.OrdinalIgnoreCase)) {
-                    url = detaile.Detaile.MainImage;
-				} else {
-                    url = "http:" + detaile.Detaile.MainImage;
-				}
-                wevClient.DownloadFile(
-                    url,
-                    AppPath.GamesFolder +
-                    detaile.Hash + @"\" +
-                    detaile.Hash + Path.GetExtension(detaile.Detaile.MainImage)
-                );
-                wevClient.Dispose();
-            });
-
-            //SampleCG Download
-            await Task.Run(() => {
-                var count = 0;
-                var wevClient = new WebClient();
-                foreach (var sampleCG in detaile.Detaile.SampleCGs) {
+            try {
+                await Task.Run(() => {
+                    Folder.ExistsGameFolder(detaile.Hash);
+                    var wevClient = new WebClient();
                     string url;
-                    if (sampleCG.StartsWith("http", StringComparison.OrdinalIgnoreCase)) {
-                        url = sampleCG;
+                    if (detaile.Detaile.MainImage.StartsWith("http", StringComparison.OrdinalIgnoreCase)) {
+                        url = detaile.Detaile.MainImage;
                     } else {
-                        url = "http:" + sampleCG;
+                        url = "http:" + detaile.Detaile.MainImage;
                     }
                     wevClient.DownloadFile(
                         url,
                         AppPath.GamesFolder +
                         detaile.Hash + @"\" +
-                        @"sample\" +
-                        "sample" + count.ToString() + Path.GetExtension(detaile.Detaile.MainImage)
+                        detaile.Hash + Path.GetExtension(detaile.Detaile.MainImage)
                     );
-                    count++;
-                }
-                wevClient.Dispose();
-            });
+                    wevClient.Dispose();
+                });
+
+                //SampleCG Download
+                await Task.Run(() => {
+                    var count = 0;
+                    var wevClient = new WebClient();
+                    foreach (var sampleCG in detaile.Detaile.SampleCGs) {
+                        string url;
+                        if (sampleCG.StartsWith("http", StringComparison.OrdinalIgnoreCase)) {
+                            url = sampleCG;
+                        } else {
+                            url = "http:" + sampleCG;
+                        }
+                        wevClient.DownloadFile(
+                            url,
+                            AppPath.GamesFolder +
+                            detaile.Hash + @"\" +
+                            @"sample\" +
+                            "sample" + count.ToString() + Path.GetExtension(detaile.Detaile.MainImage)
+                        );
+                        count++;
+                    }
+                    wevClient.Dispose();
+                });
+            } catch {
+                return;
+			}
 		}
     }
 }

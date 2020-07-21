@@ -123,6 +123,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Composer" xml:space="preserve">
+    <value>Composer</value>
+  </data>
   <data name="Download" xml:space="preserve">
     <value>Download</value>
   </data>
@@ -150,6 +153,9 @@
   <data name="GameTitle" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="Illustrator" xml:space="preserve">
+    <value>Illustrator</value>
+  </data>
   <data name="Library" xml:space="preserve">
     <value>Library</value>
   </data>
@@ -165,11 +171,20 @@
   <data name="SaveDataFolder" xml:space="preserve">
     <value>Save Data Folder</value>
   </data>
+  <data name="Scenario" xml:space="preserve">
+    <value>Scenario</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
   <data name="SearchGameDetaile" xml:space="preserve">
     <value>Search Detaile by Game</value>
+  </data>
+  <data name="Singer" xml:space="preserve">
+    <value>Singer</value>
+  </data>
+  <data name="VoiceActor" xml:space="preserve">
+    <value>Voice Actor</value>
   </data>
   <data name="WindowCloseToolTip" xml:space="preserve">
     <value>Close</value>
