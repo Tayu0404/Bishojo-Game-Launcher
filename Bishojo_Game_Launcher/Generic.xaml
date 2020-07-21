@@ -2,7 +2,7 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:System="clr-namespace:System;assembly=mscorlib">
-    <!-- リソース ディクショナリのエントリはここで定義します。-->
+    <!-- Window Style -->
     <System:Double x:Key="CaptionHeight">26</System:Double>
 	<Style TargetType="{x:Type Window}" x:Key="DefaultWindowStyle">
 		<Setter Property="WindowChrome.WindowChrome">
@@ -18,9 +18,10 @@
 		<Setter Property="Foreground" Value="White"/>
 	</Style>
 
+	<!-- Button Style -->
 	<Style TargetType="{x:Type Button}" x:Key="DefaultButtonStyle">
-		<Setter Property="Background" Value="#00000000"/>
-		<Setter Property="BorderBrush" Value="#00000000"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
 		<Setter Property="Foreground" Value="White"/>
 		<Setter Property="Template">
 			<Setter.Value>
@@ -38,15 +39,21 @@
 		</Setter>
 	</Style>
 
+	<!-- Close Button Style-->
 	<Style TargetType="{x:Type Button}" x:Key="CloseButtonStyle">
-		<Setter Property="Background" Value="#00000000"/>
-		<Setter Property="BorderBrush" Value="#00000000"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
 		<Setter Property="Foreground" Value="White"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Button}">
 					<Border x:Name="Border" Background="{TemplateBinding Background}">
-						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+						<Path
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Stroke="{TemplateBinding Foreground}"
+							StrokeThickness="1"
+							Data="M0,0 L10,10 M0,10 L10,0"/>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="True">
@@ -58,9 +65,69 @@
 		</Setter>
 	</Style>
 
+	<!-- Maxmize Button Style -->
+	<Style TargetType="{x:Type Button}" x:Key="MaxmizeButtonStyle">
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border x:Name="Border" Background="{TemplateBinding Background}">
+						<Path
+							x:Name="ContentPath"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Stroke="White"
+							StrokeThickness="1"
+							/>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="Tag" Value="Normal">
+							<Setter TargetName="ContentPath" Property="Data" Value="M0,0 L0,10 10,10 10,0 Z"/>
+						</Trigger>
+						<Trigger Property="Tag" Value="Maxmize">
+							<Setter TargetName="ContentPath" Property="Data" Value="M0,1 L9,1 9,10 0,10 Z M2,2 L2,-2 12,-2 12,8 10,8"/>
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="#707070" TargetName="Border" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Minimize Button Style -->
+	<Style TargetType="{x:Type Button}" x:Key="MinimizeButtonStyle">
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border x:Name="Border" Background="{TemplateBinding Background}">
+						<Path
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Stroke="{TemplateBinding Foreground}"
+							StrokeThickness="1"
+							Data="M0,0 L0,0 10,0"/>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="#707070" TargetName="Border" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Button with background color -->
 	<Style TargetType="{x:Type Button}" x:Key="BackgroundColerButtonStyle">
 		<Setter Property="Background" Value="#555555"/>
-		<Setter Property="BorderBrush" Value="#00000000"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
 		<Setter Property="Foreground" Value="White"/>
 		<Setter Property="Template">
 			<Setter.Value>
@@ -78,13 +145,15 @@
 		</Setter>
 	</Style>
 
+	<!-- TextBlock Style -->
 	<Style TargetType="{x:Type TextBlock}" x:Key="DefaultTextBlockStyle">
-		<Setter Property="Background" Value="#00000000"/>
+		<Setter Property="Background" Value="Transparent"/>
 		<Setter Property="Foreground" Value="White"/>
 		<Setter Property="HorizontalAlignment" Value="Left"/>
 		<Setter Property="VerticalAlignment" Value="Center"/>
 	</Style>
 
+	<!-- ListBox Style -->
 	<Style TargetType="{x:Type ListBox}" x:Key="DefaultListBoxStyle">
 		<Setter Property="FontSize" Value="15"/>
 		<Setter Property="Background" Value="#505050"/>
@@ -94,10 +163,12 @@
 		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
 	</Style>
 
+	<!-- TextBox Style -->
 	<Style TargetType="{x:Type TextBox}" x:Key="DefaultTextBoxStyle">
-		<Setter Property="Background" Value="#00000000"/>
-		<Setter Property="BorderBrush" Value="#00000000"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
 		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="CaretBrush" Value="White"/>
 		<Setter Property="VerticalAlignment" Value="Center"/>
 		<Setter Property="Template">
 			<Setter.Value>
@@ -116,21 +187,23 @@
 		</Setter>
 	</Style>
 
+	<!-- Border Style -->
 	<Style TargetType="{x:Type Border}" x:Key="DefaultBorderStyle">
 		<Setter Property="Background" Value="#454545"/>
 		<Setter Property="BorderBrush" Value="Black"/>
 		<Setter Property="BorderThickness" Value="1"/>
 	</Style>
 
-	<ControlTemplate x:Key="DefaultComboBoxToggleButtonStyle"
-                 TargetType="{x:Type ToggleButton}">
+	<!-- ComboBox Style -->
+	<!-- Custom Toggle Button Style -->
+	<ControlTemplate x:Key="DefaultComboBoxToggleButtonStyle" TargetType="{x:Type ToggleButton}">
 		<Grid>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition />
 				<ColumnDefinition Width="20" />
 			</Grid.ColumnDefinitions>
-			<Border x:Name="Border" Grid.ColumnSpan="2" BorderBrush="#00000000" Background="#00000000"/>
-			<Border Grid.Column="0" Margin="1" BorderBrush="#00000000" Background="#00000000"/>
+			<Border x:Name="Border" Grid.ColumnSpan="2" BorderBrush="Transparent" Background="Transparent"/>
+			<Border Grid.Column="0" Margin="1" BorderBrush="Transparent" Background="Transparent"/>
 			<Path x:Name="Arrow"
                       Grid.Column="1"
                       HorizontalAlignment="Center"
@@ -141,6 +214,7 @@
 		</Grid>
 	</ControlTemplate>
 
+	<!-- Custom ComboBox Style -->
 	<Style x:Key="DefaultComboBoxStyle"
        TargetType="{x:Type ComboBox}">
 		<Setter Property="SnapsToDevicePixels"
@@ -237,12 +311,226 @@
 		</Setter>
 	</Style>
 
+	<!-- ListBox Style -->
 	<Style TargetType="{x:Type ListBox}" x:Key="ClearListBoxStyle">
 		<Setter Property="Background" Value="Transparent"/>
 		<Setter Property="BorderBrush" Value="Transparent"/>
 		<Setter Property="Foreground" Value="White"/>
 	</Style>
+
+	<!-- Grid Style -->
 	<Style TargetType="{x:Type Grid}" x:Key="DefaultGridStyle">
 		<Setter Property="Background" Value="#FF494949"/>
+	</Style>
+
+	<!-- Custom Scroll Viewer Style -->
+	<!-- Width of scroll bar -->
+	<System:Double x:Key="ScrollBarSize">15</System:Double>
+	<!-- Button height -->
+	<System:Double x:Key="ScrollBarRepeatButtonSize">15</System:Double>
+	<!-- Scrollbar margin -->
+	<System:Double x:Key="ScrollBarMarginSize">5</System:Double>
+	<!-- Scroll bar Color-->
+	<SolidColorBrush x:Key="ScrollBarColorBrush" Color="#252525" />
+	<!-- Border Color -->
+	<SolidColorBrush x:Key="ScrollBarBorderBrush" Color="Transparent" />
+	<!-- Track Color -->
+	<SolidColorBrush x:Key="ScrollBarTrackBrush" Color="#454545" />
+	<!-- Triangle button color -->
+	<SolidColorBrush x:Key="ScrollBarHilightBrush" Color="White" />
+	<!-- Color when the button is pressed -->
+	<SolidColorBrush x:Key="ScrollBarPressedBrush" Color="#202020" />
+	<!-- Scrollbar disabling color -->
+	<SolidColorBrush x:Key="ScrollBarDisabledBrush" Color=" #FF494949" />
+
+	<!-- Triangular button style -->
+	<Style x:Key="ScrollBarRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type RepeatButton}">
+					<Border x:Name="Border" Margin="0" CornerRadius="0"  Background="{StaticResource ScrollBarColorBrush}" BorderBrush="{StaticResource ScrollBarBorderBrush}" BorderThickness="1">
+						<Path HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{StaticResource ScrollBarHilightBrush}" Data="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="true">
+							<Setter TargetName="Border" Property="Background" Value="{StaticResource ScrollBarPressedBrush}" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="{StaticResource ScrollBarDisabledBrush}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Track style -->
+	<Style x:Key="ScrollBarTrackStyle" TargetType="{x:Type RepeatButton}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type RepeatButton}">
+					<Border Background="Transparent"/>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Thumb stytle -->
+	<Style x:Key="ScrollBarThumbStyle" TargetType="{x:Type Thumb}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Thumb}">
+					<Border CornerRadius="0"  Background="{StaticResource ScrollBarColorBrush}" BorderBrush="{StaticResource ScrollBarBorderBrush}" BorderThickness="1" />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Custom scroll bar style -->
+	<Style x:Key="CustomScrollBarStyle" TargetType="{x:Type ScrollBar}">
+		<Setter Property="OverridesDefaultStyle" Value="true"/>
+		<Style.Triggers>
+			<!-- Vertical scroll bar -->
+			<Trigger Property="Orientation" Value="Vertical">
+				<Setter Property="Width" Value="{StaticResource ScrollBarSize}"/>
+				<Setter Property="Height" Value="Auto" />
+				<Setter Property="Margin">
+					<Setter.Value>
+						<Thickness Left="0" Top="{StaticResource ScrollBarMarginSize}" Right="{StaticResource ScrollBarMarginSize}" Bottom="{StaticResource ScrollBarMarginSize}" />
+					</Setter.Value>
+				</Setter>
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition MaxHeight="{StaticResource ScrollBarRepeatButtonSize}"/>
+									<RowDefinition/>
+									<RowDefinition MaxHeight="{StaticResource ScrollBarRepeatButtonSize}"/>
+								</Grid.RowDefinitions>
+								<Border Grid.RowSpan="3" CornerRadius="0" Background="{StaticResource ScrollBarTrackBrush}" />
+								<RepeatButton Grid.Row="0" Style="{StaticResource ScrollBarRepeatButtonStyle}" Height="{StaticResource ScrollBarRepeatButtonSize}" Command="ScrollBar.LineUpCommand" Content="M 0 4 L 8 4 L 4 0 Z" />
+								<Track x:Name="PART_Track" Grid.Row="1" IsDirectionReversed="true">
+									<Track.DecreaseRepeatButton>
+										<RepeatButton Style="{StaticResource ScrollBarTrackStyle}"  Command="ScrollBar.PageUpCommand" />
+									</Track.DecreaseRepeatButton>
+									<Track.Thumb>
+										<Thumb Style="{StaticResource ScrollBarThumbStyle}"  Margin="0,1,0,1"/>
+									</Track.Thumb>
+									<Track.IncreaseRepeatButton>
+										<RepeatButton Style="{StaticResource ScrollBarTrackStyle}" Command="ScrollBar.PageDownCommand" />
+									</Track.IncreaseRepeatButton>
+								</Track>
+								<RepeatButton Grid.Row="2" Style="{StaticResource ScrollBarRepeatButtonStyle}" Height="{StaticResource ScrollBarRepeatButtonSize}"  Command="ScrollBar.LineDownCommand"  Content="M 0 0 L 4 4 L 8 0 Z"/>
+							</Grid>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Trigger>
+			<!-- Horizontal scroll bar -->
+			<Trigger Property="Orientation" Value="Horizontal">
+				<Setter Property="Width" Value="Auto"/>
+				<Setter Property="Height" Value="{StaticResource ScrollBarSize}" />
+				<Setter Property="Margin">
+					<Setter.Value>
+						<Thickness Left="{StaticResource ScrollBarMarginSize}" Top="0" Right="{StaticResource ScrollBarMarginSize}" Bottom="{StaticResource ScrollBarMarginSize}" />
+					</Setter.Value>
+				</Setter>
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition MaxWidth="{StaticResource ScrollBarRepeatButtonSize}"/>
+									<ColumnDefinition/>
+									<ColumnDefinition MaxWidth="{StaticResource ScrollBarRepeatButtonSize}"/>
+								</Grid.ColumnDefinitions>
+								<Border Grid.ColumnSpan="3" CornerRadius="0" Background="{StaticResource ScrollBarTrackBrush}" />
+								<RepeatButton Grid.Column="0" Style="{StaticResource ScrollBarRepeatButtonStyle}" Width="{StaticResource ScrollBarRepeatButtonSize}" Command="ScrollBar.LineLeftCommand" Content="M 4 0 L 4 8 L 0 4 Z" />
+								<Track x:Name="PART_Track" Grid.Column="1" IsDirectionReversed="false">
+									<Track.DecreaseRepeatButton>
+										<RepeatButton Style="{StaticResource ScrollBarTrackStyle}"  Command="ScrollBar.PageLeftCommand" />
+									</Track.DecreaseRepeatButton>
+									<Track.Thumb>
+										<Thumb Style="{StaticResource ScrollBarThumbStyle}"  Margin="1,0,1,0"/>
+									</Track.Thumb>
+									<Track.IncreaseRepeatButton>
+										<RepeatButton Style="{StaticResource ScrollBarTrackStyle}" Command="ScrollBar.PageRightCommand" />
+									</Track.IncreaseRepeatButton>
+								</Track>
+								<RepeatButton Grid.Column="2" Style="{StaticResource ScrollBarRepeatButtonStyle}" Width="{StaticResource ScrollBarRepeatButtonSize}" Command="ScrollBar.LineRightCommand" Content="M 0 0 L 4 4 L 0 8 Z"/>
+							</Grid>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+
+	<!-- ScrollViewer style -->
+	<Style x:Key="DefaultScrollViewerStyle" TargetType="{x:Type ScrollViewer}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ScrollViewer}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+						<ScrollContentPresenter Grid.Column="0" Grid.Row="0">
+							<ScrollContentPresenter.Margin>
+								<Thickness Left="{StaticResource ScrollBarMarginSize}" Top="{StaticResource ScrollBarMarginSize}" Right="{StaticResource ScrollBarMarginSize}" Bottom="{StaticResource ScrollBarMarginSize}" />
+							</ScrollContentPresenter.Margin>
+						</ScrollContentPresenter>
+						<ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="1" Grid.Row="0" Orientation="Vertical" Value="{TemplateBinding VerticalOffset}" Maximum="{TemplateBinding ScrollableHeight}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Style="{StaticResource CustomScrollBarStyle}"/>
+						<ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="0" Grid.Row="1" Orientation="Horizontal" Value="{TemplateBinding HorizontalOffset}" Maximum="{TemplateBinding ScrollableWidth}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Style="{StaticResource CustomScrollBarStyle}"/>
+						<Border Grid.Column="1" Grid.Row="1" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Gear Path Style -->
+	<Style TargetType="{x:Type Path}" x:Key="GearPathStyle">
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Stroke" Value="White"/>
+		<Setter Property="StrokeThickness" Value="1"/>
+		<Setter Property="Data" Value="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
+	</Style>
+
+	<!-- Gear Path Style -->
+	<Style TargetType="{x:Type Path}" x:Key="SearchPathStyle">
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Stroke" Value="White"/>
+		<Setter Property="StrokeThickness" Value="1"/>
+		<Setter Property="Data" Value="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+	</Style>
+
+	<!-- All transparent button style -->
+	<Style TargetType="{x:Type Button}" x:Key="AllTransparentButtonStyle">
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border x:Name="Border" Background="{TemplateBinding Background}">
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="Transparent" TargetName="Border" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
 	</Style>
 </ResourceDictionary>

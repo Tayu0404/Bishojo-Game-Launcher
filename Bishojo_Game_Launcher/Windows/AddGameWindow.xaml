@@ -22,7 +22,7 @@
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="45"/>
 			</Grid.ColumnDefinitions>
-			<Button Grid.Column="1" Content="X" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}" Style="{DynamicResource CloseButtonStyle}"/>
+			<Button Grid.Column="1" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}" Style="{DynamicResource CloseButtonStyle}"/>
 		</Grid>
 
 		<Grid Grid.Row="1" Margin="5, 0 ,5 ,5">

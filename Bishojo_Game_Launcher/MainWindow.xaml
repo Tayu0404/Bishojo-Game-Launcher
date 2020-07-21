@@ -21,9 +21,9 @@
 				<ColumnDefinition Width="45"/>
 				<ColumnDefinition Width="45"/>
 			</Grid.ColumnDefinitions>
-			<Button Grid.Column="3" Content="X" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}" Style="{DynamicResource CloseButtonStyle}"/>
-			<Button Grid.Column="2" Content="□" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMaxmize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMaxmizeToolTip}" Style="{DynamicResource DefaultButtonStyle}"/>
-			<Button Grid.Column="1" Content="ー" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMiniMize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMinimizeToolTip}" Style="{DynamicResource DefaultButtonStyle}"/>
+			<Button Grid.Column="3" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}" Style="{DynamicResource CloseButtonStyle}"/>
+			<Button Grid.Column="2" x:Name="WindowMaxmize" Tag="Normal" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMaxmize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMaxmizeToolTip}" Style="{DynamicResource MaxmizeButtonStyle}"/>
+			<Button Grid.Column="1" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMiniMize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMinimizeToolTip}" Style="{DynamicResource MinimizeButtonStyle}"/>
 		</Grid>
 
 		<Grid Grid.Row="1">
