@@ -88,8 +88,8 @@
 							<TextBlock Grid.Column="0" x:Name="Brand" FontSize="20" VerticalAlignment="Center" Style="{DynamicResource DefaultTextBlockStyle}"/>
 							<TextBlock Grid.Column="1" x:Name="ReleseData" FontSize="20" VerticalAlignment="Center" Style="{DynamicResource DefaultTextBlockStyle}"/>
 						</Grid>
-						<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Style="{DynamicResource DefaultScrollViewerStyle}">
-							<Border Style="{DynamicResource DefaultBorderStyle}">
+						<Border Grid.Row="1" Style="{DynamicResource DefaultBorderStyle}">
+							<ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" Style="{DynamicResource DefaultScrollViewerStyle}">
 								<Grid Margin="5">
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="*"/>
@@ -122,8 +122,8 @@
 										</StackPanel>
 									</StackPanel>
 								</Grid>
-							</Border>
-						</ScrollViewer>
+							</ScrollViewer>
+						</Border>
 					</Grid>
 				</Grid>
 			</Grid>
