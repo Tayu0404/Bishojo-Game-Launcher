@@ -1,6 +1,7 @@
 ﻿using Bishojo_Game_Launcher.Property;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Bishojo_Game_Launcher.Windows {
 	/// </summary>
 	public partial class MainWindowGameList : UserControl {
 		private static List<Game.Game.GameDetaile> gamelist;
+		private static Game.Game.GameDetaile selectedGameDetaile;
 
 		public MainWindowGameList() {
 			InitializeComponent();
@@ -68,29 +70,29 @@ namespace Bishojo_Game_Launcher.Windows {
 			Singer.Items.Clear();
 			var listBox = sender as ListBox;
 			var selectedItem = listBox.Items[listBox.SelectedIndex] as ListItem;
-			var detaile = gamelist.Find(x => x.Hash == selectedItem.Hash);
+			selectedGameDetaile = gamelist.Find(x => x.Hash == selectedItem.Hash);
 
-			Title.Text = detaile.Detaile.Title;
-			Brand.Text = detaile.Detaile.Brand;
-			ReleseData.Text = detaile.Detaile.Sellday;
-			foreach (var illustrator in detaile.Detaile.Illustrators) {
+			Title.Text = selectedGameDetaile.Detaile.Title;
+			Brand.Text = selectedGameDetaile.Detaile.Brand;
+			ReleseData.Text = selectedGameDetaile.Detaile.Sellday;
+			foreach (var illustrator in selectedGameDetaile.Detaile.Illustrators) {
 				Illustrator.Items.Add(illustrator);
 			}
-			foreach (var scenarios in detaile.Detaile.Scenarios) {
+			foreach (var scenarios in selectedGameDetaile.Detaile.Scenarios) {
 				Scenarios.Items.Add(scenarios);
 			}
-			foreach (var composer in detaile.Detaile.Composers) {
+			foreach (var composer in selectedGameDetaile.Detaile.Composers) {
 				Composer.Items.Add(composer);
 			}
-			for (var i = 0; i < detaile.Detaile.Voices.Count; i++) {
+			for (var i = 0; i < selectedGameDetaile.Detaile.Voices.Count; i++) {
 				VoiceActor.Items.Add(
 					new {
-						Voice = detaile.Detaile.Voices[i],
-						Character = detaile.Detaile.Characters[i]
+						Voice = selectedGameDetaile.Detaile.Voices[i],
+						Character = selectedGameDetaile.Detaile.Characters[i]
 					}
 				);
 			}
-			foreach (var singer in detaile.Detaile.Singers) {
+			foreach (var singer in selectedGameDetaile.Detaile.Singers) {
 				Singer.Items.Add(singer);
 			}
 
@@ -98,8 +100,8 @@ namespace Bishojo_Game_Launcher.Windows {
 				MainImage.Source = new BitmapImage(
 					new Uri(
 						AppPath.GamesFolder +
-						detaile.Hash + @"\" +
-						detaile.Hash + Path.GetExtension(detaile.Detaile.MainImage)
+						selectedGameDetaile.Hash + @"\" +
+						selectedGameDetaile.Hash + Path.GetExtension(selectedGameDetaile.Detaile.MainImage)
 					)
 				);
 			} catch {
@@ -109,6 +111,12 @@ namespace Bishojo_Game_Launcher.Windows {
 
 		private void SearchIcon_Click(object sender, RoutedEventArgs e) {
 			GameSearchWord.Focus();
+		}
+
+		private void Play_Click(object sender, RoutedEventArgs e) {
+			var processInfo = new ProcessStartInfo();
+			processInfo.FileName = selectedGameDetaile.ExecutableFile;
+			Process.Start(processInfo);
 		}
 	}
 }

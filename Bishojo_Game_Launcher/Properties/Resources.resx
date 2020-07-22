@@ -180,6 +180,9 @@
   <data name="SearchGameDetaile" xml:space="preserve">
     <value>Search Detaile by Game</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="Singer" xml:space="preserve">
     <value>Singer</value>
   </data>

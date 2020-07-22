@@ -23,7 +23,7 @@ namespace Bishojo_Game_Launcher.Windows {
 		public MainWindowDownloadList() {
 			InitializeComponent();
 			ReloadDownloadList();
-			DownloadStart();
+			//DownloadStart();
 		}
 
 		private List<Game.Game.GameDetaile> downloadList = new List<Game.Game.GameDetaile>();

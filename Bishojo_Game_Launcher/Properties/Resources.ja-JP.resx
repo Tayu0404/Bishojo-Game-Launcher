@@ -180,6 +180,9 @@
   <data name="SearchGameDetaile" xml:space="preserve">
     <value>ゲームの詳細を検索</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>設定</value>
+  </data>
   <data name="Singer" xml:space="preserve">
     <value>歌手</value>
   </data>
