@@ -38,7 +38,7 @@
 				</Grid>
 				</Border>
 
-			<ListBox Grid.Row="1" x:Name="GameList" SelectionChanged="GameList_SelectionChanged" Style="{DynamicResource DefaultListBoxStyle}">
+			<ListBox Grid.Row="1" x:Name="GameList" SelectionChanged="GameList_SelectionChanged" HorizontalContentAlignment="Stretch" Style="{DynamicResource DefaultListBoxStyle}"  ItemContainerStyle="{DynamicResource DefaultListBoxItemStyle}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<Grid Height="25" x:Name="Hash" Tag="{Binding Hash}">

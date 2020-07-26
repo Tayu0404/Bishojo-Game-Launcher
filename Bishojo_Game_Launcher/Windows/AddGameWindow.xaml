@@ -69,11 +69,11 @@
 					</Grid.ColumnDefinitions>
 					<TextBox Grid.Column="0" x:Name="SearchWord" FontSize="15" KeyDown="SearchWord_KeyDown" Tag="{x:Static properties:Resources.SearchGameDetaile}" Style="{DynamicResource DefaultTextBoxStyle}"/>
 					<Button Grid.Column="1" x:Name="SearchGame" Click="SearchGame_Click" Content="{x:Static properties:Resources.Search}" Style="{DynamicResource DefaultButtonStyle}"/>
-					<ComboBox Grid.Column="2" x:Name="SearchMode" SelectedValuePath="Mode" DisplayMemberPath="ModeName" Style="{DynamicResource DefaultComboBoxStyle}"/>
+					<ComboBox Grid.Column="2" x:Name="SearchMode" SelectedValuePath="Mode" DisplayMemberPath="ModeName" Style="{DynamicResource DefaultComboBoxStyle}" ItemContainerStyle="{DynamicResource DefaultComboBoxItemStyle}"/>
 				</Grid> 
 			</Border>
 
-			<ListBox Grid.Row="5" x:Name="GameList" SelectionChanged="GameList_SelectionChanged" Style="{DynamicResource DefaultListBoxStyle}"/>
+			<ListBox Grid.Row="5" x:Name="GameList" SelectionChanged="GameList_SelectionChanged" Style="{DynamicResource DefaultListBoxStyle}" ItemContainerStyle="{DynamicResource DefaultListBoxItemStyle}"/>
 
 			<Grid Grid.Row="6">
 				<Grid.RowDefinitions>
