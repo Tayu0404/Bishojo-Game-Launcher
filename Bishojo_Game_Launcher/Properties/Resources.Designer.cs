@@ -61,6 +61,15 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Bishoujo Game Launcher(仮) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string AppTitle {
+            get {
+                return ResourceManager.GetString("AppTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Browse... に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Browse {
@@ -120,6 +129,15 @@ namespace Bishojo_Game_Launcher.Properties {
         public static string ExecutableFile {
             get {
                 return ResourceManager.GetString("ExecutableFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Exit に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Exit {
+            get {
+                return ResourceManager.GetString("Exit", resourceCulture);
             }
         }
         

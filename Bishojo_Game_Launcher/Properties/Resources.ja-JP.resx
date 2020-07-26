@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppTitle" xml:space="preserve">
+    <value>美少女ゲームランチャー(仮)</value>
+  </data>
   <data name="Browse" xml:space="preserve">
     <value>参照...</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="ExecutableFile" xml:space="preserve">
     <value>実行ファイル</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>閉じる</value>
   </data>
   <data name="GameBrand" xml:space="preserve">
     <value>ブランド</value>
