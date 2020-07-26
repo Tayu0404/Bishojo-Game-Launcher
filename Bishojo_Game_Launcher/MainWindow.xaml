@@ -22,13 +22,12 @@
 				<ColumnDefinition Width="45"/>
 				<ColumnDefinition Width="45"/>
 			</Grid.ColumnDefinitions>
-			<ToggleButton Grid.Column="0" Name="TitleMenu" WindowChrome.IsHitTestVisibleInChrome="True" Style="{DynamicResource DefaultToggleButtonStyle}"/>
-			<Popup Name="TitleMenuPopup" Placement="Bottom" PlacementTarget="{Binding ElementName=TitleMenu}" PopupAnimation="Slide" AllowsTransparency="True" StaysOpen="False"
-				IsOpen="{Binding IsChecked, ElementName=TitleMenu}">
-				<StackPanel Orientation="Horizontal">
-					<Button FontSize="20" Content="{x:Static properties:Resources.Settings}" Style="{DynamicResource DefaultButtonStyle}"/>
-				</StackPanel>
-			</Popup>
+			<Menu Grid.Column="0" FontSize="15" WindowChrome.IsHitTestVisibleInChrome="True" Style="{DynamicResource DefaultMenuStyle}">
+				<MenuItem Header="{x:Static properties:Resources.AppTitle}" Template="{DynamicResource MenuItemControlTemplate1}">
+					<MenuItem Header="{x:Static properties:Resources.Settings}" Template="{DynamicResource MenuItemControlTemplate2}"/>
+					<MenuItem Header="{x:Static properties:Resources.Exit}" Template="{DynamicResource MenuItemControlTemplate2}"/>
+				</MenuItem>
+			</Menu>
 			<Button Grid.Column="4" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}" Style="{DynamicResource CloseButtonStyle}"/>
 			<Button Grid.Column="3" x:Name="WindowMaxmize" Tag="Normal" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMaxmize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMaxmizeToolTip}" Style="{DynamicResource MaxmizeButtonStyle}"/>
 			<Button Grid.Column="2" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMiniMize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMinimizeToolTip}" Style="{DynamicResource MinimizeButtonStyle}"/>
