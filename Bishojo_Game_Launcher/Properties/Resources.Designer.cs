@@ -61,7 +61,7 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Bishoujo Game Launcher(仮) に類似しているローカライズされた文字列を検索します。
+        ///   BGL(仮) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string AppTitle {
             get {
