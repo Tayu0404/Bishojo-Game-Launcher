@@ -8,8 +8,10 @@
 	<SolidColorBrush x:Key="DefaultBorderBrush" Color="Black"/>
 	<SolidColorBrush x:Key="DefaultWindowBackground" Color="#FF494949"/>
 	<SolidColorBrush x:Key="DarkBackground" Color="#454545"/>
-	<SolidColorBrush x:Key="MouseOverHighlightedBackground" Color="#656565"/>
+	<SolidColorBrush x:Key="SelectedHighlightedBackground" Color="#656565"/>
+	<SolidColorBrush x:Key="MouseOverHighlightedBackground" Color="#757575"/>
 	<SolidColorBrush x:Key="HighlightedBorderBrush" Color="#505050"/>
+	<SolidColorBrush x:Key="PopupBackground" Color="#606060"/>
 
 	<!-- Window Style -->
     <System:Double x:Key="CaptionHeight">26</System:Double>
@@ -192,7 +194,7 @@
 		</Setter>
 		<Style.Triggers>
 			<Trigger Property="IsSelected" Value="True">
-				<Setter Property="Background" Value="{StaticResource MouseOverHighlightedBackground}"/>
+				<Setter Property="Background" Value="{StaticResource SelectedHighlightedBackground}"/>
 			</Trigger>
 			<Trigger Property="IsMouseOver" Value="True">
 				<Setter Property="Background" Value="{StaticResource MouseOverHighlightedBackground}"/>
@@ -273,14 +275,16 @@
 				<Setter TargetName="TextBorder" Property="Background" Value="{StaticResource MouseOverHighlightedBackground}"/>
 			</Trigger>
 			<Trigger Property="ToggleButton.IsChecked" Value="true">
-				<Setter TargetName="ToggleButtonBorder" Property="Background" Value="#E0E0E0" />
+				<Setter TargetName="ToggleButtonBorder" Property="Background" Value="{StaticResource SelectedHighlightedBackground}" />
 			</Trigger>
+			<!--
 			<Trigger Property="IsEnabled" Value="False">
 				<Setter TargetName="ToggleButtonBorder" Property="Background" Value="#EEEEEE" />
 				<Setter TargetName="ToggleButtonBorder" Property="BorderBrush" Value="#AAAAAA" />
 				<Setter Property="Foreground" Value="#888888"/>
 				<Setter TargetName="Arrow" Property="Fill" Value="#888888" />
 			</Trigger>
+			-->
 		</ControlTemplate.Triggers>
 	</ControlTemplate>
 
@@ -708,16 +712,18 @@
 	<SolidColorBrush x:Key="MenuClickBackground" Color="#353535"/>
 
 	<Style TargetType="{x:Type Menu}" x:Key="DefaultMenuStyle">
-		<Setter Property="Background" Value="{StaticResource DarkBackground}"/>
+		<Setter Property="Background" Value="Transparent"/>
 		<Setter Property="Foreground" Value="{StaticResource DefaultForeground}"/>
 		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
 	</Style>
 
 	<ControlTemplate x:Key="MenuItemControlTemplate1" TargetType="{x:Type MenuItem}">
 		<Border x:Name="templateRoot" 
                 BorderBrush="Transparent" 
                 CornerRadius="3"
-                Background="{TemplateBinding Background}" 
+                Background="Transparent" 
+				VerticalAlignment="Center"
                 SnapsToDevicePixels="True">
 			<Grid VerticalAlignment="Center">
 				<Grid.ColumnDefinitions>
@@ -744,7 +750,7 @@
 					<Border
 						x:Name="SubMenuBorder"
 						BorderBrush="Transparent"
-						Background="Transparent"
+						Background="{StaticResource PopupBackground}"
 						Padding="2">
 						<ScrollViewer
 							x:Name="SubMenuScrollViewer"
@@ -773,18 +779,15 @@
 			<Trigger Property="IsSuspendingPopupAnimation" Value="True">
 				<Setter Property="PopupAnimation" TargetName="PART_Popup" Value="None"/>
 			</Trigger>
-
 			<Trigger Property="IsHighlighted" Value="True">
-				<Setter Property="Background" TargetName="templateRoot" Value="{StaticResource DarkBackground}"/>
-				<Setter Property="BorderThickness" TargetName="templateRoot" Value="1"></Setter>
+				<Setter Property="Background" TargetName="templateRoot" Value="{StaticResource MouseOverHighlightedBackground}"/>
 			</Trigger>
-
 			<Trigger Property="CanContentScroll" SourceName="SubMenuScrollViewer" Value="False">
 				<Setter Property="Canvas.Top" TargetName="OpaqueRect" Value="{Binding VerticalOffset, ElementName=SubMenuScrollViewer}"/>
 				<Setter Property="Canvas.Left" TargetName="OpaqueRect" Value="{Binding HorizontalOffset, ElementName=SubMenuScrollViewer}"/>
 			</Trigger>
 			<Trigger Property="IsKeyboardFocusWithin" Value="True">
-				<Setter TargetName="templateRoot" Property="Background" Value="{StaticResource MenuClickBackground}" />
+				<Setter TargetName="templateRoot" Property="Background" Value="{StaticResource SelectedHighlightedBackground}" />
 				<Setter Property="BorderThickness" Value="1"></Setter>
 			</Trigger>
 		</ControlTemplate.Triggers>
@@ -803,7 +806,7 @@
 					<ColumnDefinition Width="13"/>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="30"/>
-					<ColumnDefinition SharedSizeGroup="MenuItemIGTColumnGroup" Width="Auto"/>
+					<ColumnDefinition SharedSizeGroup="MenuIbemIGTColumnGroup" Width="Auto"/>
 					<ColumnDefinition Width="20"/>
 				</Grid.ColumnDefinitions>
 				<ContentPresenter
