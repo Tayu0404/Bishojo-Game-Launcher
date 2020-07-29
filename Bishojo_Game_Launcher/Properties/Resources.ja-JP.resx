@@ -132,6 +132,9 @@
   <data name="Download" xml:space="preserve">
     <value>ダウンロード</value>
   </data>
+  <data name="Enable" xml:space="preserve">
+    <value>有効化</value>
+  </data>
   <data name="ErogameScapeSearchModeBrand" xml:space="preserve">
     <value>ブランド</value>
   </data>
@@ -159,11 +162,17 @@
   <data name="GameTitle" xml:space="preserve">
     <value>タイトル</value>
   </data>
+  <data name="Host" xml:space="preserve">
+    <value>ホスト</value>
+  </data>
   <data name="Illustrator" xml:space="preserve">
     <value>原画</value>
   </data>
   <data name="Library" xml:space="preserve">
     <value>ライブラリ</value>
+  </data>
+  <data name="Network" xml:space="preserve">
+    <value>ネットワーク</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>見つかりませんでした</value>
@@ -171,8 +180,17 @@
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
   <data name="Play" xml:space="preserve">
     <value>プレイ</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>ポート</value>
+  </data>
+  <data name="Proxy" xml:space="preserve">
+    <value>プロキシ</value>
   </data>
   <data name="SaveDataFolder" xml:space="preserve">
     <value>セーブデータフォルダー</value>
@@ -191,6 +209,9 @@
   </data>
   <data name="Singer" xml:space="preserve">
     <value>歌手</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>ユーザー</value>
   </data>
   <data name="VoiceActor" xml:space="preserve">
     <value>声優</value>

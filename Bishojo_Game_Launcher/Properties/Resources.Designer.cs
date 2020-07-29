@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bishojo_Game_Launcher.Properties {
+namespace BishojoGameLauncher.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Bishojo_Game_Launcher.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bishojo_Game_Launcher.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BishojoGameLauncher.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -102,6 +102,15 @@ namespace Bishojo_Game_Launcher.Properties {
         public static string Download {
             get {
                 return ResourceManager.GetString("Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enable に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Enable {
+            get {
+                return ResourceManager.GetString("Enable", resourceCulture);
             }
         }
         
@@ -187,6 +196,15 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Host に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Host {
+            get {
+                return ResourceManager.GetString("Host", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Illustrator に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Illustrator {
@@ -201,6 +219,15 @@ namespace Bishojo_Game_Launcher.Properties {
         public static string Library {
             get {
                 return ResourceManager.GetString("Library", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Network に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Network {
+            get {
+                return ResourceManager.GetString("Network", resourceCulture);
             }
         }
         
@@ -223,11 +250,38 @@ namespace Bishojo_Game_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Password に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Play に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Play {
             get {
                 return ResourceManager.GetString("Play", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Port に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Port {
+            get {
+                return ResourceManager.GetString("Port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Proxy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Proxy {
+            get {
+                return ResourceManager.GetString("Proxy", resourceCulture);
             }
         }
         
@@ -282,6 +336,15 @@ namespace Bishojo_Game_Launcher.Properties {
         public static string Singer {
             get {
                 return ResourceManager.GetString("Singer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   User に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string User {
+            get {
+                return ResourceManager.GetString("User", resourceCulture);
             }
         }
         
