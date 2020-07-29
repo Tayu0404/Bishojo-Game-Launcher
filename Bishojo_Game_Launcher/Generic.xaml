@@ -886,4 +886,16 @@
 			</MultiTrigger>
 		</ControlTemplate.Triggers>
 	</ControlTemplate>
+
+	<!-- CheckBox Style -->
+	<Style TargetType="{x:Type CheckBox}" x:Key="DefaultCheckBoxStyle">
+		<Setter	Property="Background" Value="{StaticResource DefaultBackground}"/>
+		<Setter Property="Foreground" Value="{StaticResource DefaultForeground}"/>
+		<Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}"/>
+		<Style.Triggers>
+			<Trigger Property="IsMouseOver" Value="True">
+				<Setter Property="Background" Value="{StaticResource MouseOverHighlightedBackground}"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
 </ResourceDictionary>
