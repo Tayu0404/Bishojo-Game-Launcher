@@ -1,4 +1,4 @@
-﻿using Bishojo_Game_Launcher.Windows;
+﻿using BishojoGameLauncher.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Bishojo_Game_Launcher {
+namespace BishojoGameLauncher {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
@@ -26,7 +26,17 @@ namespace Bishojo_Game_Launcher {
         private double normalLeft { get; set; }
 
         public MainWindow() {
+            updatedCheck();
             InitializeComponent();
+        }
+
+        /// If you have not executed Upgrade from the previous version, execute Upgrade
+        private void updatedCheck() {
+            if (Properties.Settings.Default.IsUpgrade == false) {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.IsUpgrade = true;
+                Properties.Settings.Default.Save();
+            }
         }
 
         private void window_StateChanged(object sender, EventArgs e) {
