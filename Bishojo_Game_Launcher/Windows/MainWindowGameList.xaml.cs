@@ -1,4 +1,4 @@
-﻿using Bishojo_Game_Launcher.Property;
+﻿using BishojoGameLauncher.Property;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,7 +11,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Bishojo_Game_Launcher.Windows {
+namespace BishojoGameLauncher.Windows {
 	/// <summary>
 	/// MainWindowGameList.xaml の相互作用ロジック
 	/// </summary>

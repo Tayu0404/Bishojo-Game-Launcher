@@ -1,7 +1,7 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Html.Dom.Events;
 using AngleSharp.Text;
-using Bishojo_Game_Launcher.Property;
+using BishojoGameLauncher.Property;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Bishojo_Game_Launcher.Game {
+namespace BishojoGameLauncher.Game {
 	class List {
 		static List<Game.GameDetaile> games;
 

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bishojo_Game_Launcher.Property {
+namespace BishojoGameLauncher.Property {
 	static class AppPath {
 		public static string AppFolder {
-			get { return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Bishojo Game Launcher\"; }
+			get { return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\BishojoGameLauncher\"; }
 		}
 
 		public static string GamesFolder {

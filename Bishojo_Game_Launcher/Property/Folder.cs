@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bishojo_Game_Launcher.Property {
+namespace BishojoGameLauncher.Property {
 	class Folder {
 		public static void ExistsAllAppFolder() {
 			if (!Directory.Exists(AppPath.AppFolder)) {

@@ -7,11 +7,11 @@ using System.Windows;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("Bishoujo_Game_Launcher")]
+[assembly: AssemblyTitle("Bishoujo Game Launcher")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Bishoujo_Game_Launcher")]
+[assembly: AssemblyProduct("Bishoujo Game Launcher")]
 [assembly: AssemblyCopyright("Copyright © Tayu 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

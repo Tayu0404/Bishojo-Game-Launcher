@@ -6,8 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WindowChromeSample
-{
+namespace BishojoGameLauncher {
     /// <summary>
     /// App.xaml の相互作用ロジック
     /// </summary>
