@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Bishojo_Game_Launcher.Windows {
+namespace BishojoGameLauncher.Windows {
 	/// <summary>
 	/// MainWindowDownloadList.xaml の相互作用ロジック
 	/// </summary>
@@ -48,16 +48,51 @@ namespace Bishojo_Game_Launcher.Windows {
 			}
 		}
 
-		public void DownloadStart() {
-			Task.Run(async() => {
-				var list = new Game.List();
-				list.Read();
-				foreach (var game in downloadList) {
-					await Game.Game.Downlaod(game);
-					list.Games.Find(x => x.Hash == game.Hash).DownloadComplete = true;
+		public async void DownloadStart() {
+			var list = new Game.List();
+			list.Read();
+			var downloadImage = new Game.DownloadImage();
+
+			if (Properties.Settings.Default.IsProxyEnable) {
+				
+				if (Properties.Settings.Default.ProxyType) {
+					/// Socks5
+					if (Properties.Settings.Default.ProxyUser != default(string)) {
+						downloadImage.UseSocks5Proxy(
+							Properties.Settings.Default.ProxyHost,
+							Properties.Settings.Default.ProxyPort,
+							Properties.Settings.Default.ProxyUser,
+							Properties.Settings.Default.ProxyPassword
+						);
+					} else {
+						downloadImage.UseSocks5Proxy(
+							Properties.Settings.Default.ProxyHost,
+							Properties.Settings.Default.ProxyPort
+						);
+					}
+				} else {
+					/// HTTP
+					if (Properties.Settings.Default.ProxyUser != default(string)) {
+						downloadImage.UseHTTPProxy(
+							Properties.Settings.Default.ProxyHost,
+							Properties.Settings.Default.ProxyPort,
+							Properties.Settings.Default.ProxyUser,
+							Properties.Settings.Default.ProxyPassword
+						);
+					} else {
+						downloadImage.UseHTTPProxy(
+							Properties.Settings.Default.ProxyHost,
+							Properties.Settings.Default.ProxyPort
+						);
+					}
 				}
-				list.Write();
-			});
+			}
+
+			foreach (var game in downloadList) {
+				await downloadImage.Run(game);
+				list.Games.Find(x => x.Hash == game.Hash).DownloadComplete = true;
+			}
+			list.Write();
 		}
 	}
 }

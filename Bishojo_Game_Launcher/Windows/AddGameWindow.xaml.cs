@@ -1,4 +1,4 @@
-﻿using Bishojo_Game_Launcher.Game;
+﻿using BishojoGameLauncher.Game;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,9 +7,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Bishojo_Game_Launcher.Windows {
+namespace BishojoGameLauncher.Windows {
 	public partial class AddGameWindow : Window {
-		static Game.List gameList;
 		public AddGameWindow() {
 			gameList = new Game.List();
 			gameList.Read();
@@ -19,6 +18,48 @@ namespace Bishojo_Game_Launcher.Windows {
 				new SearchGameMode { Mode = ErogameScape.SearchGameMode.Brand, ModeName = Properties.Resources.ErogameScapeSearchModeBrand }
 			};
 			SearchMode.SelectedIndex = 0;
+			InitializeErogameScape();
+		}
+
+		private Game.List gameList;
+		private ErogameScape erogameScape;
+
+		private void InitializeErogameScape() {
+			erogameScape = new ErogameScape();
+			if (Properties.Settings.Default.IsProxyEnable) {
+
+				if (Properties.Settings.Default.ProxyType) {
+					/// Socks5
+					if (Properties.Settings.Default.ProxyUser != default(string)) {
+						erogameScape.UseSocks5Proxy(
+							Properties.Settings.Default.ProxyHost,
+							Properties.Settings.Default.ProxyPort,
+							Properties.Settings.Default.ProxyUser,
+							Properties.Settings.Default.ProxyPassword
+						);
+					} else {
+						erogameScape.UseSocks5Proxy(
+							Properties.Settings.Default.ProxyHost,
+							Properties.Settings.Default.ProxyPort
+						);
+					}
+				} else {
+					/// HTTP
+					if (Properties.Settings.Default.ProxyUser != default(string)) {
+						erogameScape.UseHTTPProxy(
+							Properties.Settings.Default.ProxyHost,
+							Properties.Settings.Default.ProxyPort,
+							Properties.Settings.Default.ProxyUser,
+							Properties.Settings.Default.ProxyPassword
+						);
+					} else {
+						erogameScape.UseHTTPProxy(
+							Properties.Settings.Default.ProxyHost,
+							Properties.Settings.Default.ProxyPort
+						);
+					}
+				}
+			}
 		}
 
 		private class SearchGameMode {
@@ -63,8 +104,6 @@ namespace Bishojo_Game_Launcher.Windows {
 			}
 			try {
 				var mode = SearchMode.SelectedItem as SearchGameMode;
-				var erogameScape = new ErogameScape();
-				erogameScape.UseSocks5Proxy("localhost", 8080);
 				searchGameList = await erogameScape.SearchGame(SearchWord.Text, mode.Mode);
 				if (searchGameList.Count == 0) {
 					GameList.Items.Add(Properties.Resources.NotFound);
@@ -113,8 +152,6 @@ namespace Bishojo_Game_Launcher.Windows {
 		}
 
 		private async void GameRegistry_Click(object sender, RoutedEventArgs e) {
-			var erogameScape = new ErogameScape();
-			erogameScape.UseSocks5Proxy("localhost", 8080);
 
 			var detaile = await erogameScape.GetGameDetails(
 				searchGameList[GameList.SelectedIndex].Detaileurl,
