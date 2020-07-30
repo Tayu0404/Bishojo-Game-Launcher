@@ -24,7 +24,7 @@
 			</Grid.ColumnDefinitions>
 			<Menu Grid.Column="0" FontSize="15" WindowChrome.IsHitTestVisibleInChrome="True" Style="{DynamicResource DefaultMenuStyle}">
 				<MenuItem Header="{x:Static properties:Resources.AppTitle}" Template="{DynamicResource MenuItemControlTemplate1}">
-					<MenuItem Header="{x:Static properties:Resources.Settings}" Template="{DynamicResource MenuItemControlTemplate2}"/>
+					<MenuItem Click="Setting_Click" Header="{x:Static properties:Resources.Settings}" Template="{DynamicResource MenuItemControlTemplate2}"/>
 					<MenuItem Header="{x:Static properties:Resources.Exit}" Template="{DynamicResource MenuItemControlTemplate2}"/>
 				</MenuItem>
 			</Menu>
