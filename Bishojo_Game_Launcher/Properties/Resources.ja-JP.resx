@@ -120,6 +120,9 @@
   <data name="AppTitle" xml:space="preserve">
     <value>BGL(仮)</value>
   </data>
+  <data name="AppVersion" xml:space="preserve">
+    <value>BGL(仮)のバージョン情報</value>
+  </data>
   <data name="Browse" xml:space="preserve">
     <value>参照...</value>
   </data>
@@ -162,6 +165,9 @@
   <data name="GameTitle" xml:space="preserve">
     <value>タイトル</value>
   </data>
+  <data name="Help" xml:space="preserve">
+    <value>ヘルプ</value>
+  </data>
   <data name="Host" xml:space="preserve">
     <value>ホスト</value>
   </data>
@@ -192,6 +198,9 @@
   <data name="Proxy" xml:space="preserve">
     <value>プロキシ</value>
   </data>
+  <data name="ProxyType" xml:space="preserve">
+    <value>プロキシのタイプ</value>
+  </data>
   <data name="SaveDataFolder" xml:space="preserve">
     <value>セーブデータフォルダー</value>
   </data>
@@ -210,8 +219,14 @@
   <data name="Singer" xml:space="preserve">
     <value>歌手</value>
   </data>
+  <data name="UpdateProxy" xml:space="preserve">
+    <value>プロキシを更新</value>
+  </data>
   <data name="User" xml:space="preserve">
     <value>ユーザー</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>表示</value>
   </data>
   <data name="VoiceActor" xml:space="preserve">
     <value>声優</value>

@@ -70,6 +70,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   BGL(仮) Version Information に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string AppVersion {
+            get {
+                return ResourceManager.GetString("AppVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Browse... に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Browse {
@@ -196,6 +205,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Help に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Help {
+            get {
+                return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Host に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Host {
@@ -286,6 +304,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Proxy Type に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ProxyType {
+            get {
+                return ResourceManager.GetString("ProxyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Save Data Folder に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SaveDataFolder {
@@ -340,11 +367,29 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Update Proxy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UpdateProxy {
+            get {
+                return ResourceManager.GetString("UpdateProxy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   User に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string User {
             get {
                 return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   View に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string View {
+            get {
+                return ResourceManager.GetString("View", resourceCulture);
             }
         }
         
