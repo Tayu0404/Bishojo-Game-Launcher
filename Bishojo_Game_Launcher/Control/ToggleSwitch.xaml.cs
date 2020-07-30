@@ -173,10 +173,12 @@ namespace BishojoGameLauncher.Control {
             get { return (double)this.GetValue(DurationProperty); }
             set { this.SetValue(DurationProperty, value); }
         }
+
         public static readonly DependencyProperty DurationProperty =
             DependencyProperty.Register("ChangeDuration", typeof(double),
                 typeof(ToggleSwitch),
                 new PropertyMetadata(0.05));
         #endregion
+
     }
 }

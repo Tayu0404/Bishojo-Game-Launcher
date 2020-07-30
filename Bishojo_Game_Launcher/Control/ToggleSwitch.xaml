@@ -51,7 +51,7 @@
 					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
 				<Border x:Name="borderTrack" CornerRadius="11" BorderThickness="1" BorderBrush="Black" Margin="0" Padding="0" Width="44" Height="24" Background="#FFCDCDCD" Grid.RowSpan="2"/>
-				<Ellipse x:Name="ellipseToggle" Fill="SteelBlue" Stroke="White" HorizontalAlignment="Center" Width="20" Height="20" Margin="12,2" Grid.RowSpan="2">
+				<Ellipse x:Name="ellipseToggle" Fill="SteelBlue" Stroke="White" HorizontalAlignment="Center" Width="22" Height="22" Grid.RowSpan="2">
 					<Ellipse.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform/>
