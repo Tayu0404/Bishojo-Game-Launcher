@@ -17,8 +17,8 @@ namespace BishojoGameLauncher.Windows {
 	/// <summary>
 	/// UserControl1.xaml の相互作用ロジック
 	/// </summary>
-	public partial class SettingWindowNetwork : UserControl {
-		public SettingWindowNetwork() {
+	public partial class MainWindowSettingNetwork : UserControl {
+		public MainWindowSettingNetwork() {
 			InitializeComponent();
 		}
 	}

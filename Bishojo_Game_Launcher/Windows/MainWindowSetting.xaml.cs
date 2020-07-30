@@ -16,13 +16,9 @@ namespace BishojoGameLauncher.Windows {
 	/// <summary>
 	/// Window1.xaml の相互作用ロジック
 	/// </summary>
-	public partial class SettingWindow : Window {
-		public SettingWindow() {
+	public partial class MainWindowSetting : UserControl {
+		public MainWindowSetting() {
 			InitializeComponent();
-		}
-
-		private void WindowClose_Click(object sender, RoutedEventArgs e) {
-			this.Close();
 		}
 	}
 }

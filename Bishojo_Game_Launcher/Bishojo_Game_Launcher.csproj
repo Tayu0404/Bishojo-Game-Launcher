@@ -121,11 +121,14 @@
     <Compile Include="Windows\SearchGameWindow.xaml.cs">
       <DependentUpon>SearchGameWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\SettingsWindow.xaml.cs">
-      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    <Compile Include="Windows\MainWindowSetting.xaml.cs">
+      <DependentUpon>MainWindowSetting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\SettingWindowNetwork.xaml.cs">
-      <DependentUpon>SettingWindowNetwork.xaml</DependentUpon>
+    <Compile Include="Windows\MainWindowSettingNetwork.xaml.cs">
+      <DependentUpon>MainWindowSettingNetwork.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\VersionInfoWindow.xaml.cs">
+      <DependentUpon>VersionInfoWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -163,11 +166,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\SettingsWindow.xaml">
+    <Page Include="Windows\MainWindowSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\SettingWindowNetwork.xaml">
+    <Page Include="Windows\MainWindowSettingNetwork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\VersionInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
