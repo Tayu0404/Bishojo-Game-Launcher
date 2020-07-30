@@ -237,7 +237,13 @@
 	<!-- Border Style -->
 	<Style TargetType="{x:Type Border}" x:Key="DefaultBorderStyle">
 		<Setter Property="Background" Value="{StaticResource DarkBackground}"/>
-		<Setter Property="BorderBrush" Value="Black"/>
+		<Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}"/>
+		<Setter Property="BorderThickness" Value="1"/>
+	</Style>
+
+	<Style TargetType="{x:Type Border}" x:Key="TransparentBorderStyle">
+		<Setter Property="Background" Value="{StaticResource DarkBackground}"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
 		<Setter Property="BorderThickness" Value="1"/>
 	</Style>
 
@@ -903,9 +909,9 @@
 	<!-- ToggleSwitch Style -->
 	<Style TargetType="{x:Type control:ToggleSwitch}" x:Key="DefaultToggleSwitchStyle">
 		<Setter Property="BorderBrush" Value="{StaticResource DefaultBackground}"/>
-		<Setter Property="CircleBackgroundColor" Value="White"/>
-		<Setter Property="CircleBorderColor" Value="Black"/>
-		<Setter Property="TrackBackgroundOffColor"  Value="Black"/>
-		<Setter Property="TrackBackgroundOnColor" Value="LawnGreen"/>
+		<Setter Property="CircleBackgroundColor" Value="{StaticResource DefaultForeground}"/>
+		<Setter Property="CircleBorderColor" Value="{StaticResource DefaultForeground}"/>
+		<Setter Property="TrackBackgroundOffColor"  Value="{StaticResource DarkBackground}"/>
+		<Setter Property="TrackBackgroundOnColor" Value="#329632"/>
 	</Style>
 </ResourceDictionary>
