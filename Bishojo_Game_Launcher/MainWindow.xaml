@@ -16,21 +16,70 @@
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="100"/>
+				<ColumnDefinition Width="500"/>
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="45"/>
 				<ColumnDefinition Width="45"/>
 				<ColumnDefinition Width="45"/>
 			</Grid.ColumnDefinitions>
 			<Menu Grid.Column="0" FontSize="15" WindowChrome.IsHitTestVisibleInChrome="True" Style="{DynamicResource DefaultMenuStyle}">
-				<MenuItem Header="{x:Static properties:Resources.AppTitle}" Template="{DynamicResource MenuItemControlTemplate1}">
-					<MenuItem Click="Setting_Click" Header="{x:Static properties:Resources.Settings}" Template="{DynamicResource MenuItemControlTemplate2}"/>
-					<MenuItem Header="{x:Static properties:Resources.Exit}" Template="{DynamicResource MenuItemControlTemplate2}"/>
+				<MenuItem
+					Header="{x:Static properties:Resources.AppTitle}"
+					Template="{DynamicResource MenuItemControlTemplate1}">
+					<MenuItem
+						Click="Setting_Click"
+						Header="{x:Static properties:Resources.Settings}"
+						Template="{DynamicResource MenuItemControlTemplate2}"/>
+					<MenuItem
+						Click="WindowClose_Click"
+						Header="{x:Static properties:Resources.Exit}"
+						Template="{DynamicResource MenuItemControlTemplate2}"/>
+				</MenuItem>
+				<MenuItem
+					Header="{x:Static properties:Resources.View}"
+					Template="{DynamicResource MenuItemControlTemplate1}">
+					<MenuItem
+						Click="ChangeGameListWindow_Click"
+						Header="{x:Static properties:Resources.Library}"
+						Template="{DynamicResource MenuItemControlTemplate2}"/>
+					<MenuItem
+						Click="ChangeDownloadListWindow_Click"
+						Header="{x:Static properties:Resources.Download}"
+						Template="{DynamicResource MenuItemControlTemplate2}"/>
+					<MenuItem
+						Click="Setting_Click"
+						Header="{x:Static properties:Resources.Settings}"
+						Template="{DynamicResource MenuItemControlTemplate2}"/>
+				</MenuItem>
+				<MenuItem
+					Header="{x:Static properties:Resources.Help}"
+					Template="{DynamicResource MenuItemControlTemplate1}">
+					<MenuItem
+						Click="AppVersionInfo_Click"
+						Header="{x:Static properties:Resources.AppVersion}"
+						Template="{DynamicResource MenuItemControlTemplate2}"/>
 				</MenuItem>
 			</Menu>
-			<Button Grid.Column="4" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowClose_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}" Style="{DynamicResource CloseButtonStyle}"/>
-			<Button Grid.Column="3" x:Name="WindowMaxmize" Tag="Normal" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMaxmize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMaxmizeToolTip}" Style="{DynamicResource MaxmizeButtonStyle}"/>
-			<Button Grid.Column="2" WindowChrome.IsHitTestVisibleInChrome="True" Click="WindowMiniMize_Click" ToolTipService.ToolTip="{x:Static properties:Resources.WindowMinimizeToolTip}" Style="{DynamicResource MinimizeButtonStyle}"/>
+			<Button
+				Grid.Column="4"
+				WindowChrome.IsHitTestVisibleInChrome="True"
+				Click="WindowClose_Click"
+				ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}"
+				Style="{DynamicResource CloseButtonStyle}"/>
+			<Button
+				Grid.Column="3"
+				x:Name="WindowMaxmize"
+				Tag="Normal"
+				WindowChrome.IsHitTestVisibleInChrome="True"
+				Click="WindowMaxmize_Click"
+				ToolTipService.ToolTip="{x:Static properties:Resources.WindowMaxmizeToolTip}"
+				Style="{DynamicResource MaxmizeButtonStyle}"/>
+			<Button
+				Grid.Column="2"
+				WindowChrome.IsHitTestVisibleInChrome="True"
+				Click="WindowMiniMize_Click"
+				ToolTipService.ToolTip="{x:Static properties:Resources.WindowMinimizeToolTip}"
+				Style="{DynamicResource MinimizeButtonStyle}"/>
 		</Grid>
 
 		<Grid Grid.Row="1">
@@ -48,10 +97,9 @@
 				<Button Grid.Column="0" FontSize="25" Click="ChangeGameListWindow_Click" Content="{x:Static properties:Resources.Library}" Style="{DynamicResource DefaultButtonStyle}"/>
 			</Grid>
 
-			<Grid Grid.Row="1">
-				<windows:MainWindowGameList x:Name="GameListWindow"/>
-				<windows:MainWindowDownloadList x:Name="DownloadListWindow" Visibility="Hidden"/>
-			</Grid>
+			<windows:MainWindowGameList Grid.Row="1" x:Name="GameListWindow" Visibility="Visible"/>
+			<windows:MainWindowDownloadList Grid.Row="1" x:Name="DownloadListWindow" Visibility="Hidden"/>
+			<windows:MainWindowSetting Grid.Row="1" x:Name="SettingWindow" Visibility="Hidden"/>
 
 			<Grid Grid.Row="2">
 				<Grid.ColumnDefinitions>

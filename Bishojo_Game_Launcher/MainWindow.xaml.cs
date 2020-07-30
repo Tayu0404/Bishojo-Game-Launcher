@@ -78,17 +78,25 @@ namespace BishojoGameLauncher {
         private void ChangeGameListWindow_Click(object sender, RoutedEventArgs e) {
             this.GameListWindow.Visibility = Visibility.Visible;
             this.DownloadListWindow.Visibility = Visibility.Hidden;
+            this.SettingWindow.Visibility = Visibility.Hidden;
         }
         
 		private void ChangeDownloadListWindow_Click(object sender, RoutedEventArgs e) {
             this.GameListWindow.Visibility = Visibility.Hidden;
             this.DownloadListWindow.Visibility = Visibility.Visible;
-		}
+            this.SettingWindow.Visibility = Visibility.Hidden;
+        }
 
 		private void Setting_Click(object sender, RoutedEventArgs e) {
-            var settingWindow = new SettingWindow();
-            settingWindow.Owner = GetWindow(this);
-            settingWindow.ShowDialog();
-		}
+            this.GameListWindow.Visibility = Visibility.Hidden;
+            this.DownloadListWindow.Visibility = Visibility.Hidden;
+            this.SettingWindow.Visibility = Visibility.Visible;
+        }
+
+		private void AppVersionInfo_Click(object sender, RoutedEventArgs e) {
+            var versionInfoWindow = new VersionInfoWindow();
+            versionInfoWindow.Owner = GetWindow(this);
+            versionInfoWindow.ShowDialog();
+        }
 	}
 }
