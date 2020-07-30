@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:System="clr-namespace:System;assembly=mscorlib">
+	xmlns:System="clr-namespace:System;assembly=mscorlib"
+	xmlns:control="clr-namespace:BishojoGameLauncher.Control">
 
 	<SolidColorBrush x:Key="DefaultForeground" Color="White"/>
 	<SolidColorBrush x:Key="DefaultBackground" Color="#505050"/>
@@ -897,5 +898,14 @@
 				<Setter Property="Background" Value="{StaticResource MouseOverHighlightedBackground}"/>
 			</Trigger>
 		</Style.Triggers>
+	</Style>
+
+	<!-- ToggleSwitch Style -->
+	<Style TargetType="{x:Type control:ToggleSwitch}" x:Key="DefaultToggleSwitchStyle">
+		<Setter Property="BorderBrush" Value="{StaticResource DefaultBackground}"/>
+		<Setter Property="CircleBackgroundColor" Value="White"/>
+		<Setter Property="CircleBorderColor" Value="Black"/>
+		<Setter Property="TrackBackgroundOffColor"  Value="Black"/>
+		<Setter Property="TrackBackgroundOnColor" Value="LawnGreen"/>
 	</Style>
 </ResourceDictionary>
