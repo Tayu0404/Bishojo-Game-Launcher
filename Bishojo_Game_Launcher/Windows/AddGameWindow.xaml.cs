@@ -1,4 +1,5 @@
 ﻿using BishojoGameLauncher.Game;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -167,6 +168,29 @@ namespace BishojoGameLauncher.Windows {
 			);
 			gameList.Write();
 			this.Close();
+		}
+
+		private void SelectBrowseExecutableFile_Click(object sender, RoutedEventArgs e) {
+			var dialog = new CommonOpenFileDialog(Properties.Resources.ExecutableFile);
+
+			dialog.Filters.Add(new CommonFileDialogFilter("EXE File", "*.exe"));
+			dialog.Filters.Add(new CommonFileDialogFilter("All File", "*.*"));
+
+			if (dialog.ShowDialog() == CommonFileDialogResult.Ok) {
+				var filename = dialog.FileName;
+				ExecutableFilePath.Text = filename;
+			}
+		}
+
+		private void SelectBrowseSaveData_Click(object sender, RoutedEventArgs e) {
+			var dialog = new CommonOpenFileDialog(Properties.Resources.SaveDataFolder);
+
+			dialog.IsFolderPicker = true;
+
+			if (dialog.ShowDialog() == CommonFileDialogResult.Ok) {
+				var filename = dialog.FileName;
+				SaveDataPath.Text = filename;
+			}
 		}
 	}
 }
