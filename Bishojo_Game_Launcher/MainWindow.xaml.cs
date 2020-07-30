@@ -1,25 +1,12 @@
 ﻿using BishojoGameLauncher.Windows;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BishojoGameLauncher {
-    /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
-    /// </summary>
-    public partial class MainWindow : Window {
+	/// <summary>
+	/// MainWindow.xaml の相互作用ロジック
+	/// </summary>
+	public partial class MainWindow : Window {
         private WindowState state { get; set; }
         private Size normalSize { get; set; }
         private double normalTop { get; set; }
@@ -96,6 +83,12 @@ namespace BishojoGameLauncher {
 		private void ChangeDownloadListWindow_Click(object sender, RoutedEventArgs e) {
             this.GameListWindow.Visibility = Visibility.Hidden;
             this.DownloadListWindow.Visibility = Visibility.Visible;
+		}
+
+		private void Setting_Click(object sender, RoutedEventArgs e) {
+            var settingWindow = new SettingWindow();
+            settingWindow.Owner = GetWindow(this);
+            settingWindow.ShowDialog();
 		}
 	}
 }
