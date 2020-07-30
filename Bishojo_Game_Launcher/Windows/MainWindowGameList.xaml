@@ -6,13 +6,13 @@
              xmlns:local="clr-namespace:BishojoGameLauncher.Windows"
 			 xmlns:properties="clr-namespace:BishojoGameLauncher.Properties"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1280">
 	<Grid Margin="5, 0, 5, 0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="350"/>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="350"/>
 			<ColumnDefinition Width="10"/>
 			<ColumnDefinition Width="*"/>
-			</Grid.ColumnDefinitions>
+		</Grid.ColumnDefinitions>
 			<Grid Grid.Column="0">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="40"/>
