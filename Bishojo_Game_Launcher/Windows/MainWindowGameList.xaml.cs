@@ -1,4 +1,5 @@
-﻿using BishojoGameLauncher.Property;
+﻿using BishojoGameLauncher.Game;
+using BishojoGameLauncher.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,8 +17,7 @@ namespace BishojoGameLauncher.Windows {
 	/// MainWindowGameList.xaml の相互作用ロジック
 	/// </summary>
 	public partial class MainWindowGameList : UserControl {
-		private static List<Game.Game.GameDetaile> gamelist;
-		private static Game.Game.GameDetaile selectedGameDetaile;
+		private static GameDetaile selectedGameDetaile;
 
 		public MainWindowGameList() {
 			InitializeComponent();
@@ -39,19 +39,17 @@ namespace BishojoGameLauncher.Windows {
 
 		public void ReloadGameList() {
 			GameList.Items.Clear();
-			var list = new Game.List();
-			list.Read();
-			gamelist = list.Games;
-			foreach (var game in gamelist) {
+			var games = GamesSettings.Instance.Games;
+			foreach (var game in games) {
 				GameList.Items.Add(
 					new ListItem(
-						game.Hash,
+						game.Value.Hash,
 						Imaging.CreateBitmapSourceFromHIcon(
-							Icon.ExtractAssociatedIcon(game.ExecutableFile).Handle,
+							Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
 							Int32Rect.Empty,
 							BitmapSizeOptions.FromEmptyOptions()
 						),
-						game.Detaile.Title
+						game.Value.Detaile.Title
 					)
 				);
 			}
@@ -70,7 +68,7 @@ namespace BishojoGameLauncher.Windows {
 			Singer.Items.Clear();
 			var listBox = sender as ListBox;
 			var selectedItem = listBox.Items[listBox.SelectedIndex] as ListItem;
-			selectedGameDetaile = gamelist.Find(x => x.Hash == selectedItem.Hash);
+			selectedGameDetaile = GamesSettings.Instance.Games[selectedItem.Hash];
 
 			Title.Text = selectedGameDetaile.Detaile.Title;
 			Brand.Text = selectedGameDetaile.Detaile.Brand;

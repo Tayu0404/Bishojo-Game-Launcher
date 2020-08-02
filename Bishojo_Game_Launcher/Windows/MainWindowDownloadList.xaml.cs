@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BishojoGameLauncher.Game;
+using BishojoGameLauncher.Properties;
 
 namespace BishojoGameLauncher.Windows {
 	/// <summary>
@@ -26,73 +28,68 @@ namespace BishojoGameLauncher.Windows {
 			DownloadStart();
 		}
 
-		private List<Game.Game.GameDetaile> downloadList = new List<Game.Game.GameDetaile>();
+		private Dictionary<string, GameDetaile> downloadList = new Dictionary<string, GameDetaile>();
 
 		public void ReloadDownloadList() {
-			var list = new Game.List();
-			list.Read();
-			foreach (var game in list.Games) {
-				if (game.DownloadComplete) {
+			foreach (var game in GamesSettings.Instance.Games) {
+				if (game.Value.DownloadComplete) {
 					continue;
 				}
-				downloadList.Add(game);
+				downloadList.Add(game.Value.Hash, game.Value);
 				DownloadList.Items.Add(new {
 					AppIcon = Imaging.CreateBitmapSourceFromHIcon(
-						Icon.ExtractAssociatedIcon(game.ExecutableFile).Handle,
+						Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
 						Int32Rect.Empty,
 						BitmapSizeOptions.FromEmptyOptions()
 					),
-					Title = game.Detaile.Title,
-					Brand = game.Detaile.Brand,
+					Title = game.Value.Detaile.Title,
+					Brand = game.Value.Detaile.Brand,
 				});
 			}
 		}
 
 		public async void DownloadStart() {
-			var list = new Game.List();
-			list.Read();
-			var downloadImage = new Game.DownloadImage();
-
-			if (Properties.Settings.Default.IsProxyEnable) {
+			var downloadImage = new DownloadImage();
+			if (Settings.Instance.IsProxyEnable) {
 				
-				if (Properties.Settings.Default.ProxyType) {
+				if (Settings.Instance.ProxyType) {
 					/// Socks5
-					if (Properties.Settings.Default.ProxyUser != default(string)) {
+					if (Settings.Instance.ProxyUser != default(string)) {
 						downloadImage.UseSocks5Proxy(
-							Properties.Settings.Default.ProxyHost,
-							Properties.Settings.Default.ProxyPort,
-							Properties.Settings.Default.ProxyUser,
-							Properties.Settings.Default.ProxyPassword
+							Settings.Instance.ProxyHost,
+							Settings.Instance.ProxyPort,
+							Settings.Instance.ProxyUser,
+							Settings.Instance.ProxyPassword
 						);
 					} else {
 						downloadImage.UseSocks5Proxy(
-							Properties.Settings.Default.ProxyHost,
-							Properties.Settings.Default.ProxyPort
+							Settings.Instance.ProxyHost,
+							Settings.Instance.ProxyPort
 						);
 					}
 				} else {
 					/// HTTP
-					if (Properties.Settings.Default.ProxyUser != default(string)) {
+					if (Settings.Instance.ProxyUser != default(string)) {
 						downloadImage.UseHTTPProxy(
-							Properties.Settings.Default.ProxyHost,
-							Properties.Settings.Default.ProxyPort,
-							Properties.Settings.Default.ProxyUser,
-							Properties.Settings.Default.ProxyPassword
+							Settings.Instance.ProxyHost,
+							Settings.Instance.ProxyPort,
+							Settings.Instance.ProxyUser,
+							Settings.Instance.ProxyPassword
 						);
 					} else {
 						downloadImage.UseHTTPProxy(
-							Properties.Settings.Default.ProxyHost,
-							Properties.Settings.Default.ProxyPort
+							Settings.Instance.ProxyHost,
+							Settings.Instance.ProxyPort
 						);
 					}
 				}
 			}
 
 			foreach (var game in downloadList) {
-				await downloadImage.Run(game);
-				list.Games.Find(x => x.Hash == game.Hash).DownloadComplete = true;
+				await downloadImage.Run(game.Value);
+				GamesSettings.Instance.Games[game.Key].DownloadComplete = true;
 			}
-			list.Write();
+			GamesSettings.Instance.Save();
 		}
 	}
 }

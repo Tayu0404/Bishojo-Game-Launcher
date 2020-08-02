@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:properties="clr-namespace:BishojoGameLauncher.Properties"
-			 xmlns:windows="clr-namespace:BishojoGameLauncher.Windows"
+			 xmlns:local="clr-namespace:BishojoGameLauncher.Windows"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1280">
 
@@ -22,7 +22,7 @@
 			<ListBoxItem Content="{x:Static properties:Resources.Network}"/>
 		</ListBox>
 		<Grid Grid.Column="1">
-			<windows:MainWindowSettingNetwork/>
+			<local:MainWindowSettingNetwork/>
 		</Grid>
 	</Grid>
 </UserControl>
