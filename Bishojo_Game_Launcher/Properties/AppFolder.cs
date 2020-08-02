@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BishojoGameLauncher.Property {
-	class Folder {
+namespace BishojoGameLauncher.Properties {
+	class AppFolder {
 		public static void ExistsAllAppFolder() {
 			if (!Directory.Exists(AppPath.AppFolder)) {
 				CreateAppFolder();
