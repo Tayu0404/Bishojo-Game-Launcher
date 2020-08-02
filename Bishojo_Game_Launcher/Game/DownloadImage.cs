@@ -1,4 +1,4 @@
-﻿using BishojoGameLauncher.Property;
+﻿using BishojoGameLauncher.Properties;
 using MihaZupan;
 using System;
 using System.Collections.Generic;
@@ -33,10 +33,10 @@ namespace BishojoGameLauncher.Game {
             webClient.Proxy = new HttpToSocks5Proxy(address, port, account, password);
         }
 
-        public async Task Run(Game.GameDetaile detaile) {
+        public async Task Run(GameDetaile detaile) {
             try {
                 await Task.Run(() => {
-                    Folder.ExistsGameFolder(detaile.Hash);
+                    AppFolder.ExistsGameFolder(detaile.Hash);
                     string url;
 
                     //MainImage Download

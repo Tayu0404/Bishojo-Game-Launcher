@@ -107,7 +107,7 @@ namespace BishojoGameLauncher.Game {
             return detaileList;
         }
 
-        public async Task<Game.Detaile> GetGameDetails(string detaileURL, GetDetaileMode mode = GetDetaileMode.URL) {
+        public async Task<Detaile> GetGameDetails(string detaileURL, GetDetaileMode mode = GetDetaileMode.URL) {
             var url = detaileURL;
 
             if (mode == GetDetaileMode.ID) {
@@ -180,7 +180,7 @@ namespace BishojoGameLauncher.Game {
                 sampleCGs.Add(sampleCG);
             }
 
-            var detaile = new Game.Detaile(
+            var detaile = new Detaile(
                 title,
                 web,
                 brand,
