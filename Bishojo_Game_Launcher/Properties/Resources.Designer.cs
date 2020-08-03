@@ -106,6 +106,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Delete に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Download に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Download {
@@ -291,6 +300,15 @@ namespace BishojoGameLauncher.Properties {
         public static string Port {
             get {
                 return ResourceManager.GetString("Port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Properties に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Properties {
+            get {
+                return ResourceManager.GetString("Properties", resourceCulture);
             }
         }
         

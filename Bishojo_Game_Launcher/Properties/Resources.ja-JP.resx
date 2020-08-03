@@ -132,6 +132,9 @@
   <data name="Composer" xml:space="preserve">
     <value>作曲</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
   <data name="Download" xml:space="preserve">
     <value>ダウンロード</value>
   </data>
@@ -194,6 +197,9 @@
   </data>
   <data name="Port" xml:space="preserve">
     <value>ポート</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>プロパティ</value>
   </data>
   <data name="Proxy" xml:space="preserve">
     <value>プロキシ</value>

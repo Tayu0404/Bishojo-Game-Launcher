@@ -132,6 +132,9 @@
   <data name="Composer" xml:space="preserve">
     <value>Composer</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="Download" xml:space="preserve">
     <value>Download</value>
   </data>
@@ -194,6 +197,9 @@
   </data>
   <data name="Port" xml:space="preserve">
     <value>Port</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Properties</value>
   </data>
   <data name="Proxy" xml:space="preserve">
     <value>Proxy</value>
