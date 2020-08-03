@@ -157,7 +157,7 @@ namespace BishojoGameLauncher.Game {
             var characterElements = doc.QuerySelectorAll("#seiyu > td > span");
             var characters = new List<string>();
             foreach (var characterElement in characterElements) {
-                var character = characterElement.TextContent;
+                var character = characterElement.TextContent.Trim('(', ')');
                 characters.Add(character);
             }
 
