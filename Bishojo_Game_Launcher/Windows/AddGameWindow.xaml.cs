@@ -62,6 +62,21 @@ namespace BishojoGameLauncher.Windows {
 			}
 		}
 
+		public string Hash {
+			get;
+			private set;
+		}
+
+		public string AddGameTitle {
+			get;
+			private set;
+		}
+
+		public string ExecutableFile {
+			get;
+			private set;
+		}
+
 		private class SearchGameMode {
 			public ErogameScape.SearchGameMode Mode { get; set; }
 			public string ModeName { get; set; }
@@ -159,6 +174,12 @@ namespace BishojoGameLauncher.Windows {
 			);
 			var hash = Generate.Hash(detaile.Title);
 
+			var downloaded = File.Exists(
+				AppPath.GamesFolder +
+				@"\" + hash +
+				@"\" + hash + Path.GetExtension(detaile.MainImage)
+			);
+
 			GamesSettings.Instance.Games.Add(
 				hash,
 				new GameDetaile(
@@ -166,10 +187,16 @@ namespace BishojoGameLauncher.Windows {
 					ExecutableFilePath.Text,
 					SaveDataPath.Text,
 					detaile,
-					false
+					downloaded
 				)
 			);
 			GamesSettings.Instance.Save();
+
+			this.Hash = GamesSettings.Instance.Games[hash].Hash;
+			this.AddGameTitle = GamesSettings.Instance.Games[hash].Detaile.Title;
+			this.ExecutableFile = GamesSettings.Instance.Games[hash].ExecutableFile;
+
+			this.DialogResult = true;
 			this.Close();
 		}
 

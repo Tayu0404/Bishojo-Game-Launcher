@@ -1,5 +1,7 @@
-﻿using BishojoGameLauncher.Windows;
+﻿using BishojoGameLauncher.Properties;
+using BishojoGameLauncher.Windows;
 using System;
+using System.ComponentModel;
 using System.Windows;
 
 namespace BishojoGameLauncher {
@@ -13,17 +15,7 @@ namespace BishojoGameLauncher {
         private double normalLeft { get; set; }
 
         public MainWindow() {
-            updatedCheck();
             InitializeComponent();
-        }
-
-        /// If you have not executed Upgrade from the previous version, execute Upgrade
-        private void updatedCheck() {
-            if (Properties.Settings.Default.IsUpgrade == false) {
-                Properties.Settings.Default.Upgrade();
-                Properties.Settings.Default.IsUpgrade = true;
-                Properties.Settings.Default.Save();
-            }
         }
 
         private void window_StateChanged(object sender, EventArgs e) {
@@ -36,6 +28,7 @@ namespace BishojoGameLauncher {
                     break;
             }
         }
+
         private void WindowClose_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
@@ -73,6 +66,14 @@ namespace BishojoGameLauncher {
             var addGameWindow = new AddGameWindow();
             addGameWindow.Owner = GetWindow(this);
             addGameWindow.ShowDialog();
+            if ((bool)addGameWindow.DialogResult) {
+                GameListWindow.Add(
+                    addGameWindow.Hash,
+                    addGameWindow.ExecutableFile,
+                    addGameWindow.AddGameTitle
+                );
+                DownloadListWindow.Reload();
+            }
 		}
 
         private void ChangeGameListWindow_Click(object sender, RoutedEventArgs e) {
