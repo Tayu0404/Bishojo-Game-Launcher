@@ -177,7 +177,21 @@
 		<Setter Property="BorderBrush" Value="{StaticResource DefaultBorderBrush}"/>
 		<Setter Property="BorderThickness" Value="1"/>
 		<Setter Property="Foreground" Value="{StaticResource DefaultForeground}"/>
-		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ListBox}">
+					<Border
+						Background="{TemplateBinding Background}"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}">
+						<ScrollViewer
+							Style="{DynamicResource DefaultScrollViewerStyle}">
+							<ItemsPresenter/>
+						</ScrollViewer>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
 	</Style>
 
 	<!-- ListBoxItem Style -->
@@ -692,6 +706,15 @@
 		<Setter Property="Data" Value="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
 	</Style>
 
+	<!-- Tsriangle Path Style -->
+	<Style TargetType="{x:Type Path}" x:Key="TsrianglePathStyle">
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Stroke" Value="{StaticResource DefaultForeground}"/>
+		<Setter Property="StrokeThickness" Value="1"/>
+		<Setter Property="Data" Value="M 0,0 L0,0 9,5 0,9Z"/>
+	</Style>
+
 	<!-- All transparent button style -->
 	<Style TargetType="{x:Type Button}" x:Key="AllTransparentButtonStyle">
 		<Setter Property="Background" Value="Transparent"/>
@@ -715,8 +738,6 @@
 
 	<!-- Menu BorderBrush Color -->
 	<SolidColorBrush x:Key="MenuBorderBrush" Color="Transparent"/>
-	<!-- Menu Click Background Color -->
-	<SolidColorBrush x:Key="MenuClickBackground" Color="#353535"/>
 
 	<Style TargetType="{x:Type Menu}" x:Key="DefaultMenuStyle">
 		<Setter Property="Background" Value="Transparent"/>
@@ -725,7 +746,7 @@
 		<Setter Property="VerticalAlignment" Value="Center"/>
 	</Style>
 
-	<ControlTemplate x:Key="MenuItemControlTemplate1" TargetType="{x:Type MenuItem}">
+	<ControlTemplate x:Key="MenuItemOverviewTemplate" TargetType="{x:Type MenuItem}">
 		<Border x:Name="templateRoot" 
                 BorderBrush="Transparent" 
                 CornerRadius="3"
@@ -800,7 +821,7 @@
 		</ControlTemplate.Triggers>
 	</ControlTemplate>
 
-	<ControlTemplate x:Key="MenuItemControlTemplate2" TargetType="{x:Type MenuItem}">
+	<ControlTemplate x:Key="MenuItemContentTemplate" TargetType="{x:Type MenuItem}">
 		<Border
 			x:Name="templateRoot"
 			BorderBrush="{TemplateBinding BorderBrush}"
@@ -914,4 +935,34 @@
 		<Setter Property="TrackBackgroundOffColor"  Value="{StaticResource DarkBackground}"/>
 		<Setter Property="TrackBackgroundOnColor" Value="#329632"/>
 	</Style>
+
+	<!-- ContextMenu Style -->
+	<Style TargetType="{x:Type ContextMenu}" x:Key="DefaultContextMenuStyle">
+		<Setter Property="Background" Value="{StaticResource PopupBackground}"/>
+		<Setter Property="Foreground" Value="{StaticResource DefaultForeground}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ContextMenu}">
+					<Border x:Name="Border"
+						Background="{TemplateBinding Background}"
+						BorderBrush="Transparent">
+						<StackPanel IsItemsHost="True"
+							 KeyboardNavigation.DirectionalNavigation="Cycle" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="HasDropShadow"
+							Value="true">
+							<Setter TargetName="Border"
+								Property="Padding"
+								Value="0,3,0,3" />
+							<Setter TargetName="Border"
+								Property="CornerRadius"
+								Value="4" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
 </ResourceDictionary>
