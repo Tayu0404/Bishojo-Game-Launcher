@@ -24,31 +24,57 @@ namespace BishojoGameLauncher.Windows {
 	public partial class MainWindowDownloadList : UserControl {
 		public MainWindowDownloadList() {
 			InitializeComponent();
-			ReloadDownloadList();
-			DownloadStart();
+			Reload();
 		}
 
-		private Dictionary<string, GameDetaile> downloadList = new Dictionary<string, GameDetaile>();
+		private Dictionary<string, downloadDetaile> downloadList = new Dictionary<string, downloadDetaile>();
 
-		public void ReloadDownloadList() {
+		private class downloadDetaile {
+			public downloadDetaile(GameDetaile gameDetaile, bool downloading = false) {
+				this.GameDetaile = gameDetaile;
+				this.Downloading = downloading;
+			}
+
+			public GameDetaile GameDetaile { get; private set; }
+
+			public bool Downloading { get; set; }
+		}
+
+		private class ListItem {
+			public ListItem(string hash, BitmapSource appIcon, string title) {
+				this.Hash = hash;
+				this.AppIcon = appIcon;
+				this.Title = title;
+			}
+
+			public string Hash { get; private set; }
+
+			public BitmapSource AppIcon { get; private set; }
+
+			public string Title { get; private set; }
+		}
+
+		public void Reload() {
 			foreach (var game in GamesSettings.Instance.Games) {
 				if (game.Value.DownloadComplete) {
 					continue;
 				}
-				downloadList.Add(game.Value.Hash, game.Value);
-				DownloadList.Items.Add(new {
-					AppIcon = Imaging.CreateBitmapSourceFromHIcon(
-						Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
-						Int32Rect.Empty,
-						BitmapSizeOptions.FromEmptyOptions()
-					),
-					Title = game.Value.Detaile.Title,
-					Brand = game.Value.Detaile.Brand,
-				});
+				downloadList.Add(game.Value.Hash, new downloadDetaile(game.Value));
+				DownloadList.Items.Add(new ListItem(
+					game.Value.Hash,
+					Imaging.CreateBitmapSourceFromHIcon(
+						Icon.ExtractAssociatedIcon(
+							game.Value.ExecutableFile).Handle,
+							Int32Rect.Empty,
+							BitmapSizeOptions.FromEmptyOptions()
+						),
+					game.Value.Detaile.Title
+				));
 			}
+			downloadStart();
 		}
 
-		public async void DownloadStart() {
+		private async void downloadStart() {
 			var downloadImage = new DownloadImage();
 			if (Settings.Instance.IsProxyEnable) {
 				
@@ -85,9 +111,30 @@ namespace BishojoGameLauncher.Windows {
 				}
 			}
 
-			foreach (var game in downloadList) {
-				await downloadImage.Run(game.Value);
-				GamesSettings.Instance.Games[game.Key].DownloadComplete = true;
+			var list = DownloadList.Items;
+
+			foreach (var item in DownloadList.Items) {
+				var game = item as ListItem;
+				if (downloadList[game.Hash].Downloading) {
+					continue;
+				}
+
+				downloadList[game.Hash].Downloading = true;
+				await downloadImage.Run(downloadList[game.Hash].GameDetaile);
+				
+				GamesSettings.Instance.Games[game.Hash].DownloadComplete = true;
+				DownloadList.Items.Remove(
+					new ListItem(
+						downloadList[game.Hash].GameDetaile.Hash,
+						Imaging.CreateBitmapSourceFromHIcon(
+							Icon.ExtractAssociatedIcon(
+								downloadList[game.Hash].GameDetaile.ExecutableFile).Handle,
+								Int32Rect.Empty,
+								BitmapSizeOptions.FromEmptyOptions()
+							),
+						downloadList[game.Hash].GameDetaile.Detaile.Title
+					)
+				);
 			}
 			GamesSettings.Instance.Save();
 		}
