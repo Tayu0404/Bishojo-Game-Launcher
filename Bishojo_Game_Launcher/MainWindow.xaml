@@ -16,7 +16,7 @@
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="500"/>
+				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="45"/>
 				<ColumnDefinition Width="45"/>
@@ -25,39 +25,39 @@
 			<Menu Grid.Column="0" FontSize="15" WindowChrome.IsHitTestVisibleInChrome="True" Style="{DynamicResource DefaultMenuStyle}">
 				<MenuItem
 					Header="{x:Static properties:Resources.AppTitle}"
-					Template="{DynamicResource MenuItemControlTemplate1}">
+					Template="{DynamicResource MenuItemOverviewTemplate}">
 					<MenuItem
 						Click="Setting_Click"
 						Header="{x:Static properties:Resources.Settings}"
-						Template="{DynamicResource MenuItemControlTemplate2}"/>
+						Template="{DynamicResource MenuItemContentTemplate}"/>
 					<MenuItem
 						Click="WindowClose_Click"
 						Header="{x:Static properties:Resources.Exit}"
-						Template="{DynamicResource MenuItemControlTemplate2}"/>
+						Template="{DynamicResource MenuItemContentTemplate}"/>
 				</MenuItem>
 				<MenuItem
 					Header="{x:Static properties:Resources.View}"
-					Template="{DynamicResource MenuItemControlTemplate1}">
+					Template="{DynamicResource MenuItemOverviewTemplate}">
 					<MenuItem
 						Click="ChangeGameListWindow_Click"
 						Header="{x:Static properties:Resources.Library}"
-						Template="{DynamicResource MenuItemControlTemplate2}"/>
+						Template="{DynamicResource MenuItemContentTemplate}"/>
 					<MenuItem
 						Click="ChangeDownloadListWindow_Click"
 						Header="{x:Static properties:Resources.Download}"
-						Template="{DynamicResource MenuItemControlTemplate2}"/>
+						Template="{DynamicResource MenuItemContentTemplate}"/>
 					<MenuItem
 						Click="Setting_Click"
 						Header="{x:Static properties:Resources.Settings}"
-						Template="{DynamicResource MenuItemControlTemplate2}"/>
+						Template="{DynamicResource MenuItemContentTemplate}"/>
 				</MenuItem>
 				<MenuItem
 					Header="{x:Static properties:Resources.Help}"
-					Template="{DynamicResource MenuItemControlTemplate1}">
+					Template="{DynamicResource MenuItemOverviewTemplate}">
 					<MenuItem
 						Click="AppVersionInfo_Click"
 						Header="{x:Static properties:Resources.AppVersion}"
-						Template="{DynamicResource MenuItemControlTemplate2}"/>
+						Template="{DynamicResource MenuItemContentTemplate}"/>
 				</MenuItem>
 			</Menu>
 			<Button
@@ -97,9 +97,11 @@
 				<Button Grid.Column="0" FontSize="25" Click="ChangeGameListWindow_Click" Content="{x:Static properties:Resources.Library}" Style="{DynamicResource DefaultButtonStyle}"/>
 			</Grid>
 
-			<windows:MainWindowGameList Grid.Row="1" x:Name="GameListWindow" Visibility="Visible"/>
-			<windows:MainWindowDownloadList Grid.Row="1" x:Name="DownloadListWindow" Visibility="Hidden"/>
-			<windows:MainWindowSetting Grid.Row="1" x:Name="SettingWindow" Visibility="Hidden"/>
+			<Grid Grid.Row="1">
+				<windows:MainWindowGameList x:Name="GameListWindow" Visibility="Visible"/>
+				<windows:MainWindowDownloadList x:Name="DownloadListWindow" Visibility="Hidden"/>
+				<windows:MainWindowSetting  x:Name="SettingWindow" Visibility="Hidden"/>
+			</Grid>
 
 			<Grid Grid.Row="2">
 				<Grid.ColumnDefinitions>
