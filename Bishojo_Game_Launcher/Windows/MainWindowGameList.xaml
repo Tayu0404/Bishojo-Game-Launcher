@@ -39,17 +39,42 @@
 				</Grid>
 				</Border>
 
-			<ListBox Grid.Row="1" x:Name="GameList" SelectionChanged="GameList_SelectionChanged" HorizontalContentAlignment="Stretch" Style="{DynamicResource DefaultListBoxStyle}"  ItemContainerStyle="{DynamicResource DefaultListBoxItemStyle}">
+			<ListBox
+				Grid.Row="1"
+				x:Name="GameList"
+				SelectionChanged="GameList_SelectionChanged"
+				VerticalContentAlignment="Stretch"
+				HorizontalContentAlignment="Stretch"
+				ScrollViewer.VerticalScrollBarVisibility="Auto"
+				ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+				VirtualizingStackPanel.VirtualizationMode="Recycling"
+				Style="{DynamicResource DefaultListBoxStyle}"
+				ItemContainerStyle="{DynamicResource DefaultListBoxItemStyle}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
-						<Grid Height="25" x:Name="Hash" Tag="{Binding Hash}">
+						<Grid
+							Height="25"
+							x:Name="Hash"
+							Background="Transparent"
+							Tag="{Binding Hash}">
 							<StackPanel Orientation="Horizontal">
 								<Image Source="{Binding AppIcon}" Width="25"/>
-								<TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding Title}"/>
+								<TextBlock FontSize="15" Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding Title}"/>
 							</StackPanel>
 						</Grid>
 					</DataTemplate>
 				</ListBox.ItemTemplate>
+				<ListBox.ContextMenu>
+					<ContextMenu Style="{DynamicResource DefaultContextMenuStyle}">
+						<MenuItem FontSize="18" Click="Play_Click" Header="{x:Static properties:Resources.Play}" Template="{DynamicResource MenuItemContentTemplate}">
+							<MenuItem.Icon>
+								<Path VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource TsrianglePathStyle}"/>
+							</MenuItem.Icon>
+						</MenuItem>
+						<MenuItem FontSize="15" Click="Delete_Click" Header="{x:Static properties:Resources.Delete}" Template="{DynamicResource MenuItemContentTemplate}"/>
+						<MenuItem FontSize="15" Header="{x:Static properties:Resources.Properties}" Template="{DynamicResource MenuItemContentTemplate}"/>
+					</ContextMenu>
+				</ListBox.ContextMenu>
 			</ListBox>
 		</Grid>
 		<Border Grid.Column="2" BorderBrush="Black" BorderThickness="1">
@@ -81,7 +106,7 @@
 							<RowDefinition Height="30"/>
 							<RowDefinition Height="*"/>
 						</Grid.RowDefinitions>
-						<Grid Grid.Row="0">
+						<Grid Grid.Row="0" Margin="0,0,0,5">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*"/>
 								<ColumnDefinition Width="*"/>

@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -17,11 +19,11 @@ namespace BishojoGameLauncher.Windows {
 	/// MainWindowGameList.xaml の相互作用ロジック
 	/// </summary>
 	public partial class MainWindowGameList : UserControl {
-		private static GameDetaile selectedGameDetaile;
 
 		public MainWindowGameList() {
 			InitializeComponent();
-			ReloadGameList();
+			Reload();
+			GameList.SelectedIndex = 0;
 		}
 		private class ListItem {
 			public ListItem(string hash, BitmapSource appIcon, string title) {
@@ -37,7 +39,7 @@ namespace BishojoGameLauncher.Windows {
 			public string Title { get; private set; }
 		}
 
-		public void ReloadGameList() {
+		public void Reload() {
 			GameList.Items.Clear();
 			var games = GamesSettings.Instance.Games;
 			foreach (var game in games) {
@@ -53,10 +55,28 @@ namespace BishojoGameLauncher.Windows {
 					)
 				);
 			}
-			GameList.SelectedIndex = 0;
+		}
+
+		public void Add(string hash, string executableFile, string title ) {
+			GameList.Items.Add(
+				new ListItem(
+					hash,
+					Imaging.CreateBitmapSourceFromHIcon(
+						Icon.ExtractAssociatedIcon(executableFile).Handle,
+						Int32Rect.Empty,
+						BitmapSizeOptions.FromEmptyOptions()
+					),
+					title
+				)
+			);
 		}
 
 		private void GameList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			var listBox = sender as ListBox;
+			if (listBox.SelectedIndex == -1) {
+				return;
+			}
+
 			Title.Text = "";
 			Brand.Text = "";
 			ReleseData.Text = "";
@@ -66,9 +86,9 @@ namespace BishojoGameLauncher.Windows {
 			Composer.Items.Clear();
 			VoiceActor.Items.Clear();
 			Singer.Items.Clear();
-			var listBox = sender as ListBox;
+
 			var selectedItem = listBox.Items[listBox.SelectedIndex] as ListItem;
-			selectedGameDetaile = GamesSettings.Instance.Games[selectedItem.Hash];
+			var selectedGameDetaile = GamesSettings.Instance.Games[selectedItem.Hash];
 
 			Title.Text = selectedGameDetaile.Detaile.Title;
 			Brand.Text = selectedGameDetaile.Detaile.Brand;
@@ -94,7 +114,7 @@ namespace BishojoGameLauncher.Windows {
 				Singer.Items.Add(singer);
 			}
 
-			try {
+			if (selectedGameDetaile.DownloadComplete) {
 				MainImage.Source = new BitmapImage(
 					new Uri(
 						AppPath.GamesFolder +
@@ -102,8 +122,6 @@ namespace BishojoGameLauncher.Windows {
 						selectedGameDetaile.Hash + Path.GetExtension(selectedGameDetaile.Detaile.MainImage)
 					)
 				);
-			} catch {
-				return;
 			}
 		}
 
@@ -112,9 +130,22 @@ namespace BishojoGameLauncher.Windows {
 		}
 
 		private void Play_Click(object sender, RoutedEventArgs e) {
+			var selectedGameDetaile = GameList.SelectedItem as ListItem;
 			var processInfo = new ProcessStartInfo();
-			processInfo.FileName = selectedGameDetaile.ExecutableFile;
+			processInfo.FileName = GamesSettings.Instance.Games[selectedGameDetaile.Hash].ExecutableFile;
 			Process.Start(processInfo);
+		}
+
+		private void Delete_Click(object sender, RoutedEventArgs e) {
+			var selectedIndex = GameList.SelectedIndex;
+			var selectedGameDetaile = GameList.SelectedItem as ListItem;
+			GamesSettings.Instance.Games.Remove(selectedGameDetaile.Hash);
+			GamesSettings.Instance.Save();
+			Reload();
+			if (GameList.Items.Count == 0) {
+				return;
+			}
+			GameList.SelectedIndex = selectedIndex - 1;
 		}
 	}
 }
