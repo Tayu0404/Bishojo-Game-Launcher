@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BishojoGameLauncher.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,17 @@ namespace BishojoGameLauncher.Windows {
 	public partial class MainWindowSettingNetwork : UserControl {
 		public MainWindowSettingNetwork() {
 			InitializeComponent();
+			initialize();
+		}
+
+		private void initialize() {
+			ProxyEnable.IsOn = Settings.Instance.IsProxyEnable;
+			Host.Text = Settings.Instance.ProxyHost;
+		}
+
+		private void ProxyEnable_Change(object sender, EventArgs e) {
+			Settings.Instance.IsProxyEnable = ProxyEnable.IsOn;
+			Settings.Instance.Save();
 		}
 	}
 }

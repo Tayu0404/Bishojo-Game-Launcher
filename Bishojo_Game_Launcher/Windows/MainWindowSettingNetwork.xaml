@@ -35,8 +35,9 @@
 				Style="{DynamicResource DefaultTextBlockStyle}"/>
 			<control:ToggleSwitch
 				Grid.Column="2"
-				VerticalAlignment="Center"
+				x:Name="ProxyEnable"
 				Duration="0.2"
+				ChangeToggleSwitch="ProxyEnable_Change"
 				Style="{DynamicResource DefaultToggleSwitchStyle}"/>
 		</Grid>
 
