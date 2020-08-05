@@ -79,6 +79,24 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Brand Ascending Order に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrandAscendingOrder {
+            get {
+                return ResourceManager.GetString("BrandAscendingOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Brand Descending Order に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrandDescendingOrder {
+            get {
+                return ResourceManager.GetString("BrandDescendingOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Browse... に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Browse {
@@ -331,6 +349,24 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Release Date Ascending Order に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ReleaseDateAscendingOrder {
+            get {
+                return ResourceManager.GetString("ReleaseDateAscendingOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Release Date Descending Order に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ReleaseDateDescendingOrder {
+            get {
+                return ResourceManager.GetString("ReleaseDateDescendingOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Save Data Folder に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SaveDataFolder {
@@ -358,6 +394,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Search Game に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SearchGame {
+            get {
+                return ResourceManager.GetString("SearchGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Search Detaile by Game に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SearchGameDetaile {
@@ -376,11 +421,47 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Set To Default に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SetToDefault {
+            get {
+                return ResourceManager.GetString("SetToDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Singer に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Singer {
             get {
                 return ResourceManager.GetString("Singer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sort By に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SortBy {
+            get {
+                return ResourceManager.GetString("SortBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Title Ascending Order に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string TitleAscendingOrder {
+            get {
+                return ResourceManager.GetString("TitleAscendingOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Title Descending Order に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string TitleDescendingOrder {
+            get {
+                return ResourceManager.GetString("TitleDescendingOrder", resourceCulture);
             }
         }
         

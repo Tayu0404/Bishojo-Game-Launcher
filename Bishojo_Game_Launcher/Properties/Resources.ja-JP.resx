@@ -123,6 +123,12 @@
   <data name="AppVersion" xml:space="preserve">
     <value>BGL(仮)のバージョン情報</value>
   </data>
+  <data name="BrandAscendingOrder" xml:space="preserve">
+    <value>ブランド昇順</value>
+  </data>
+  <data name="BrandDescendingOrder" xml:space="preserve">
+    <value>ブランド降順</value>
+  </data>
   <data name="Browse" xml:space="preserve">
     <value>参照...</value>
   </data>
@@ -207,6 +213,12 @@
   <data name="ProxyType" xml:space="preserve">
     <value>プロキシのタイプ</value>
   </data>
+  <data name="ReleaseDateAscendingOrder" xml:space="preserve">
+    <value>発売日昇順</value>
+  </data>
+  <data name="ReleaseDateDescendingOrder" xml:space="preserve">
+    <value>発売日降順</value>
+  </data>
   <data name="SaveDataFolder" xml:space="preserve">
     <value>セーブデータフォルダー</value>
   </data>
@@ -216,14 +228,29 @@
   <data name="Search" xml:space="preserve">
     <value>検索</value>
   </data>
+  <data name="SearchGame" xml:space="preserve">
+    <value>ゲームを検索</value>
+  </data>
   <data name="SearchGameDetaile" xml:space="preserve">
     <value>ゲームの詳細を検索</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>設定</value>
   </data>
+  <data name="SetToDefault" xml:space="preserve">
+    <value>規定の設定にする</value>
+  </data>
   <data name="Singer" xml:space="preserve">
     <value>歌手</value>
+  </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>並び替え</value>
+  </data>
+  <data name="TitleAscendingOrder" xml:space="preserve">
+    <value>タイトル昇順</value>
+  </data>
+  <data name="TitleDescendingOrder" xml:space="preserve">
+    <value>タイトル降順</value>
   </data>
   <data name="UpdateProxy" xml:space="preserve">
     <value>プロキシを更新</value>

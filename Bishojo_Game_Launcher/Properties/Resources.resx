@@ -123,6 +123,12 @@
   <data name="AppVersion" xml:space="preserve">
     <value>BGL(仮) Version Information</value>
   </data>
+  <data name="BrandAscendingOrder" xml:space="preserve">
+    <value>Brand Ascending Order</value>
+  </data>
+  <data name="BrandDescendingOrder" xml:space="preserve">
+    <value>Brand Descending Order</value>
+  </data>
   <data name="Browse" xml:space="preserve">
     <value>Browse...</value>
   </data>
@@ -207,6 +213,12 @@
   <data name="ProxyType" xml:space="preserve">
     <value>Proxy Type</value>
   </data>
+  <data name="ReleaseDateAscendingOrder" xml:space="preserve">
+    <value>Release Date Ascending Order</value>
+  </data>
+  <data name="ReleaseDateDescendingOrder" xml:space="preserve">
+    <value>Release Date Descending Order</value>
+  </data>
   <data name="SaveDataFolder" xml:space="preserve">
     <value>Save Data Folder</value>
   </data>
@@ -216,14 +228,29 @@
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="SearchGame" xml:space="preserve">
+    <value>Search Game</value>
+  </data>
   <data name="SearchGameDetaile" xml:space="preserve">
     <value>Search Detaile by Game</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SetToDefault" xml:space="preserve">
+    <value>Set To Default</value>
+  </data>
   <data name="Singer" xml:space="preserve">
     <value>Singer</value>
+  </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>Sort By</value>
+  </data>
+  <data name="TitleAscendingOrder" xml:space="preserve">
+    <value>Title Ascending Order</value>
+  </data>
+  <data name="TitleDescendingOrder" xml:space="preserve">
+    <value>Title Descending Order</value>
   </data>
   <data name="UpdateProxy" xml:space="preserve">
     <value>Update Proxy</value>
