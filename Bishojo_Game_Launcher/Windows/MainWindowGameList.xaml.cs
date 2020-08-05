@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,9 +23,13 @@ namespace BishojoGameLauncher.Windows {
 
 		public MainWindowGameList() {
 			InitializeComponent();
+			sortMode = (SortMode)Enum.ToObject(typeof(SortMode), Settings.Instance.GameListSortMode);
 			Reload();
 			GameList.SelectedIndex = 0;
 		}
+
+		private SortMode sortMode { get; set; }
+
 		private class ListItem {
 			public ListItem(string hash, BitmapSource appIcon, string title) {
 				this.Hash = hash;
@@ -39,11 +44,45 @@ namespace BishojoGameLauncher.Windows {
 			public string Title { get; private set; }
 		}
 
-		public void Reload() {
+		private enum SortMode {
+			TitleAscendingOrder    = 0,
+			TitleDescendingOrder   = 1,
+			BrandAscendingOrder    = 2,
+			BrandDescendingOrder   = 3,
+			SellDayAscendingOrder  = 4,
+			SellDayDescendingOrder = 5
+		}
+
+		public void Reload() { 
 			GameList.Items.Clear();
 			var games = GamesSettings.Instance.Games;
-			foreach (var game in games) {
-				GameList.Items.Add(
+			IOrderedEnumerable<KeyValuePair<string, GameDetaile>> sortedGames;
+			switch (sortMode) {
+				case SortMode.TitleAscendingOrder:
+					sortedGames = Sort.TitleAscendingOrder(games);
+					break;
+				case SortMode.TitleDescendingOrder:
+					sortedGames = Sort.TitleDescendingOrder(games);
+					break;
+				case SortMode.BrandAscendingOrder:
+					sortedGames = Sort.BrandAscendingOrder(games);
+					break;
+				case SortMode.BrandDescendingOrder:
+					sortedGames = Sort.BrandDescendingOrder(games);
+					break;
+				case SortMode.SellDayAscendingOrder:
+					sortedGames = Sort.SellDayAscendingOrder(games);
+					break;
+				case SortMode.SellDayDescendingOrder:
+					sortedGames = Sort.SellDayDescendingOrder(games);
+					break;
+				default:
+					sortedGames = Sort.TitleAscendingOrder(games);
+					break;
+			}
+			
+			foreach (var game in sortedGames) {
+				GameList.Items. Add(
 					new ListItem(
 						game.Value.Hash,
 						Imaging.CreateBitmapSourceFromHIcon(
