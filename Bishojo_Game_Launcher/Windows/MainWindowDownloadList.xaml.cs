@@ -75,6 +75,10 @@ namespace BishojoGameLauncher.Windows {
 		}
 
 		private async void downloadStart() {
+			if (DownloadList.Items.Count == 0) {
+				return;
+			}	
+			
 			var downloadImage = new DownloadImage();
 			if (Settings.Instance.IsProxyEnable) {
 				
@@ -121,7 +125,6 @@ namespace BishojoGameLauncher.Windows {
 
 				downloadList[game.Hash].Downloading = true;
 				await downloadImage.Run(downloadList[game.Hash].GameDetaile);
-				
 				GamesSettings.Instance.Games[game.Hash].DownloadComplete = true;
 				DownloadList.Items.Remove(
 					new ListItem(
