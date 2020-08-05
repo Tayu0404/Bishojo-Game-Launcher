@@ -15,6 +15,12 @@ namespace BishojoGameLauncher.Properties {
 		public static readonly Settings Instance = Load();
 
 		[DataMember]
+		public int GameListSortMode {
+			get { return Get(a => a.GameListSortMode); }
+			set { Set(a => a.GameListSortMode, value); }
+		}
+
+		[DataMember]
 		public bool IsProxyEnable {
 			get { return Get(a => a.IsProxyEnable); }
 			set { Set(a => a.IsProxyEnable, value); }
