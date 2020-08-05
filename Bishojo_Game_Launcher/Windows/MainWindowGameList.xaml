@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BishojoGameLauncher.Windows"
 			 xmlns:properties="clr-namespace:BishojoGameLauncher.Properties"
+			 xmlns:control="clr-namespace:BishojoGameLauncher.Control"
 			 mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="1280">
 
@@ -21,23 +22,90 @@
 				</Grid.RowDefinitions>
 
 				<Border Grid.Row="0" Style="{DynamicResource DefaultBorderStyle}">
-					<Grid>
-						<Grid.ColumnDefinitions>
+				<Grid>
+					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="25"/>
 						<ColumnDefinition Width="*"/>
-							<ColumnDefinition Width="80"/>
-							<ColumnDefinition Width="40"/>
-						</Grid.ColumnDefinitions>
+						<ColumnDefinition Width="80"/>
+						<ColumnDefinition Width="40"/>
+					</Grid.ColumnDefinitions>
 					<Button Grid.Column="0" Click="SearchIcon_Click" Style="{DynamicResource AllTransparentButtonStyle}">
 						<Path Style="{DynamicResource SearchPathStyle}"/>
 					</Button>
-					<TextBox Grid.Column="1" x:Name="GameSearchWord" FontSize="15" Tag="{x:Static properties:Resources.SearchGameDetaile}" Style="{DynamicResource DefaultTextBoxStyle}"/>
-						<Button Grid.Column="2" FontSize="15" Content="{x:Static properties:Resources.Search}" Style="{DynamicResource DefaultButtonStyle}"/>
-					<Button Grid.Column="3" FontSize="15" Style="{DynamicResource DefaultButtonStyle}">
+					<TextBox Grid.Column="1" x:Name="GameSearchWord" FontSize="15" Tag="{x:Static properties:Resources.SearchGame}" Style="{DynamicResource DefaultTextBoxStyle}"/>
+					<Button Grid.Column="2" FontSize="15" Content="{x:Static properties:Resources.Search}" Style="{DynamicResource DefaultButtonStyle}"/>
+					<ToggleButton x:Name="GameListSetting" Grid.Column="3" FontSize="15">
 						<Path Style="{DynamicResource GearPathStyle}"/>
-					</Button>
+						<ToggleButton.Style>
+							<Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource DefaultToggleButtonStyle}">
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding ElementName=GameListSettingPopup, Path=IsOpen}" Value="True">
+										<Setter Property="IsHitTestVisible" Value="False" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</ToggleButton.Style>
+					</ToggleButton>
+
+					<Popup Name="GameListSettingPopup"
+						   PlacementTarget="{Binding ElementName=GameListSetting}"
+						   IsOpen="{Binding IsChecked, ElementName=GameListSetting}"
+						   Width="300" StaysOpen="False" AllowsTransparency="True"
+						   Placement="Right">
+						<Border Style="{DynamicResource PopupBorderStyle}">
+							<Grid Margin="5">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="30"/>
+									<RowDefinition Height="5"/>
+									<RowDefinition Height="30"/>
+									<RowDefinition Height="*"/>
+								</Grid.RowDefinitions>
+
+								<Grid Grid.Row="0">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto"/>
+										<ColumnDefinition Width="5"/>
+										<ColumnDefinition Width="*"/>
+									</Grid.ColumnDefinitions>
+									<TextBlock Grid.Column="0"
+												   FontSize="15"
+												   Text="{x:Static properties:Resources.SortBy}"
+												   Style="{DynamicResource DefaultTextBlockStyle}"/>
+									<Border Grid.Column="2" Style="{DynamicResource DefaultBorderStyle}">
+										<ComboBox x:Name="SortModeSelect"
+												  FontSize="15"
+												  HorizontalContentAlignment="Center"
+												  Style="{DynamicResource ContentCenterComboboxStyle}"
+												  ItemContainerStyle="{DynamicResource ContentCenterComboBoxItemStyle}">
+											<ComboBoxItem Tag="0" Content="{x:Static properties:Resources.TitleAscendingOrder}"/>
+											<ComboBoxItem Tag="1" Content="{x:Static properties:Resources.TitleDescendingOrder}"/>
+											<ComboBoxItem Tag="2" Content="{x:Static properties:Resources.BrandAscendingOrder}"/>
+											<ComboBoxItem Tag="3" Content="{x:Static properties:Resources.BrandDescendingOrder}"/>
+											<ComboBoxItem Tag="4" Content="{x:Static properties:Resources.ReleaseDateAscendingOrder}"/>
+											<ComboBoxItem Tag="5" Content="{x:Static properties:Resources.ReleaseDateDescendingOrder}"/>
+										</ComboBox>
+									</Border>
+								</Grid>
+								<Grid Grid.Row="2">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto"/>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="60"/>
+									</Grid.ColumnDefinitions>
+									<TextBlock Grid.Column="0"
+											   FontSize="15"												
+											   Text="{x:Static properties:Resources.SetToDefault}"
+											   Style="{DynamicResource DefaultTextBlockStyle}"/>
+									<control:ToggleSwitch Grid.Column="2"
+														  x:Name="SortByDefault"
+														  Duration="0.2"
+														  Style="{DynamicResource DefaultToggleSwitchStyle}"/>
+								</Grid>
+							</Grid>
+						</Border>
+					</Popup>
 				</Grid>
-				</Border>
+			</Border>
 
 			<ListBox
 				Grid.Row="1"
