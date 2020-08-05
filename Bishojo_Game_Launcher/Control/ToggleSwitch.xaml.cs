@@ -135,7 +135,10 @@ namespace BishojoGameLauncher.Control {
         [Description("Switch status")]
         public bool IsOn {
             get { return (bool)this.GetValue(IsOnProperty); }
-            set { this.SetValue(IsOnProperty, value); }
+            set { 
+                this.SetValue(IsOnProperty, value);
+                OnChangeToggleSwitch(EventArgs.Empty);
+            }
         }
         public static readonly DependencyProperty IsOnProperty =
             DependencyProperty.Register("IsOn", typeof(bool),
@@ -179,6 +182,20 @@ namespace BishojoGameLauncher.Control {
                 typeof(ToggleSwitch),
                 new PropertyMetadata(0.05));
         #endregion
+
+        protected virtual void OnChangeToggleSwitch(EventArgs e) {
+            var handler = _ChangeToggleSwitch;
+            if (handler != null) {
+                handler(this, e);
+            }
+        }
+
+        private event EventHandler _ChangeToggleSwitch;
+
+        public event EventHandler ChangeToggleSwitch {
+            add { _ChangeToggleSwitch += value; }
+            remove { _ChangeToggleSwitch -= value; }
+        }
 
     }
 }
