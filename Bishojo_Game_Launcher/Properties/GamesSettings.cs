@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BishojoGameLauncher.Properties {
-	[SettingsPath(DirectoryName = @".\conf\", FileName = "Games.conf")]
+	[SettingsPath(DirectoryName = @".\Confs\", FileName = "Games.conf")]
 	[DataContract]
 	public class GamesSettings : SettingsBase<GamesSettings> {
 		public static readonly GamesSettings Instance = Load();
