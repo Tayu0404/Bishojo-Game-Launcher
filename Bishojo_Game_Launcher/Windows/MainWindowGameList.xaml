@@ -58,6 +58,8 @@
 									<RowDefinition Height="30"/>
 									<RowDefinition Height="5"/>
 									<RowDefinition Height="30"/>
+									<RowDefinition Height="5"/>
+									<RowDefinition Height="30"/>
 									<RowDefinition Height="*"/>
 								</Grid.RowDefinitions>
 
@@ -75,18 +77,35 @@
 										<ComboBox x:Name="SortModeSelect"
 												  FontSize="15"
 												  HorizontalContentAlignment="Center"
+												  SelectionChanged="SortMode_Changed"
 												  Style="{DynamicResource ContentCenterComboboxStyle}"
 												  ItemContainerStyle="{DynamicResource ContentCenterComboBoxItemStyle}">
 											<ComboBoxItem Tag="0" Content="{x:Static properties:Resources.TitleAscendingOrder}"/>
-											<ComboBoxItem Tag="1" Content="{x:Static properties:Resources.TitleDescendingOrder}"/>
-											<ComboBoxItem Tag="2" Content="{x:Static properties:Resources.BrandAscendingOrder}"/>
-											<ComboBoxItem Tag="3" Content="{x:Static properties:Resources.BrandDescendingOrder}"/>
-											<ComboBoxItem Tag="4" Content="{x:Static properties:Resources.ReleaseDateAscendingOrder}"/>
-											<ComboBoxItem Tag="5" Content="{x:Static properties:Resources.ReleaseDateDescendingOrder}"/>
+											<ComboBoxItem Tag="2" Content="{x:Static properties:Resources.TitleDescendingOrder}"/>
+											<ComboBoxItem Tag="4" Content="{x:Static properties:Resources.BrandAscendingOrder}"/>
+											<ComboBoxItem Tag="6" Content="{x:Static properties:Resources.BrandDescendingOrder}"/>
+											<ComboBoxItem Tag="8" Content="{x:Static properties:Resources.ReleaseDateAscendingOrder}"/>
+											<ComboBoxItem Tag="10" Content="{x:Static properties:Resources.ReleaseDateDescendingOrder}"/>
 										</ComboBox>
 									</Border>
 								</Grid>
 								<Grid Grid.Row="2">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto"/>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="60"/>
+									</Grid.ColumnDefinitions>
+									<TextBlock Grid.Column="0"
+											   FontSize="15"												
+											   Text="{x:Static properties:Resources.EnableIndex}"
+											   Style="{DynamicResource DefaultTextBlockStyle}"/>
+									<control:ToggleSwitch Grid.Column="2"
+														  x:Name="EnableIndex"
+														  Duration="0.2"
+														  ChangeToggleSwitch="SortMode_Changed"
+														  Style="{DynamicResource DefaultToggleSwitchStyle}"/>
+								</Grid>
+								<Grid Grid.Row="4">
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="Auto"/>
 										<ColumnDefinition Width="*"/>
@@ -117,21 +136,7 @@
 				ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 				VirtualizingStackPanel.VirtualizationMode="Recycling"
 				Style="{DynamicResource DefaultListBoxStyle}"
-				ItemContainerStyle="{DynamicResource DefaultListBoxItemStyle}">
-				<ListBox.ItemTemplate>
-					<DataTemplate>
-						<Grid
-							Height="25"
-							x:Name="Hash"
-							Background="Transparent"
-							Tag="{Binding Hash}">
-							<StackPanel Orientation="Horizontal">
-								<Image Source="{Binding AppIcon}" Width="25"/>
-								<TextBlock FontSize="15" Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding Title}"/>
-							</StackPanel>
-						</Grid>
-					</DataTemplate>
-				</ListBox.ItemTemplate>
+				ItemContainerStyle="{DynamicResource GameListBoxItemStyle}">
 				<ListBox.ContextMenu>
 					<ContextMenu Style="{DynamicResource DefaultContextMenuStyle}">
 						<MenuItem FontSize="18" Click="Play_Click" Header="{x:Static properties:Resources.Play}" Template="{DynamicResource MenuItemContentTemplate}">

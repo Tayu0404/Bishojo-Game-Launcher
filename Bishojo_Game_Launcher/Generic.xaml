@@ -217,6 +217,41 @@
 		</Style.Triggers>
 	</Style>
 
+	<Style TargetType="{x:Type ListBoxItem}" x:Key="GameListBoxItemStyle">
+		<Setter Property="Height" Value="25"/>
+		<Setter Property="FontSize" Value="15"/>
+		<Setter Property="IsEnabled" Value="{Binding Enable}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ListBoxItem}">
+					<Border Height="{TemplateBinding Height}"
+							x:Name="ItemBorder"
+						    Background="Transparent">
+						<StackPanel Orientation="Horizontal"
+									x:Name="Hash"
+									Tag="{Binding Hash}">
+							<Image Source="{Binding AppIcon}" Width="25"/>
+							<TextBlock FontSize="{TemplateBinding FontSize}" Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding Title}"/>
+						</StackPanel>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" Value="0.5"/>
+							<Setter Property="Height" Value="20"/>
+							<Setter Property="FontSize" Value="13"/>
+						</Trigger>
+						<Trigger Property="IsSelected" Value="True">
+							<Setter Property="Background" Value="{StaticResource SelectedHighlightedBackground}" TargetName="ItemBorder"/>
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="{StaticResource MouseOverHighlightedBackground}" TargetName="ItemBorder"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
 	<!-- TextBox Style -->
 	<Style TargetType="{x:Type TextBox}" x:Key="DefaultTextBoxStyle">
 		<Setter Property="Background" Value="Transparent"/>

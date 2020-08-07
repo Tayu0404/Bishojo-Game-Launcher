@@ -147,6 +147,9 @@
   <data name="Enable" xml:space="preserve">
     <value>有効化</value>
   </data>
+  <data name="EnableIndex" xml:space="preserve">
+    <value>見出しを有効化</value>
+  </data>
   <data name="ErogameScapeSearchModeBrand" xml:space="preserve">
     <value>ブランド</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="Illustrator" xml:space="preserve">
     <value>原画</value>
+  </data>
+  <data name="Kanji" xml:space="preserve">
+    <value>漢字</value>
   </data>
   <data name="Library" xml:space="preserve">
     <value>ライブラリ</value>

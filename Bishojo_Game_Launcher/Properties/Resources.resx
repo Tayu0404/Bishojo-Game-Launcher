@@ -147,6 +147,9 @@
   <data name="Enable" xml:space="preserve">
     <value>Enable</value>
   </data>
+  <data name="EnableIndex" xml:space="preserve">
+    <value>Enable Index</value>
+  </data>
   <data name="ErogameScapeSearchModeBrand" xml:space="preserve">
     <value>Brand</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="Illustrator" xml:space="preserve">
     <value>Illustrator</value>
+  </data>
+  <data name="Kanji" xml:space="preserve">
+    <value>Kanji</value>
   </data>
   <data name="Library" xml:space="preserve">
     <value>Library</value>

@@ -151,6 +151,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Enable Index に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EnableIndex {
+            get {
+                return ResourceManager.GetString("EnableIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Brand に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ErogameScapeSearchModeBrand {
@@ -255,6 +264,15 @@ namespace BishojoGameLauncher.Properties {
         public static string Illustrator {
             get {
                 return ResourceManager.GetString("Illustrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Kanji に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Kanji {
+            get {
+                return ResourceManager.GetString("Kanji", resourceCulture);
             }
         }
         
