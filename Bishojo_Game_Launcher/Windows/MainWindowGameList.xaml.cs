@@ -44,16 +44,16 @@ namespace BishojoGameLauncher.Windows {
 					SortModeSelect.SelectedIndex = 1;
 					break;
 				case 4:
-					SortModeSelect.SelectedIndex = 3;
+					SortModeSelect.SelectedIndex = 2;
 					break;
 				case 6:
-					SortModeSelect.SelectedIndex = 4;
+					SortModeSelect.SelectedIndex = 3;
 					break;
 				case 8:
-					SortModeSelect.SelectedIndex = 5;
+					SortModeSelect.SelectedIndex = 4;
 					break;
 				case 10:
-					SortModeSelect.SelectedIndex = 6;
+					SortModeSelect.SelectedIndex = 5;
 					break;
 			}
 		}
@@ -408,9 +408,20 @@ namespace BishojoGameLauncher.Windows {
 				if (EnableIndex.IsOn) {
 					mode++;
 				}
+				if (mode == Settings.Instance.GameListSortMode) {
+					SetToDefaultSortMode.IsEnabled = false;
+				} else {
+					SetToDefaultSortMode.IsEnabled = true;
+				}
+
 				sortMode = (SortMode)Enum.ToObject(typeof(SortMode), mode);
 			}
 		}
-			
+
+		private void SetToDefaultSortMode_Click(object sender, RoutedEventArgs e) {
+			Settings.Instance.GameListSortMode = (int)sortMode;
+			Settings.Instance.Save();
+			SetToDefaultSortMode.IsEnabled = false;
+		}
 	}
 }
