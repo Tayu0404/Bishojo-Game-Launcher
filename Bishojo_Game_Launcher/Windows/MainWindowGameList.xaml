@@ -115,8 +115,6 @@
 									<Button Grid.Column="1"
 											x:Name="SetToDefaultSortMode"
 											FontSize="15"
-											Width="110"
-											HorizontalAlignment="Left"
 											Click="SetToDefaultSortMode_Click"
 											Content="{x:Static properties:Resources.SetToDefault}"
 											Style="{DynamicResource BackgroundColerButtonStyle}"/>
