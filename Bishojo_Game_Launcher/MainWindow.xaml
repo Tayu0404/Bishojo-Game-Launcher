@@ -103,7 +103,10 @@
 			</Grid>
 
 			<Grid Grid.Row="1">
-				<windows:MainWindowGameList x:Name="GameListWindow" Visibility="Visible"/>
+				<windows:MainWindowGameList x:Name="GameListWindow"
+											Visibility="Visible"
+											Drop="FilePath_Drop"
+											PreviewDragOver="FilePath_PreviewDragOver"/>
 				<windows:MainWindowDownloadList x:Name="DownloadListWindow" Visibility="Hidden"/>
 				<windows:MainWindowSetting  x:Name="SettingWindow" Visibility="Hidden"/>
 			</Grid>

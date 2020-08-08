@@ -21,6 +21,18 @@ namespace BishojoGameLauncher.Windows {
 			InitializeErogameScape();
 		}
 
+		public AddGameWindow(string executableFilePath) {
+			InitializeComponent();
+			ExecutableFilePath.Text = executableFilePath;
+
+			SearchMode.ItemsSource = new List<SearchGameMode> {
+				new SearchGameMode { Mode = ErogameScape.SearchGameMode.Title, ModeName = Properties.Resources.ErogameScapeSearchModeTitle },
+				new SearchGameMode { Mode = ErogameScape.SearchGameMode.Brand, ModeName = Properties.Resources.ErogameScapeSearchModeBrand }
+			};
+			SearchMode.SelectedIndex = 0;
+			InitializeErogameScape();
+		}
+
 		private ErogameScape erogameScape;
 
 		private void InitializeErogameScape() {

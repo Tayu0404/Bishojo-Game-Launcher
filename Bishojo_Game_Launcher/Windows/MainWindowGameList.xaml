@@ -7,7 +7,8 @@
 			 xmlns:properties="clr-namespace:BishojoGameLauncher.Properties"
 			 xmlns:control="clr-namespace:BishojoGameLauncher.Control"
 			 mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="1280">
+             d:DesignHeight="450" d:DesignWidth="1280"
+			 AllowDrop="True">
 
 	<Grid Margin="5, 0, 5, 0">
 		<Grid.ColumnDefinitions>
