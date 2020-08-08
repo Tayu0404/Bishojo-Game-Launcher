@@ -331,6 +331,7 @@ namespace BishojoGameLauncher.Windows {
 			Composer.Items.Clear();
 			VoiceActor.Items.Clear();
 			Singer.Items.Clear();
+			SelectedGameDetails.ScrollToTop();
 
 			var selectedItem = listBox.Items[listBox.SelectedIndex] as GameListItem;
 			var selectedGameDetaile = GamesSettings.Instance.Games[selectedItem.Hash];

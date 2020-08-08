@@ -187,7 +187,10 @@
 							<TextBlock Grid.Column="1" x:Name="ReleseData" FontSize="20" VerticalAlignment="Center" Style="{DynamicResource DefaultTextBlockStyle}"/>
 						</Grid>
 						<Border Grid.Row="1" Style="{DynamicResource DefaultBorderStyle}">
-							<ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" Style="{DynamicResource DefaultScrollViewerStyle}">
+							<ScrollViewer x:Name="SelectedGameDetails"
+										  VerticalScrollBarVisibility="Auto"
+										  CanContentScroll="True"
+										  Style="{DynamicResource DefaultScrollViewerStyle}">
 								<Grid Margin="5">
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="*"/>
