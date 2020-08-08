@@ -84,17 +84,22 @@
 
 		<Grid Grid.Row="1">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="50"/>
+				<RowDefinition Height="35"/>
 				<RowDefinition Height="*"/>
 				<RowDefinition Height="40"/>
 			</Grid.RowDefinitions>
 			<Grid Grid.Row="0">
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="150"/>
-					<ColumnDefinition Width="150"/>
+					<ColumnDefinition Width="120"/>
+					<ColumnDefinition Width="120"/>
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
-				<Button Grid.Column="0" FontSize="25" Click="ChangeGameListWindow_Click" Content="{x:Static properties:Resources.Library}" Style="{DynamicResource DefaultButtonStyle}"/>
+				<Button	Grid.Column="0"
+						FontSize="23"
+						VerticalAlignment="Center"
+						Click="ChangeGameListWindow_Click"
+						Content="{x:Static properties:Resources.Library}"
+						Style="{DynamicResource DefaultButtonStyle}"/>
 			</Grid>
 
 			<Grid Grid.Row="1">
