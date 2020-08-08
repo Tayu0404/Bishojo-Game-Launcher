@@ -44,7 +44,14 @@
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="80"/>
 					</Grid.ColumnDefinitions>
-					<TextBox Grid.Column="0" x:Name="ExecutableFilePath" FontSize="15" Drop="ExecutableFilePath_Drop" PreviewDragOver="ExecutableFilePath_PreviewDragOver" Tag="{x:Static properties:Resources.ExecutableFile}" Style="{DynamicResource DefaultTextBoxStyle}"/>
+					<TextBox Grid.Column="0"
+							 x:Name="ExecutableFilePath"
+							 FontSize="15"
+							 Drop="ExecutableFilePath_Drop"
+							 PreviewDragOver="ExecutableFilePath_PreviewDragOver"
+							 TextChanged="CheckOfInputItems"
+							 Tag="{x:Static properties:Resources.ExecutableFile}"
+							 Style="{DynamicResource DefaultTextBoxStyle}"/>
 					<Button Grid.Column="1" Click="SelectBrowseExecutableFile_Click" Content="{x:Static properties:Resources.Browse}" Style="{DynamicResource DefaultButtonStyle}"/>
 				</Grid>
 			</Border>
@@ -55,7 +62,14 @@
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="80"/>
 					</Grid.ColumnDefinitions>
-					<TextBox Grid.Column="0" x:Name="SaveDataPath" FontSize="15" Drop="SaveDataPath_Drop" PreviewDragOver="SaveDataPath_PreviewDragOver" Tag="{x:Static properties:Resources.SaveDataFolder}" Style="{DynamicResource DefaultTextBoxStyle}"/>
+					<TextBox Grid.Column="0"
+							 x:Name="SaveDataPath"
+							 FontSize="15"
+							 Drop="SaveDataPath_Drop"
+							 PreviewDragOver="SaveDataPath_PreviewDragOver"
+							 TextChanged="CheckOfInputItems"
+							 Tag="{x:Static properties:Resources.SaveDataFolder}"
+							 Style="{DynamicResource DefaultTextBoxStyle}"/>
 					<Button Grid.Column="1" Click="SelectBrowseSaveData_Click" Content="{x:Static properties:Resources.Browse}" Style="{DynamicResource DefaultButtonStyle}"/>
 				</Grid>
 			</Border>
@@ -73,7 +87,11 @@
 				</Grid> 
 			</Border>
 
-			<ListBox Grid.Row="5" x:Name="GameList" SelectionChanged="GameList_SelectionChanged" Style="{DynamicResource DefaultListBoxStyle}" ItemContainerStyle="{DynamicResource DefaultListBoxItemStyle}"/>
+			<ListBox Grid.Row="5"
+					 x:Name="GameList"
+					SelectionChanged="GameList_SelectionChanged"
+					Style="{DynamicResource DefaultListBoxStyle}"
+					ItemContainerStyle="{DynamicResource DefaultListBoxItemStyle}"/>
 
 			<Grid Grid.Row="6">
 				<Grid.RowDefinitions>
@@ -82,35 +100,68 @@
 					<RowDefinition Height="*"/>
 					<RowDefinition Height="*"/>
 				</Grid.RowDefinitions>
-				<TextBlock Grid.Row="0" FontSize="15" Text="{x:Static properties:Resources.GameTitle}" Style="{DynamicResource DefaultTextBlockStyle}" Grid.ColumnSpan="3"/>
-				<TextBlock Grid.Row="1" x:Name="GameTitle" FontSize="15" Style="{DynamicResource DefaultTextBlockStyle}"/>
+				<TextBlock Grid.Row="0"
+						   Opacity="0.8"
+						   FontSize="15"
+						   Text="{x:Static properties:Resources.GameTitle}"
+						   Style="{DynamicResource DefaultTextBlockStyle}"/>
+				<TextBox Grid.Row="1"
+						   x:Name="GameTitle"
+						   FontSize="15"
+						   IsReadOnly="True"
+						   TextChanged="CheckOfInputItems"
+						   Style="{DynamicResource DefaultTextBoxStyle}"/>
 				<Grid Grid.Row="2" Grid.ColumnSpan="3">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="*"/>
 					</Grid.ColumnDefinitions>
-					<TextBlock Grid.Column="0" FontSize="15" Text="{x:Static properties:Resources.GameBrand}" Style="{DynamicResource DefaultTextBlockStyle}"/>
-					<TextBlock Grid.Column="1" FontSize="15" Text="{x:Static properties:Resources.GameReleaseDate}" Style="{DynamicResource DefaultTextBlockStyle}"/>
+					<TextBlock Grid.Column="0"
+							   Opacity="0.8"
+							   FontSize="15"
+							   Text="{x:Static properties:Resources.GameBrand}"
+							   Style="{DynamicResource DefaultTextBlockStyle}"/>
+					<TextBlock Grid.Column="1"
+							   Opacity="0.8"
+							   FontSize="15"
+							   Text="{x:Static properties:Resources.GameReleaseDate}"
+							   Style="{DynamicResource DefaultTextBlockStyle}"/>
 				</Grid>
 				<Grid Grid.Row="3" Grid.ColumnSpan="3">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="*"/>
 					</Grid.ColumnDefinitions>
-					<TextBlock Grid.Column="0" x:Name="GameBrand" FontSize="15" Style="{DynamicResource DefaultTextBlockStyle}"/>
-					<TextBlock Grid.Column="1" x:Name="GameReleaseData" FontSize="15" Style="{DynamicResource DefaultTextBlockStyle}"/>
+					<TextBox Grid.Column="0"
+							 x:Name="GameBrand"
+							 FontSize="15"
+							 Style="{DynamicResource DefaultTextBoxStyle}"/>
+					<TextBox Grid.Column="1"
+							 x:Name="GameReleaseData"
+							 FontSize="15"
+							 Style="{DynamicResource DefaultTextBoxStyle}"/>
 				</Grid>
 			</Grid>
 
 			<Grid Grid.Row="8">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="80"/>
+					<ColumnDefinition Width="130"/>
 					<ColumnDefinition Width="10"/>
-					<ColumnDefinition Width="80"/>
+					<ColumnDefinition Width="90"/>
 				</Grid.ColumnDefinitions>
-				<Button Grid.Column="1" Content="{x:Static properties:Resources.GameRegistry}" Click="GameRegistry_Click" FontSize="15" Style="{DynamicResource BackgroundColerButtonStyle}"/>
-				<Button Grid.Column="3" Content="{x:Static properties:Resources.Cancel}" FontSize="15" Style="{DynamicResource BackgroundColerButtonStyle}"/>
+				<Button Grid.Column="1"
+						x:Name="GameRegistry"
+						FontSize="15"
+						IsEnabled="False"
+						Click="GameRegistry_Click"
+						Content="{x:Static properties:Resources.GameRegistry}"
+						Style="{DynamicResource BackgroundColerButtonStyle}"/>
+				<Button Grid.Column="3"
+						FontSize="15"
+						Click="WindowClose_Click"
+						Content="{x:Static properties:Resources.Cancel}"
+						Style="{DynamicResource BackgroundColerButtonStyle}"/>
 			</Grid>
 
 		</Grid>

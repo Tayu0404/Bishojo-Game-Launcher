@@ -121,10 +121,10 @@ namespace BishojoGameLauncher.Windows {
 				var mode = SearchMode.SelectedItem as SearchGameMode;
 				searchGameList = await erogameScape.SearchGame(SearchWord.Text, mode.Mode);
 				if (searchGameList.Count == 0) {
-					GameList.Items.Add(Properties.Resources.NotFound);
+					GameList.Items.Add(new { IsEnabled = false, Content = Properties.Resources.NotFound });
 				} else {
 					foreach (var game in searchGameList) {
-						GameList.Items.Add(game.Title);
+						GameList.Items.Add(new { IsEnabled = true, Content = game.Title });
 					}
 					GameList.SelectedIndex = 0;
 				}
@@ -220,6 +220,18 @@ namespace BishojoGameLauncher.Windows {
 			if (dialog.ShowDialog() == CommonFileDialogResult.Ok) {
 				var filename = dialog.FileName;
 				SaveDataPath.Text = filename;
+			}
+		}
+
+		private void CheckOfInputItems(object sender, EventArgs e) {
+			if (
+				ExecutableFilePath.Text != "" &&
+				SaveDataPath.Text != "" &&
+				GameTitle.Text != ""
+			) {
+				GameRegistry.IsEnabled = true;
+			} else {
+				GameRegistry.IsEnabled = false;
 			}
 		}
 	}
