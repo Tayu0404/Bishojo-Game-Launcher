@@ -150,16 +150,19 @@
 	<Style TargetType="{x:Type Button}" x:Key="BackgroundColerButtonStyle">
 		<Setter Property="Background" Value="{StaticResource ButtonBackground}"/>
 		<Setter Property="Foreground" Value="{StaticResource DefaultForeground}"/>
-		<Setter Property="BorderBrush" Value="{StaticResource DefaultForeground}"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
 		<Setter Property="FocusVisualStyle" Value="{x:Null}" />
-		<Setter Property="BorderThickness" Value="1"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Button}">
 					<Border x:Name="Border"
 							CornerRadius="5"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}"
 							Background="{TemplateBinding Background}">
-						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+						<ContentPresenter Margin="3,0,3,0"
+										  HorizontalAlignment="Center"
+										  VerticalAlignment="Center"/>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="True">
@@ -210,11 +213,12 @@
 	<Style TargetType="{x:Type ListBoxItem}" x:Key="DefaultListBoxItemStyle">
 		<Setter Property="Background" Value="Transparent"/>
 		<Setter Property="OverridesDefaultStyle" Value="True" />
+		<Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ContentControl}">
 					<Border Background="{TemplateBinding Background}">
-						<ContentPresenter />
+						<ContentPresenter Content="{Binding Content}"/>
 					</Border>
 				</ControlTemplate>
 			</Setter.Value>
