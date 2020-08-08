@@ -67,11 +67,7 @@ namespace BishojoGameLauncher {
             addGameWindow.Owner = GetWindow(this);
             addGameWindow.ShowDialog();
             if ((bool)addGameWindow.DialogResult) {
-                GameListWindow.Add(
-                    addGameWindow.Hash,
-                    addGameWindow.ExecutableFile,
-                    addGameWindow.AddGameTitle
-                );
+                GameListWindow.Reload();
                 DownloadListWindow.Reload();
             }
 		}
