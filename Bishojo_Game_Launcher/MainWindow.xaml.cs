@@ -2,6 +2,7 @@
 using BishojoGameLauncher.Windows;
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 
 namespace BishojoGameLauncher {
@@ -94,6 +95,29 @@ namespace BishojoGameLauncher {
             var versionInfoWindow = new VersionInfoWindow();
             versionInfoWindow.Owner = GetWindow(this);
             versionInfoWindow.ShowDialog();
+        }
+
+		private void FilePath_Drop(object sender, DragEventArgs e) {
+            var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+            if (!File.Exists(files[0])) {
+                return;
+            }
+
+            var addGameWindow = new AddGameWindow(files[0]);
+            addGameWindow.Owner = GetWindow(this);
+            addGameWindow.ShowDialog();
+            if ((bool)addGameWindow.DialogResult) {
+                GameListWindow.Reload();
+                DownloadListWindow.Reload();
+            }
+        }
+
+		private void FilePath_PreviewDragOver(object sender, DragEventArgs e) {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop, true))
+                e.Effects = DragDropEffects.Copy;
+            else
+                e.Effects = DragDropEffects.None;
+            e.Handled = true;
         }
 	}
 }
