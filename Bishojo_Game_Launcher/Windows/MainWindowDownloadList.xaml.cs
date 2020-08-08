@@ -24,6 +24,15 @@ namespace BishojoGameLauncher.Windows {
 	public partial class MainWindowDownloadList : UserControl {
 		public MainWindowDownloadList() {
 			InitializeComponent();
+		}
+
+		private void initialize() {
+			if (
+				GamesSettings.Instance.Games == null ||
+				GamesSettings.Instance.Games.Count == 0
+			) {
+				return;
+			}
 			Reload();
 		}
 

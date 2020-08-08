@@ -63,13 +63,18 @@ namespace BishojoGameLauncher.Windows {
 				GameList.SelectedIndex = 0;
 			}
 		}
-
 		private SortMode _sortMode;
 
 		private SortMode sortMode {
 			get { return _sortMode; }
 			set {
 				_sortMode = value;
+				if (
+					GamesSettings.Instance.Games == null ||
+					GamesSettings.Instance.Games.Count == 0
+				) {
+					return;
+				}
 				Reload();
 			}
 		}
