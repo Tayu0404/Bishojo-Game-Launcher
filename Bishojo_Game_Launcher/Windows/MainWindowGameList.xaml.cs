@@ -29,32 +29,38 @@ namespace BishojoGameLauncher.Windows {
 		}
 
 		private void initialize() {
-			sortMode = (SortMode)Enum.ToObject(typeof(SortMode), Settings.Instance.GameListSortMode);
-			GameList.SelectedIndex = 0;
 			var mode = Settings.Instance.GameListSortMode;
-			if (mode % 2 != 0) {
-				mode--;
-				EnableIndex.IsOn = true;
-			}
-			switch(mode) {
+			switch (mode) {
 				case 0:
+				case 1:
 					SortModeSelect.SelectedIndex = 0;
 					break;
 				case 2:
+				case 3:
 					SortModeSelect.SelectedIndex = 1;
 					break;
 				case 4:
+				case 5:
 					SortModeSelect.SelectedIndex = 2;
 					break;
 				case 6:
+				case 7:
 					SortModeSelect.SelectedIndex = 3;
 					break;
 				case 8:
+				case 9:
 					SortModeSelect.SelectedIndex = 4;
 					break;
 				case 10:
+				case 11:
 					SortModeSelect.SelectedIndex = 5;
 					break;
+			}
+			if (mode % 2 != 0) {
+				EnableIndex.IsOn = true;
+				GameList.SelectedIndex = 1;
+			} else {
+				GameList.SelectedIndex = 0;
 			}
 		}
 
@@ -68,8 +74,8 @@ namespace BishojoGameLauncher.Windows {
 			}
 		}
 
-		private class ListItem {
-			public ListItem(string hash, BitmapSource appIcon, string title, bool enable = true) {
+		private class GameListItem {
+			public GameListItem(string hash, BitmapSource appIcon, string title, bool enable = true) {
 				this.Hash = hash;
 				this.AppIcon = appIcon;
 				this.Title = title;
@@ -159,7 +165,7 @@ namespace BishojoGameLauncher.Windows {
 							firstLetter = Convert.ToChar(Strings.StrConv(firstLetter.ToString(), VbStrConv.Hiragana, 0x411));
 							if (firstLetter != firstLetterBefore){
 								GameList.Items.Add(
-									new ListItem(
+									new GameListItem(
 										string.Empty,
 										null,
 										firstLetter.ToString(),
@@ -180,7 +186,7 @@ namespace BishojoGameLauncher.Windows {
 						) {
 							if (firstLetter != firstLetterBefore) {
 								GameList.Items.Add(
-									new ListItem(
+									new GameListItem(
 										string.Empty,
 										null,
 										firstLetter.ToString().ToUpper(),
@@ -196,7 +202,7 @@ namespace BishojoGameLauncher.Windows {
 						) {
 							if (!kanjiiFlag) {
 								GameList.Items.Add(
-									new ListItem(
+									new GameListItem(
 										string.Empty,
 										null,
 										Properties.Resources.Kanji,
@@ -208,7 +214,7 @@ namespace BishojoGameLauncher.Windows {
 						} else if (!numbersAndSymbolsFlag) {
 							//Numbers and symbols
 							GameList.Items.Add(
-								new ListItem(
+								new GameListItem(
 									string.Empty,
 									null,
 									"#",
@@ -220,7 +226,7 @@ namespace BishojoGameLauncher.Windows {
 						firstLetterBefore = firstLetter;
 
 						GameList.Items.Add(
-							new ListItem(
+							new GameListItem(
 								game.Value.Hash,
 								Imaging.CreateBitmapSourceFromHIcon(
 									Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
@@ -239,7 +245,7 @@ namespace BishojoGameLauncher.Windows {
 						var brand = game.Value.Detaile.Brand;
 						if (brand != brandBefore) {
 							GameList.Items.Add(
-								new ListItem(
+								new GameListItem(
 									string.Empty,
 									null,
 									brand,
@@ -250,7 +256,7 @@ namespace BishojoGameLauncher.Windows {
 						brandBefore = brand;
 
 						GameList.Items.Add(
-							new ListItem(
+							new GameListItem(
 								game.Value.Hash,
 								Imaging.CreateBitmapSourceFromHIcon(
 									Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
@@ -269,7 +275,7 @@ namespace BishojoGameLauncher.Windows {
 						var sellday = game.Value.Detaile.Sellday.Substring(0,7);
 						if (sellday != selldayBefore) {
 							GameList.Items.Add(
-								new ListItem(
+								new GameListItem(
 									string.Empty,
 									null,
 									sellday,
@@ -280,7 +286,7 @@ namespace BishojoGameLauncher.Windows {
 						selldayBefore = sellday;
 
 						GameList.Items.Add(
-							new ListItem(
+							new GameListItem(
 								game.Value.Hash,
 								Imaging.CreateBitmapSourceFromHIcon(
 									Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
@@ -295,7 +301,7 @@ namespace BishojoGameLauncher.Windows {
 				default:
 					foreach (var game in sortedGames) {
 						GameList.Items.Add(
-							new ListItem(
+							new GameListItem(
 								game.Value.Hash,
 								Imaging.CreateBitmapSourceFromHIcon(
 									Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
@@ -308,20 +314,6 @@ namespace BishojoGameLauncher.Windows {
 					}
 					break;
 			}
-		}
-
-		public void Add(string hash, string executableFile, string title ) {
-			GameList.Items.Add(
-				new ListItem(
-					hash,
-					Imaging.CreateBitmapSourceFromHIcon(
-						Icon.ExtractAssociatedIcon(executableFile).Handle,
-						Int32Rect.Empty,
-						BitmapSizeOptions.FromEmptyOptions()
-					),
-					title
-				)
-			);
 		}
 
 		private void GameList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -340,7 +332,7 @@ namespace BishojoGameLauncher.Windows {
 			VoiceActor.Items.Clear();
 			Singer.Items.Clear();
 
-			var selectedItem = listBox.Items[listBox.SelectedIndex] as ListItem;
+			var selectedItem = listBox.Items[listBox.SelectedIndex] as GameListItem;
 			var selectedGameDetaile = GamesSettings.Instance.Games[selectedItem.Hash];
 
 			Title.Text = selectedGameDetaile.Detaile.Title;
@@ -383,7 +375,7 @@ namespace BishojoGameLauncher.Windows {
 		}
 
 		private void Play_Click(object sender, RoutedEventArgs e) {
-			var selectedGameDetaile = GameList.SelectedItem as ListItem;
+			var selectedGameDetaile = GameList.SelectedItem as GameListItem;
 			var processInfo = new ProcessStartInfo();
 			processInfo.FileName = GamesSettings.Instance.Games[selectedGameDetaile.Hash].ExecutableFile;
 			Process.Start(processInfo);
@@ -391,14 +383,38 @@ namespace BishojoGameLauncher.Windows {
 
 		private void Delete_Click(object sender, RoutedEventArgs e) {
 			var selectedIndex = GameList.SelectedIndex;
-			var selectedGameDetaile = GameList.SelectedItem as ListItem;
+			var selectedGameDetaile = GameList.SelectedItem as GameListItem;
 			GamesSettings.Instance.Games.Remove(selectedGameDetaile.Hash);
 			GamesSettings.Instance.Save();
 			Reload();
 			if (GameList.Items.Count == 0) {
 				return;
 			}
-			GameList.SelectedIndex = selectedIndex - 1;
+			GameListItem itemToBeSelected;
+			var mode = (int)sortMode;
+			if (mode %2 != 0) {
+				if (selectedIndex == 1) {
+					return;
+				}
+				var index = selectedIndex - 2;
+				var item = GameList.Items[index];
+				itemToBeSelected = item as GameListItem;
+			} else {
+				if (selectedIndex == 0) {
+					return;
+				}
+				var index = selectedIndex - 1;
+				var item = GameList.Items[index];
+				itemToBeSelected = item as GameListItem;
+			}
+
+			if (selectedIndex >= GameList.Items.Count) {
+				GameList.SelectedIndex = GameList.Items.Count - 1;
+			} else if (!itemToBeSelected.Enable) {
+				GameList.SelectedIndex = selectedIndex - 2;
+			} else {
+				GameList.SelectedIndex = selectedIndex - 1;
+			}
 		}
 
 		private void SortMode_Changed(object sender, EventArgs e) {
