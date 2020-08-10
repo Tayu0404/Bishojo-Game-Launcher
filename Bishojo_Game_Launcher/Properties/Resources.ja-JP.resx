@@ -135,6 +135,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>
+  <data name="ChangeIcon" xml:space="preserve">
+    <value>アイコンを変更する</value>
+  </data>
   <data name="Composer" xml:space="preserve">
     <value>作曲</value>
   </data>
@@ -177,8 +180,14 @@
   <data name="GameTitle" xml:space="preserve">
     <value>タイトル</value>
   </data>
+  <data name="General" xml:space="preserve">
+    <value>一般</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>ヘルプ</value>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>ホームページ</value>
   </data>
   <data name="Host" xml:space="preserve">
     <value>ホスト</value>

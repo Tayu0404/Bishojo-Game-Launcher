@@ -115,6 +115,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Change icon に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ChangeIcon {
+            get {
+                return ResourceManager.GetString("ChangeIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Composer に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Composer {
@@ -241,11 +250,29 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   General に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string General {
+            get {
+                return ResourceManager.GetString("General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Help に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Help {
             get {
                 return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Homepage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Homepage {
+            get {
+                return ResourceManager.GetString("Homepage", resourceCulture);
             }
         }
         

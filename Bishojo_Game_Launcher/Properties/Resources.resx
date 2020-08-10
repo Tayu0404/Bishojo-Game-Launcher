@@ -135,6 +135,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ChangeIcon" xml:space="preserve">
+    <value>Change icon</value>
+  </data>
   <data name="Composer" xml:space="preserve">
     <value>Composer</value>
   </data>
@@ -177,8 +180,14 @@
   <data name="GameTitle" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="General" xml:space="preserve">
+    <value>General</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Homepage</value>
   </data>
   <data name="Host" xml:space="preserve">
     <value>Host</value>
