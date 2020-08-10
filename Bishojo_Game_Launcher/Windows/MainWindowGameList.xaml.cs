@@ -440,5 +440,11 @@ namespace BishojoGameLauncher.Windows {
 			Settings.Instance.Save();
 			SetToDefaultSortMode.IsEnabled = false;
 		}
+
+		private void GameProperties_Click(object sender, RoutedEventArgs e) {
+			var selectedGame = GameList.SelectedItem as GameListItem;
+			var gamePropertiesWindow = new GamePropertiesWindow(selectedGame.Hash);
+			gamePropertiesWindow.Show();
+		}
 	}
 }

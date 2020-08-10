@@ -125,6 +125,9 @@
     <Compile Include="Windows\AddGameWindow.xaml.cs">
       <DependentUpon>AddGameWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\GamePropertiesWindow.xaml.cs">
+      <DependentUpon>GamePropertiesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MainWindowDownloadList.xaml.cs">
       <DependentUpon>MainWindowDownloadList.xaml</DependentUpon>
     </Compile>
@@ -161,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddGameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\GamePropertiesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
