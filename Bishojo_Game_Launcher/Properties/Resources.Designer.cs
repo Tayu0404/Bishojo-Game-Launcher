@@ -322,6 +322,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Minimize instead of the application close に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MinimizeInsteadOfTheApplicationClose {
+            get {
+                return ResourceManager.GetString("MinimizeInsteadOfTheApplicationClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Network に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Network {
@@ -439,6 +448,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Run at computer startup に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string RunAtComputerStartup {
+            get {
+                return ResourceManager.GetString("RunAtComputerStartup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Save Data Folder に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SaveDataFolder {
@@ -498,6 +516,15 @@ namespace BishojoGameLauncher.Properties {
         public static string SetToDefault {
             get {
                 return ResourceManager.GetString("SetToDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Show Icon in tray に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ShowIconInTray {
+            get {
+                return ResourceManager.GetString("ShowIconInTray", resourceCulture);
             }
         }
         

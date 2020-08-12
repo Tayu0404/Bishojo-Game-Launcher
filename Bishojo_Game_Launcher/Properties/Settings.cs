@@ -17,6 +17,24 @@ namespace BishojoGameLauncher.Properties {
 		public static readonly Settings Instance = Load();
 
 		[DataMember]
+		public bool IsInitialized {
+			get { return Get(a => a.IsInitialized); }
+			set { Set(a => a.IsInitialized, value); }
+		}
+
+		[DataMember]
+		public bool IsRunAtComputerStartup {
+			get { return Get(a => a.IsRunAtComputerStartup); }
+			set { Set(a => a.IsRunAtComputerStartup, value); }
+		}
+
+		[DataMember]
+		public bool IsShowIconInTray {
+			get { return Get(a => a.IsShowIconInTray); }
+			set { Set(a => a.IsShowIconInTray, value); }
+		}
+
+		[DataMember]
 		public int GameListSortMode {
 			get { return Get(a => a.GameListSortMode); }
 			set { Set(a => a.GameListSortMode, value); }

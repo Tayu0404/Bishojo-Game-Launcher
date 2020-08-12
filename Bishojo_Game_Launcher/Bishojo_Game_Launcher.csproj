@@ -140,6 +140,9 @@
     <Compile Include="Windows\MainWindowSetting.xaml.cs">
       <DependentUpon>MainWindowSetting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\MainWindowSettingGeneral.xaml.cs">
+      <DependentUpon>MainWindowSettingGeneral.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MainWindowSettingNetwork.xaml.cs">
       <DependentUpon>MainWindowSettingNetwork.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
     <Page Include="Windows\MainWindowSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindowSettingGeneral.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\MainWindowSettingNetwork.xaml">
       <SubType>Designer</SubType>

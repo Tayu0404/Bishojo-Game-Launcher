@@ -204,6 +204,9 @@
   <data name="LocalFile" xml:space="preserve">
     <value>Local File</value>
   </data>
+  <data name="MinimizeInsteadOfTheApplicationClose" xml:space="preserve">
+    <value>Minimize instead of the application close</value>
+  </data>
   <data name="Network" xml:space="preserve">
     <value>Network</value>
   </data>
@@ -243,6 +246,9 @@
   <data name="ReleaseDateDescendingOrder" xml:space="preserve">
     <value>Release Date Descending Order</value>
   </data>
+  <data name="RunAtComputerStartup" xml:space="preserve">
+    <value>Run at computer startup</value>
+  </data>
   <data name="SaveDataFolder" xml:space="preserve">
     <value>Save Data Folder</value>
   </data>
@@ -263,6 +269,9 @@
   </data>
   <data name="SetToDefault" xml:space="preserve">
     <value>Set To Default</value>
+  </data>
+  <data name="ShowIconInTray" xml:space="preserve">
+    <value>Show Icon in tray</value>
   </data>
   <data name="Singer" xml:space="preserve">
     <value>Singer</value>

@@ -204,6 +204,9 @@
   <data name="LocalFile" xml:space="preserve">
     <value>ローカルファイル</value>
   </data>
+  <data name="MinimizeInsteadOfTheApplicationClose" xml:space="preserve">
+    <value>アプリケーション終了ではなく最小化にする</value>
+  </data>
   <data name="Network" xml:space="preserve">
     <value>ネットワーク</value>
   </data>
@@ -243,6 +246,9 @@
   <data name="ReleaseDateDescendingOrder" xml:space="preserve">
     <value>発売日降順</value>
   </data>
+  <data name="RunAtComputerStartup" xml:space="preserve">
+    <value>コンピューターの起動時に実効する</value>
+  </data>
   <data name="SaveDataFolder" xml:space="preserve">
     <value>セーブデータフォルダー</value>
   </data>
@@ -263,6 +269,9 @@
   </data>
   <data name="SetToDefault" xml:space="preserve">
     <value>規定の設定にする</value>
+  </data>
+  <data name="ShowIconInTray" xml:space="preserve">
+    <value>トレイにアイコンを表示する</value>
   </data>
   <data name="Singer" xml:space="preserve">
     <value>歌手</value>
