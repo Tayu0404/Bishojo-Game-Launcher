@@ -201,6 +201,9 @@
   <data name="Library" xml:space="preserve">
     <value>ライブラリ</value>
   </data>
+  <data name="LocalFile" xml:space="preserve">
+    <value>ローカルファイル</value>
+  </data>
   <data name="Network" xml:space="preserve">
     <value>ネットワーク</value>
   </data>
@@ -209,6 +212,12 @@
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="OpenGameFolder" xml:space="preserve">
+    <value>ゲームのフォルダを開く</value>
+  </data>
+  <data name="OpenSaveDataFolder" xml:space="preserve">
+    <value>セーブデータのフォルダを開く</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>パスワード</value>

@@ -102,11 +102,9 @@
 						Style="{DynamicResource DefaultButtonStyle}"/>
 			</Grid>
 
-			<Grid Grid.Row="1">
-				<windows:MainWindowGameList x:Name="GameListWindow" Visibility="Visible"/>
-				<windows:MainWindowDownloadList x:Name="DownloadListWindow" Visibility="Hidden"/>
-				<windows:MainWindowSetting  x:Name="SettingWindow" Visibility="Hidden"/>
-			</Grid>
+			<windows:MainWindowGameList Grid.Row="1" x:Name="GameListWindow" Visibility="Visible"/>
+			<windows:MainWindowDownloadList Grid.Row="1" x:Name="DownloadListWindow" Visibility="Hidden"/>
+			<windows:MainWindowSetting Grid.Row="1" x:Name="SettingWindow" Visibility="Hidden"/>
 
 			<Grid Grid.Row="2">
 				<Grid.ColumnDefinitions>

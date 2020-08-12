@@ -201,6 +201,9 @@
   <data name="Library" xml:space="preserve">
     <value>Library</value>
   </data>
+  <data name="LocalFile" xml:space="preserve">
+    <value>Local File</value>
+  </data>
   <data name="Network" xml:space="preserve">
     <value>Network</value>
   </data>
@@ -209,6 +212,12 @@
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="OpenGameFolder" xml:space="preserve">
+    <value>Open Game Folder</value>
+  </data>
+  <data name="OpenSaveDataFolder" xml:space="preserve">
+    <value>Open Save Data Folder</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
