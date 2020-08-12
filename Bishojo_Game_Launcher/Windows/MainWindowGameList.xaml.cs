@@ -380,7 +380,7 @@ namespace BishojoGameLauncher.Windows {
 			GameSearchWord.Focus();
 		}
 
-		private void Play_Click(object sender, RoutedEventArgs e) {
+		private void Play_Click(object sender, EventArgs e) {
 			var selectedGameDetaile = GameList.SelectedItem as GameListItem;
 			var processInfo = new ProcessStartInfo();
 			processInfo.FileName = GamesSettings.Instance.Games[selectedGameDetaile.Hash].ExecutableFile;

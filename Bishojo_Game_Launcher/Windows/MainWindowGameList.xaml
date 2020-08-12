@@ -130,6 +130,7 @@
 				Grid.Row="1"
 				x:Name="GameList"
 				SelectionChanged="GameList_SelectionChanged"
+				MouseDoubleClick="Play_Click"
 				VerticalContentAlignment="Stretch"
 				HorizontalContentAlignment="Stretch"
 				ScrollViewer.VerticalScrollBarVisibility="Auto"
