@@ -135,6 +135,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ChangeIcon" xml:space="preserve">
+    <value>Change icon</value>
+  </data>
   <data name="Composer" xml:space="preserve">
     <value>Composer</value>
   </data>
@@ -177,8 +180,14 @@
   <data name="GameTitle" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="General" xml:space="preserve">
+    <value>General</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Homepage</value>
   </data>
   <data name="Host" xml:space="preserve">
     <value>Host</value>
@@ -192,6 +201,9 @@
   <data name="Library" xml:space="preserve">
     <value>Library</value>
   </data>
+  <data name="LocalFile" xml:space="preserve">
+    <value>Local File</value>
+  </data>
   <data name="Network" xml:space="preserve">
     <value>Network</value>
   </data>
@@ -200,6 +212,12 @@
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="OpenGameFolder" xml:space="preserve">
+    <value>Open Game Folder</value>
+  </data>
+  <data name="OpenSaveDataFolder" xml:space="preserve">
+    <value>Open Save Data Folder</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>

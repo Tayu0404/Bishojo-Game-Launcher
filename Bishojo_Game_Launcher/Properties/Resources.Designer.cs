@@ -115,6 +115,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Change icon に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ChangeIcon {
+            get {
+                return ResourceManager.GetString("ChangeIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Composer に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Composer {
@@ -241,11 +250,29 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   General に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string General {
+            get {
+                return ResourceManager.GetString("General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Help に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Help {
             get {
                 return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Homepage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Homepage {
+            get {
+                return ResourceManager.GetString("Homepage", resourceCulture);
             }
         }
         
@@ -286,6 +313,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Local File に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LocalFile {
+            get {
+                return ResourceManager.GetString("LocalFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Network に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Network {
@@ -309,6 +345,24 @@ namespace BishojoGameLauncher.Properties {
         public static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Open Game Folder に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string OpenGameFolder {
+            get {
+                return ResourceManager.GetString("OpenGameFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Open Save Data Folder に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string OpenSaveDataFolder {
+            get {
+                return ResourceManager.GetString("OpenSaveDataFolder", resourceCulture);
             }
         }
         

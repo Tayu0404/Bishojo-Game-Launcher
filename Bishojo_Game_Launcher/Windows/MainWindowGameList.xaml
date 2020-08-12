@@ -168,7 +168,9 @@
 						</Grid.ColumnDefinitions>
 						<TextBlock x:Name="Title" FontSize="30" HorizontalAlignment="Left" Style="{DynamicResource DefaultTextBlockStyle}"/>
 						<Button Grid.Column="1" FontSize="25" Click="Play_Click" Content="{x:Static properties:Resources.Play}" Style="{DynamicResource BackgroundColerButtonStyle}"/>
-						<Button Grid.Column="3" FontSize="20" Style="{DynamicResource DefaultButtonStyle}">
+						<Button Grid.Column="3"
+								Click="GameProperties_Click"
+								Style="{DynamicResource DefaultButtonStyle}">
 							<Path Style="{DynamicResource GearPathStyle}"/>
 						</Button>
 					</Grid>

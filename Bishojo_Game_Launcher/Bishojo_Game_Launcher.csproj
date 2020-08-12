@@ -54,6 +54,9 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>BishojoGameLauncher.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AngleSharp, Version=0.14.0.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
       <HintPath>..\packages\AngleSharp.0.14.0\lib\net472\AngleSharp.dll</HintPath>
@@ -125,6 +128,9 @@
     <Compile Include="Windows\AddGameWindow.xaml.cs">
       <DependentUpon>AddGameWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\GamePropertiesWindow.xaml.cs">
+      <DependentUpon>GamePropertiesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MainWindowDownloadList.xaml.cs">
       <DependentUpon>MainWindowDownloadList.xaml</DependentUpon>
     </Compile>
@@ -161,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddGameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\GamePropertiesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

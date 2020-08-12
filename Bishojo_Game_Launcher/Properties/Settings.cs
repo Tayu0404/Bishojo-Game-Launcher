@@ -3,13 +3,15 @@ using BishojoGameLauncher.Game;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BishojoGameLauncher.Properties {
-	[SettingsPath(DirectoryName = @".\Confs\", FileName = "User.conf")]
+	[SettingsPath(FileName = "User.conf")]
 	[DataContract]
 	public class Settings : SettingsBase<Settings> {
 		public static readonly Settings Instance = Load();

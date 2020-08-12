@@ -17,6 +17,9 @@ namespace BishojoGameLauncher {
 
         public MainWindow() {
             InitializeComponent();
+            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+            string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            key.SetValue("BishojoGameLauncher", path);
         }
 
         private void window_StateChanged(object sender, EventArgs e) {
@@ -64,6 +67,8 @@ namespace BishojoGameLauncher {
 
 
 		private void AddGame_Click(object sender, RoutedEventArgs e) {
+            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+            key.DeleteValue("BishojoGameLauncher");
             var addGameWindow = new AddGameWindow();
             addGameWindow.Owner = GetWindow(this);
             addGameWindow.ShowDialog();
