@@ -84,6 +84,7 @@ namespace BishojoGameLauncher.Windows {
 				this.Hash = hash;
 				this.AppIcon = appIcon;
 				this.Title = title;
+				this.ToolTip = title;
 				this.Enable = enable;
 			}	
 
@@ -92,6 +93,8 @@ namespace BishojoGameLauncher.Windows {
 			public BitmapSource AppIcon { get; private set; }
 
 			public string Title { get; private set; }
+
+			public string ToolTip { get; private set; }
 
 			public bool Enable { get; private set; }
 		}
