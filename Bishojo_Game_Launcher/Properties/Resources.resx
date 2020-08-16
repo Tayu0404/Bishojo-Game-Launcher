@@ -117,11 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppLongTitle" xml:space="preserve">
+    <value>Bishojo Game Launcher</value>
+  </data>
   <data name="AppTitle" xml:space="preserve">
-    <value>BGL(仮)</value>
+    <value>BGL</value>
   </data>
   <data name="AppVersion" xml:space="preserve">
-    <value>BGL(仮) Version Information</value>
+    <value>BGL Version Information</value>
   </data>
   <data name="BrandAscendingOrder" xml:space="preserve">
     <value>Brand Ascending Order</value>
@@ -137,6 +140,9 @@
   </data>
   <data name="ChangeIcon" xml:space="preserve">
     <value>Change icon</value>
+  </data>
+  <data name="CloseButtonToMinimize" xml:space="preserve">
+    <value>Close button to minimize</value>
   </data>
   <data name="Composer" xml:space="preserve">
     <value>Composer</value>
@@ -192,6 +198,13 @@
   <data name="Host" xml:space="preserve">
     <value>Host</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon1024" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon1024.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Illustrator" xml:space="preserve">
     <value>Illustrator</value>
   </data>
@@ -204,11 +217,11 @@
   <data name="LocalFile" xml:space="preserve">
     <value>Local File</value>
   </data>
-  <data name="MinimizeInsteadOfTheApplicationClose" xml:space="preserve">
-    <value>Minimize instead of the application close</value>
-  </data>
   <data name="Network" xml:space="preserve">
     <value>Network</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Not Found</value>
@@ -246,9 +259,6 @@
   <data name="ReleaseDateDescendingOrder" xml:space="preserve">
     <value>Release Date Descending Order</value>
   </data>
-  <data name="RunAtComputerStartup" xml:space="preserve">
-    <value>Run at computer startup</value>
-  </data>
   <data name="SaveDataFolder" xml:space="preserve">
     <value>Save Data Folder</value>
   </data>
@@ -270,14 +280,20 @@
   <data name="SetToDefault" xml:space="preserve">
     <value>Set To Default</value>
   </data>
-  <data name="ShowIconInTray" xml:space="preserve">
-    <value>Show Icon in tray</value>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
   </data>
   <data name="Singer" xml:space="preserve">
     <value>Singer</value>
   </data>
   <data name="SortBy" xml:space="preserve">
     <value>Sort By</value>
+  </data>
+  <data name="StartAtComputerStartup" xml:space="preserve">
+    <value>Start at computer startup</value>
+  </data>
+  <data name="StartWithMinimized" xml:space="preserve">
+    <value>Minimized</value>
   </data>
   <data name="TitleAscendingOrder" xml:space="preserve">
     <value>Title Ascending Order</value>
@@ -305,5 +321,8 @@
   </data>
   <data name="WindowMinimizeToolTip" xml:space="preserve">
     <value>Minimize</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

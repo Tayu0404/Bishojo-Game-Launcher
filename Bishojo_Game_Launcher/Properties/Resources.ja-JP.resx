@@ -117,11 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppLongTitle" xml:space="preserve">
+    <value>Bishojo Game Launcher</value>
+  </data>
   <data name="AppTitle" xml:space="preserve">
-    <value>BGL(仮)</value>
+    <value>BGL</value>
   </data>
   <data name="AppVersion" xml:space="preserve">
-    <value>BGL(仮)のバージョン情報</value>
+    <value>BGLのバージョン情報</value>
   </data>
   <data name="BrandAscendingOrder" xml:space="preserve">
     <value>ブランド昇順</value>
@@ -137,6 +140,9 @@
   </data>
   <data name="ChangeIcon" xml:space="preserve">
     <value>アイコンを変更する</value>
+  </data>
+  <data name="CloseButtonToMinimize" xml:space="preserve">
+    <value>閉じるボタンで最小化にする</value>
   </data>
   <data name="Composer" xml:space="preserve">
     <value>作曲</value>
@@ -204,11 +210,11 @@
   <data name="LocalFile" xml:space="preserve">
     <value>ローカルファイル</value>
   </data>
-  <data name="MinimizeInsteadOfTheApplicationClose" xml:space="preserve">
-    <value>アプリケーション終了ではなく最小化にする</value>
-  </data>
   <data name="Network" xml:space="preserve">
     <value>ネットワーク</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>いいえ</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>見つかりませんでした</value>
@@ -246,9 +252,6 @@
   <data name="ReleaseDateDescendingOrder" xml:space="preserve">
     <value>発売日降順</value>
   </data>
-  <data name="RunAtComputerStartup" xml:space="preserve">
-    <value>コンピューターの起動時に実効する</value>
-  </data>
   <data name="SaveDataFolder" xml:space="preserve">
     <value>セーブデータフォルダー</value>
   </data>
@@ -270,14 +273,20 @@
   <data name="SetToDefault" xml:space="preserve">
     <value>規定の設定にする</value>
   </data>
-  <data name="ShowIconInTray" xml:space="preserve">
-    <value>トレイにアイコンを表示する</value>
+  <data name="Show" xml:space="preserve">
+    <value>表示</value>
   </data>
   <data name="Singer" xml:space="preserve">
     <value>歌手</value>
   </data>
   <data name="SortBy" xml:space="preserve">
     <value>並び替え</value>
+  </data>
+  <data name="StartAtComputerStartup" xml:space="preserve">
+    <value>コンピューターの起動時に実効する</value>
+  </data>
+  <data name="StartWithMinimized" xml:space="preserve">
+    <value>最小化</value>
   </data>
   <data name="TitleAscendingOrder" xml:space="preserve">
     <value>タイトル昇順</value>
@@ -305,5 +314,8 @@
   </data>
   <data name="WindowMinimizeToolTip" xml:space="preserve">
     <value>最小化</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>はい</value>
   </data>
 </root>
