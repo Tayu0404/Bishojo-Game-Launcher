@@ -26,8 +26,8 @@ namespace BishojoGameLauncher.Windows {
 		}
 
 		private void initialize() {
-			General_RunAtComputerStartup.IsOn = Settings.Instance.IsRunAtComputerStartup;
-			General_ShowIconInTray.IsOn = Settings.Instance.IsShowIconInTray;
+			General_RunAtComputerStartup.SelectedIndex = Settings.Instance.IsRunAtComputerStartup;
+			General_CloseButtonToMinimize.IsOn = Settings.Instance.IsCloseButtonToMinimize;
 			NetWork_ProxyEnable.IsOn = Settings.Instance.IsProxyEnable;
 			NetWork_ProxyHost.Text = Settings.Instance.ProxyHost;
 		}
@@ -38,20 +38,34 @@ namespace BishojoGameLauncher.Windows {
 		}
 
 		private void General_RunAtComputerStartup_Change(object sender, EventArgs e) {
-			Settings.Instance.IsRunAtComputerStartup = General_RunAtComputerStartup.IsOn;
+			var selectedComboBoxItem = sender as ComboBoxItem;
+			int mode;
+			if (!int.TryParse(selectedComboBoxItem.Tag.ToString(), out mode)) {
+				return;
+			}
+			Settings.Instance.IsRunAtComputerStartup = mode;
 			Settings.Instance.Save();
 
 			var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-			if (General_RunAtComputerStartup.IsOn) {
-				string path = Assembly.GetExecutingAssembly().Location;
-				key.SetValue("BishojoGameLauncher", path);
-			} else {
-				key.DeleteValue("BishojoGameLauncher");
+			switch (mode) {
+				case 0:
+				case 1:
+					string path = Assembly.GetExecutingAssembly().Location;
+					key.SetValue("BishojoGameLauncher", path);
+					break;
+				case 2:
+					try {
+						key.DeleteValue("BishojoGameLauncher");
+					}
+					catch {
+						return;
+					}
+					break;
 			}
 		}
 
-		private void General_ShowIconInTray_Change(object sender, EventArgs e) {
-			Settings.Instance.IsShowIconInTray = General_ShowIconInTray.IsOn;
+		private void General_CloseButtonToMinimize_Change(object sender, EventArgs e) {
+			Settings.Instance.IsCloseButtonToMinimize = General_CloseButtonToMinimize.IsOn;
 			Settings.Instance.Save();
 		}
 	}

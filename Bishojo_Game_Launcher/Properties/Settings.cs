@@ -23,15 +23,15 @@ namespace BishojoGameLauncher.Properties {
 		}
 
 		[DataMember]
-		public bool IsRunAtComputerStartup {
+		public int IsRunAtComputerStartup {
 			get { return Get(a => a.IsRunAtComputerStartup); }
 			set { Set(a => a.IsRunAtComputerStartup, value); }
 		}
 
 		[DataMember]
-		public bool IsShowIconInTray {
-			get { return Get(a => a.IsShowIconInTray); }
-			set { Set(a => a.IsShowIconInTray, value); }
+		public bool IsCloseButtonToMinimize {
+			get { return Get(a => a.IsCloseButtonToMinimize); }
+			set { Set(a => a.IsCloseButtonToMinimize, value); }
 		}
 
 		[DataMember]

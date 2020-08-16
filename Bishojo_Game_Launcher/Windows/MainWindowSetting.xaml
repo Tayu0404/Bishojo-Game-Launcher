@@ -35,16 +35,23 @@
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="Auto"/>
 							<ColumnDefinition Width="*"/>
-							<ColumnDefinition Width="60"/>
+							<ColumnDefinition Width="120"/>
 						</Grid.ColumnDefinitions>
 						<TextBlock Grid.Column="0"
 								   FontSize="15"
-								   Text="{x:Static properties:Resources.RunAtComputerStartup}"
+								   Text="{x:Static properties:Resources.StartAtComputerStartup}"
 								   Style="{DynamicResource DefaultTextBlockStyle}"/>
-						<control:ToggleSwitch Grid.Column="2"
-											  x:Name="General_RunAtComputerStartup"
-											  ChangeToggleSwitch="General_RunAtComputerStartup_Change"
-											  Style="{DynamicResource DefaultToggleSwitchStyle}"/>
+						<Border Grid.Column="2"
+								Style="{DynamicResource DefaultBorderStyle}">
+							<ComboBox x:Name="General_RunAtComputerStartup"
+									  FontSize="15"
+									  Style="{DynamicResource DefaultComboBoxStyle}"
+									  ItemContainerStyle="{DynamicResource DefaultComboBoxItemStyle}">
+								<ComboBoxItem Tag="0" Content="{x:Static properties:Resources.StartWithMinimized}"/>
+								<ComboBoxItem Tag="1" Content="{x:Static properties:Resources.Yes}"/>
+								<ComboBoxItem Tag="2" Content="{x:Static properties:Resources.No}"/>
+							</ComboBox>
+						</Border>
 					</Grid>
 					<Grid Grid.Row="4">
 						<Grid.ColumnDefinitions>
@@ -54,11 +61,11 @@
 						</Grid.ColumnDefinitions>
 						<TextBlock Grid.Column="0"
 								   FontSize="15"
-								   Text="{x:Static properties:Resources.ShowIconInTray}"
+								   Text="{x:Static properties:Resources.CloseButtonToMinimize}"
 								   Style="{DynamicResource DefaultTextBlockStyle}"/>
 						<control:ToggleSwitch Grid.Column="2"
-											  x:Name="General_ShowIconInTray"
-											  ChangeToggleSwitch="General_ShowIconInTray_Change"
+											  x:Name="General_CloseButtonToMinimize"
+											  ChangeToggleSwitch="General_CloseButtonToMinimize_Change"
 											  Style="{DynamicResource DefaultToggleSwitchStyle}"/>
 					</Grid>
 				</Grid>
