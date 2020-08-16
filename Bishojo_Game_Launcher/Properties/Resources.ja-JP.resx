@@ -138,6 +138,9 @@
   <data name="ChangeIcon" xml:space="preserve">
     <value>アイコンを変更する</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
   <data name="Composer" xml:space="preserve">
     <value>作曲</value>
   </data>
@@ -269,6 +272,9 @@
   </data>
   <data name="SortBy" xml:space="preserve">
     <value>並び替え</value>
+  </data>
+  <data name="StartOptions" xml:space="preserve">
+    <value>起動オプション</value>
   </data>
   <data name="TitleAscendingOrder" xml:space="preserve">
     <value>タイトル昇順</value>

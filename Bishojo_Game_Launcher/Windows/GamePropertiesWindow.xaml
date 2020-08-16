@@ -10,6 +10,7 @@
         AllowsTransparency="True"
 		WindowStyle="None"
         ResizeMode="NoResize"
+		Closing="WindowClosing"
 		WindowStartupLocation="CenterOwner">
     <Grid>
 		<Grid.RowDefinitions>
@@ -40,37 +41,45 @@
 					ToolTipService.ToolTip="{x:Static properties:Resources.WindowCloseToolTip}"
 					Style="{DynamicResource CloseButtonStyle}"/>
 		</Grid>
-		<TabControl Grid.Row="1" Margin="5"
-					Style="{DynamicResource DefaultTabControlsStyle}">
-			<TabItem Header="{x:Static properties:Resources.General}"
-					 Style="{DynamicResource DefaultTabItemStyle}">
-				<Grid Margin="5">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="30"/>
-						<RowDefinition Height="5"/>
-						<RowDefinition Height="0.8"/>
-						<RowDefinition Height="5"/>
-						<RowDefinition Height="30"/>
-						<RowDefinition Height="5"/>
-						<RowDefinition Height="0.8"/>
-						<RowDefinition Height="5"/>
-						<RowDefinition Height="30"/>
-						<RowDefinition Height="*"/>
-					</Grid.RowDefinitions>
-					<Grid Grid.Row="0">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto"/>
-							<ColumnDefinition Width="10"/>
-							<ColumnDefinition Width="Auto"/>
-							<ColumnDefinition Width="*"/>
-						</Grid.ColumnDefinitions>
-						<TextBlock Grid.Column="0"
-								   FontSize="15"
-								   Text="{x:Static properties:Resources.Homepage}"
-								   Style="{DynamicResource DefaultTextBlockStyle}"/>
-						<TextBlock Grid.Column="2"
-								   FontSize="15"
-								   Style="{DynamicResource DefaultTextBlockStyle}">
+		<Grid Grid.Row="1" Margin="5,0,5,5">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="5"/>
+				<RowDefinition Height="30"/>
+			</Grid.RowDefinitions>
+			<TabControl Grid.Row="0"
+						Style="{DynamicResource DefaultTabControlsStyle}">
+				<TabItem Header="{x:Static properties:Resources.General}"
+						 Style="{DynamicResource DefaultTabItemStyle}">
+					<Grid Margin="5">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="30"/>
+							<RowDefinition Height="5"/>
+							<RowDefinition Height="0.8"/>
+							<RowDefinition Height="5"/>
+							<RowDefinition Height="30"/>
+							<RowDefinition Height="5"/>
+							<RowDefinition Height="30"/>
+							<RowDefinition Height="5"/>
+							<RowDefinition Height="0.8"/>
+							<RowDefinition Height="5"/>
+							<RowDefinition Height="30"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+						<Grid Grid.Row="0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="10"/>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock Grid.Column="0"
+									   FontSize="15"
+									   Text="{x:Static properties:Resources.Homepage}"
+									   Style="{DynamicResource DefaultTextBlockStyle}"/>
+							<TextBlock Grid.Column="2"
+									   FontSize="15"
+									   Style="{DynamicResource DefaultTextBlockStyle}">
 							<Hyperlink x:Name="HPURL"
 									   RequestNavigate="Hyperlink_RequestNavigate">
 								<TextBlock x:Name="HPTitle"
@@ -88,64 +97,103 @@
 								</Hyperlink.Style>
 							</Hyperlink>
 						</TextBlock>
+						</Grid>
+						<Border Grid.Row="2"
+								Opacity="0.2"
+								Background="{StaticResource DefaultForeground}"/>
+						<Grid Grid.Row="4">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" MinWidth="100"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Button Grid.Column="0"
+									Click="ChangeIcon_Click"
+									Content="{x:Static properties:Resources.ChangeIcon}"
+									Style="{DynamicResource BackgroundColerButtonStyle}"/>
+						</Grid>
+						<Border Grid.Row="6"
+								CornerRadius="5"
+								Background="{StaticResource ButtonBackground}">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" MinWidth="100"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<Button Grid.Column="0"
+									    Margin="5,0,5,0"
+									    FontSize="15"
+									    Click="StartOptions_Click"
+									    Content="{x:Static properties:Resources.StartOptions}"
+									    Style="{DynamicResource DefaultButtonStyle}"/>
+								<Border Grid.Column="1"
+										Margin="0,3,5,3"
+										CornerRadius="5"
+										Background="{StaticResource DarkBackground}">
+									<TextBox Grid.Column="1"
+											 x:Name="StartOptions"
+											 FontSize="15"
+											 VerticalContentAlignment="Center"
+											Style="{DynamicResource DefaultTextBoxStyle}"/>
+								</Border>
+
+							</Grid>
+						</Border>
+						<Border Grid.Row="8"
+								Opacity="0.2"
+								Background="{StaticResource DefaultForeground}"/>
+						<Grid Grid.Row="10">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" MinWidth="100"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Button Grid.Column="0"
+									Click="Delete_Click"
+									Content="{x:Static properties:Resources.Delete}"
+									Style="{DynamicResource BackgroundColerButtonStyle}"/>
+						</Grid>
 					</Grid>
-					<Border Grid.Row="2"
-							Opacity="0.2"
-							Background="{StaticResource DefaultForeground}"/>
-					<Grid Grid.Row="4">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" MinWidth="100"/>
-							<ColumnDefinition Width="*"/>
-						</Grid.ColumnDefinitions>
-						<Button Grid.Column="0"
-								Click="ChangeIcon_Click"
-								Content="{x:Static properties:Resources.ChangeIcon}"
-								Style="{DynamicResource BackgroundColerButtonStyle}"/>
+				</TabItem>
+				<TabItem Header="{x:Static properties:Resources.LocalFile}"
+						 Style="{DynamicResource DefaultTabItemStyle}">
+					<Grid Margin="5">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="30"/>
+							<RowDefinition Height="5"/>
+							<RowDefinition Height="30"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+						<Grid Grid.Row="0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" MinWidth="100"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Button Grid.Column="0"
+									Click="OpenGameFolder_Click"
+									Content="{x:Static properties:Resources.OpenGameFolder}"
+									Style="{DynamicResource BackgroundColerButtonStyle}"/>
+						</Grid>
+						<Grid Grid.Row="2">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" MinWidth="100"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Button Grid.Column="0"
+									Content="{x:Static properties:Resources.OpenSaveDataFolder}"
+									Style="{DynamicResource BackgroundColerButtonStyle}"/>
+						</Grid>
 					</Grid>
-					<Border Grid.Row="6"
-							Opacity="0.2"
-							Background="{StaticResource DefaultForeground}"/>
-					<Grid Grid.Row="8">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" MinWidth="100"/>
-							<ColumnDefinition Width="*"/>
-						</Grid.ColumnDefinitions>
-						<Button Grid.Column="0"
-								Content="{x:Static properties:Resources.Delete}"
-								Style="{DynamicResource BackgroundColerButtonStyle}"/>
-					</Grid>
-				</Grid>
-			</TabItem>
-			<TabItem Header="{x:Static properties:Resources.LocalFile}"
-					 Style="{DynamicResource DefaultTabItemStyle}">
-				<Grid Margin="5">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="30"/>
-						<RowDefinition Height="5"/>
-						<RowDefinition Height="30"/>
-						<RowDefinition Height="*"/>
-					</Grid.RowDefinitions>
-					<Grid Grid.Row="0">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" MinWidth="100"/>
-							<ColumnDefinition Width="*"/>
-						</Grid.ColumnDefinitions>
-						<Button Grid.Column="0"
-								Click="OpenGameFolder_Click"
-								Content="{x:Static properties:Resources.OpenGameFolder}"
-								Style="{DynamicResource BackgroundColerButtonStyle}"/>
-					</Grid>
-					<Grid Grid.Row="2">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" MinWidth="100"/>
-							<ColumnDefinition Width="*"/>
-						</Grid.ColumnDefinitions>
-						<Button Grid.Column="0"
-								Content="{x:Static properties:Resources.OpenSaveDataFolder}"
-								Style="{DynamicResource BackgroundColerButtonStyle}"/>
-					</Grid>
-				</Grid>
-			</TabItem>
-		</TabControl>
+				</TabItem>
+			</TabControl>
+			<Grid Grid.Row="2">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto" MinWidth="100"/>
+				</Grid.ColumnDefinitions>
+				<Button Grid.Column="1"
+						Content="{x:Static properties:Resources.Close}"
+						Click="WindowClose_Click"
+						Style="{DynamicResource BackgroundColerButtonStyle}"/>
+			</Grid>
+		</Grid>
 	</Grid>
 </Window>

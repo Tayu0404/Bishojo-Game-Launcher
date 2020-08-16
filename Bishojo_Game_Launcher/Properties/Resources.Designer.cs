@@ -124,6 +124,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Close に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Composer に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Composer {
@@ -516,6 +525,15 @@ namespace BishojoGameLauncher.Properties {
         public static string SortBy {
             get {
                 return ResourceManager.GetString("SortBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Start Options に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string StartOptions {
+            get {
+                return ResourceManager.GetString("StartOptions", resourceCulture);
             }
         }
         

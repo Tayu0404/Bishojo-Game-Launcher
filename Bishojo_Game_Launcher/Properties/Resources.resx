@@ -138,6 +138,9 @@
   <data name="ChangeIcon" xml:space="preserve">
     <value>Change icon</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="Composer" xml:space="preserve">
     <value>Composer</value>
   </data>
@@ -269,6 +272,9 @@
   </data>
   <data name="SortBy" xml:space="preserve">
     <value>Sort By</value>
+  </data>
+  <data name="StartOptions" xml:space="preserve">
+    <value>Start Options</value>
   </data>
   <data name="TitleAscendingOrder" xml:space="preserve">
     <value>Title Ascending Order</value>
