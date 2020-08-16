@@ -3,16 +3,36 @@ using BishojoGameLauncher.Game;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BishojoGameLauncher.Properties {
-	[SettingsPath(DirectoryName = @".\Confs\", FileName = "User.conf")]
+	[SettingsPath(FileName = "User.conf")]
 	[DataContract]
 	public class Settings : SettingsBase<Settings> {
 		public static readonly Settings Instance = Load();
+
+		[DataMember]
+		public bool IsInitialized {
+			get { return Get(a => a.IsInitialized); }
+			set { Set(a => a.IsInitialized, value); }
+		}
+
+		[DataMember]
+		public int IsRunAtComputerStartup {
+			get { return Get(a => a.IsRunAtComputerStartup); }
+			set { Set(a => a.IsRunAtComputerStartup, value); }
+		}
+
+		[DataMember]
+		public bool IsCloseButtonToMinimize {
+			get { return Get(a => a.IsCloseButtonToMinimize); }
+			set { Set(a => a.IsCloseButtonToMinimize, value); }
+		}
 
 		[DataMember]
 		public int GameListSortMode {

@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using static BishojoGameLauncher.Windows.GamePropertiesWindow;
 
 namespace BishojoGameLauncher.Windows {
 	/// <summary>
@@ -90,7 +91,7 @@ namespace BishojoGameLauncher.Windows {
 
 			public string Hash { get; private set; }
 
-			public BitmapSource AppIcon { get; private set; }
+			public BitmapSource AppIcon { get; set; }
 
 			public string Title { get; private set; }
 
@@ -233,14 +234,28 @@ namespace BishojoGameLauncher.Windows {
 						}
 						firstLetterBefore = firstLetter;
 
+						BitmapSource iconIamge;
+
+						if (
+							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != "" &&
+							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != null
+						) {
+							Console.WriteLine("Debug Point");
+							iconIamge = new BitmapImage(
+								new Uri(GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath)
+							);
+						} else {
+							iconIamge = Imaging.CreateBitmapSourceFromHIcon(
+								Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
+								Int32Rect.Empty,
+								BitmapSizeOptions.FromEmptyOptions()
+							);
+						}
+
 						GameList.Items.Add(
 							new GameListItem(
 								game.Value.Hash,
-								Imaging.CreateBitmapSourceFromHIcon(
-									Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
-									Int32Rect.Empty,
-									BitmapSizeOptions.FromEmptyOptions()
-								),
+								iconIamge,
 								game.Value.Detaile.Title
 							)
 						);
@@ -263,14 +278,28 @@ namespace BishojoGameLauncher.Windows {
 						}
 						brandBefore = brand;
 
+						BitmapSource iconIamge;
+
+						if (
+							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != "" &&
+							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != null
+						) {
+							Console.WriteLine("Debug Point");
+							iconIamge = new BitmapImage(
+								new Uri(GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath)
+							);
+						} else {
+							iconIamge = Imaging.CreateBitmapSourceFromHIcon(
+								Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
+								Int32Rect.Empty,
+								BitmapSizeOptions.FromEmptyOptions()
+							);
+						}
+
 						GameList.Items.Add(
 							new GameListItem(
 								game.Value.Hash,
-								Imaging.CreateBitmapSourceFromHIcon(
-									Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
-									Int32Rect.Empty,
-									BitmapSizeOptions.FromEmptyOptions()
-								),
+								iconIamge,
 								game.Value.Detaile.Title
 							)
 						);
@@ -293,14 +322,28 @@ namespace BishojoGameLauncher.Windows {
 						}
 						selldayBefore = sellday;
 
+						BitmapSource iconIamge;
+
+						if (
+							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != "" &&
+							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != null
+						) {
+							Console.WriteLine("Debug Point");
+							iconIamge = new BitmapImage(
+								new Uri(GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath)
+							);
+						} else {
+							iconIamge = Imaging.CreateBitmapSourceFromHIcon(
+								Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
+								Int32Rect.Empty,
+								BitmapSizeOptions.FromEmptyOptions()
+							);
+						}
+
 						GameList.Items.Add(
 							new GameListItem(
 								game.Value.Hash,
-								Imaging.CreateBitmapSourceFromHIcon(
-									Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
-									Int32Rect.Empty,
-									BitmapSizeOptions.FromEmptyOptions()
-								),
+								iconIamge,
 								game.Value.Detaile.Title
 							)
 						);
@@ -308,14 +351,27 @@ namespace BishojoGameLauncher.Windows {
 					break;
 				default:
 					foreach (var game in sortedGames) {
+						BitmapSource iconIamge;
+
+						if (
+							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != "" &&
+							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != null
+						) {
+							iconIamge = new BitmapImage(
+								new Uri(GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath)
+							);
+						} else {
+							iconIamge = Imaging.CreateBitmapSourceFromHIcon(
+								Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
+								Int32Rect.Empty,
+								BitmapSizeOptions.FromEmptyOptions()
+							);
+						}
+
 						GameList.Items.Add(
 							new GameListItem(
 								game.Value.Hash,
-								Imaging.CreateBitmapSourceFromHIcon(
-									Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
-									Int32Rect.Empty,
-									BitmapSizeOptions.FromEmptyOptions()
-								),
+								iconIamge,
 								game.Value.Detaile.Title
 							)
 						);
@@ -447,6 +503,26 @@ namespace BishojoGameLauncher.Windows {
 			Settings.Instance.GameListSortMode = (int)sortMode;
 			Settings.Instance.Save();
 			SetToDefaultSortMode.IsEnabled = false;
+		}
+
+		private void GameProperties_Click(object sender, RoutedEventArgs e) {
+			var selectedGame = GameList.SelectedItem as GameListItem;
+			var gamePropertiesWindow = new GamePropertiesWindow(selectedGame.Hash);
+			gamePropertiesWindow.ChangeIcon += changeIcon;
+			gamePropertiesWindow.Owner = Window.GetWindow(this);
+			gamePropertiesWindow.Show();
+		}
+
+		private void changeIcon(object sender, ChangeIconEventArgs e) {
+			var selectedIndex = GameList.SelectedIndex;
+			Reload();
+			GameList.SelectedIndex = selectedIndex;
+		/*
+		 * 処理負荷削減のテスト
+			var selectedItem = GameList.SelectedItem as GameListItem;
+			selectedItem.AppIcon  = new BitmapImage(new Uri(e.ChangeIconPath));
+			GameList.SelectedItem = selectedItem;
+		*/
 		}
 	}
 }

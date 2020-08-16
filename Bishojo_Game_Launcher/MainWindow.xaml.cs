@@ -1,9 +1,12 @@
 ﻿using BishojoGameLauncher.Properties;
 using BishojoGameLauncher.Windows;
+using Microsoft.Win32;
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using System.Windows;
+using System.Windows.Input;
 
 namespace BishojoGameLauncher {
 	/// <summary>
@@ -17,6 +20,21 @@ namespace BishojoGameLauncher {
 
         public MainWindow() {
             InitializeComponent();
+            initialize();
+        }
+
+        private void initialize() {
+            if (!Settings.Instance.IsInitialized) {
+                var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+                string path = Assembly.GetExecutingAssembly().Location;
+                key.SetValue("BishojoGameLauncher", path);
+                
+                Settings.Instance.IsInitialized = true;
+            }
+
+            if (Settings.Instance.IsRunAtComputerStartup == 2) {
+                this.Hide();
+			}
         }
 
         private void window_StateChanged(object sender, EventArgs e) {
@@ -30,8 +48,16 @@ namespace BishojoGameLauncher {
             }
         }
 
+        private void window_Closed(object sender, EventArgs e) {
+            NotifyIcon.Dispose();
+        }
+
         private void WindowClose_Click(object sender, RoutedEventArgs e) {
-            this.Close();
+            if (Settings.Instance.IsCloseButtonToMinimize) {
+                this.Hide();
+            } else {
+                this.Close();
+            }
         }
 
         private void WindowMaxmize_Click(object sender, RoutedEventArgs e) {
@@ -119,5 +145,33 @@ namespace BishojoGameLauncher {
                 e.Effects = DragDropEffects.None;
             e.Handled = true;
         }
+
+		private void TaskBarIcon_Show_Click(object sender, RoutedEventArgs e) {
+            if (WindowState == WindowState.Minimized) {
+                WindowState = WindowState.Normal;
+            } else {
+                Show();
+            }
+            Activate();
+        }
+
+		private void TaskBarIcon_Exit_Click(object sender, RoutedEventArgs e) {
+            this.Close();
+		}
 	}
+	class ShowWindowCommand : ICommand {
+        public void Execute(object parameter) {
+            if (Application.Current.MainWindow.WindowState == WindowState.Minimized) {
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+            } else {
+                Application.Current.MainWindow.Show();
+            }
+            Application.Current.MainWindow.Activate();
+        }
+
+        public bool CanExecute(object parameter) {
+            return true;
+        }
+        public event EventHandler CanExecuteChanged;
+    }
 }

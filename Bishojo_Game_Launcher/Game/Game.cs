@@ -118,11 +118,19 @@ namespace BishojoGameLauncher.Game {
 
     [DataContract]
     public class GameDetaile {
-        public GameDetaile(string hash, string executableFile, string saveFolder, Detaile detaile, bool downloadComplete = false) {
+        public GameDetaile(
+            string hash,
+            string executableFile,
+            string saveFolder,
+            Detaile detaile,
+            bool downloadComplete = false,
+            string customIconPath = ""
+        ) {
             this.Hash = hash;
             this.ExecutableFile = executableFile;
             this.SaveFolder = saveFolder;
             this.DownloadComplete = downloadComplete;
+            this.CustomaIconPath = customIconPath;
             this.Detaile = detaile;
         }
         
@@ -137,6 +145,9 @@ namespace BishojoGameLauncher.Game {
 
         [DataMember]
         public bool DownloadComplete { get; set; }
+
+        [DataMember]
+        public string CustomaIconPath { get; set; }
 
         [DataMember]
         public Detaile Detaile { get; private set; }

@@ -35,10 +35,12 @@
 				<ColumnDefinition Width="150"/>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
-			<Image Grid.Column="0" x:Name="Trademark" VerticalAlignment="Center"/>
+			<Image Grid.Column="0"
+				   Source="/Bishojo Game Launcher;component/Resources/Icon1024.png"
+				   VerticalAlignment="Center"/>
 			<Grid Grid.Column="1">
 				<Grid.RowDefinitions>
-					<RowDefinition Height="80"/>
+					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="5"/>
 					<RowDefinition Height="30"/>
 					<RowDefinition Height="5"/>
@@ -50,17 +52,24 @@
 					x:Name="AppTitle"
 					FontSize="50"
 					VerticalAlignment="Center"
-					Text="{x:Static properties:Resources.AppTitle}"
+					HorizontalAlignment="Center"
+					TextAlignment="Center"
+					TextWrapping="Wrap"
+					Text="{x:Static properties:Resources.AppLongTitle}"
 					Style="{DynamicResource DefaultTextBlockStyle}"/>
 				<TextBlock
 					Grid.Row="2"
 					x:Name="AppVersion"
 					FontSize="25"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
 					Style="{DynamicResource DefaultTextBlockStyle}"/>
 				<TextBlock
 					Grid.Row="4"
 					x:Name="Copyright"
 					FontSize="25"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
 					Style="{DynamicResource DefaultTextBlockStyle}"/>
 			</Grid>
 		</Grid>

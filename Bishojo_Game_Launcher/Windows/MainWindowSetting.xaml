@@ -4,25 +4,181 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:properties="clr-namespace:BishojoGameLauncher.Properties"
-			 xmlns:local="clr-namespace:BishojoGameLauncher.Windows"
-             mc:Ignorable="d" 
+			 xmlns:local="clr-namespace:BishojoGameLauncher.Windows" xmlns:control="clr-namespace:BishojoGameLauncher.Control"
+			 mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1280">
 
 	<Grid Margin="5, 0, 5, 0">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="350"/>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="350"/>
-		</Grid.ColumnDefinitions>
-		<ListBox
-			x:Name="Settings"
-			FontSize="25"
-			Style="{DynamicResource DefaultListBoxStyle}"
-			ItemContainerStyle="{DynamicResource DefaultListBoxItemStyle}">
-			<ListBoxItem Content="{x:Static properties:Resources.Network}"/>
-		</ListBox>
-		<Grid Grid.Column="1">
-			<local:MainWindowSettingNetwork/>
-		</Grid>
+		<TabControl TabStripPlacement="Left"
+					Style="{DynamicResource DefaultTabControlsStyle}">
+			<TabControl.Resources>
+				<Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource DefaultTabItemStyle}">
+					<Setter Property="Width" Value="300"/>
+					<Setter Property="FontSize" Value="30"/>
+				</Style>
+			</TabControl.Resources>
+			<TabItem Header="{x:Static properties:Resources.General}">
+				<Grid Margin="5, 0, 5, 0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="30"/>
+						<RowDefinition Height="5"/>
+						<RowDefinition Height="30"/>
+						<RowDefinition Height="5"/>
+						<RowDefinition Height="30"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<TextBlock Grid.Row="0"
+							   FontSize="25"
+							   Text="{x:Static properties:Resources.General}"
+							   Style="{DynamicResource DefaultTextBlockStyle}"/>
+					<Grid Grid.Row="2">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="120"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Grid.Column="0"
+								   FontSize="15"
+								   Text="{x:Static properties:Resources.StartAtComputerStartup}"
+								   Style="{DynamicResource DefaultTextBlockStyle}"/>
+						<Border Grid.Column="2"
+								Style="{DynamicResource DefaultBorderStyle}">
+							<ComboBox x:Name="General_RunAtComputerStartup"
+									  FontSize="15"
+									  Style="{DynamicResource DefaultComboBoxStyle}"
+									  ItemContainerStyle="{DynamicResource DefaultComboBoxItemStyle}">
+								<ComboBoxItem Tag="0" Content="{x:Static properties:Resources.StartWithMinimized}"/>
+								<ComboBoxItem Tag="1" Content="{x:Static properties:Resources.Yes}"/>
+								<ComboBoxItem Tag="2" Content="{x:Static properties:Resources.No}"/>
+							</ComboBox>
+						</Border>
+					</Grid>
+					<Grid Grid.Row="4">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="60"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Grid.Column="0"
+								   FontSize="15"
+								   Text="{x:Static properties:Resources.CloseButtonToMinimize}"
+								   Style="{DynamicResource DefaultTextBlockStyle}"/>
+						<control:ToggleSwitch Grid.Column="2"
+											  x:Name="General_CloseButtonToMinimize"
+											  ChangeToggleSwitch="General_CloseButtonToMinimize_Change"
+											  Style="{DynamicResource DefaultToggleSwitchStyle}"/>
+					</Grid>
+				</Grid>
+			</TabItem>
+
+			<TabItem Header="{x:Static properties:Resources.Network}">
+				<Grid Margin="5, 0, 5, 0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="30"/>
+						<RowDefinition Height="5"/>
+						<RowDefinition Height="30"/>
+						<RowDefinition Height="5"/>
+						<RowDefinition Height="30"/>
+						<RowDefinition Height="5"/>
+						<RowDefinition Height="30"/>
+						<RowDefinition Height="5"/>
+						<RowDefinition Height="30"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<Grid Grid.Row="0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="200"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="60"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Grid.Column="0"
+								   FontSize="25"
+								   Text="{x:Static properties:Resources.Proxy}"
+								   Style="{DynamicResource DefaultTextBlockStyle}"/>
+						<control:ToggleSwitch Grid.Column="2"
+											  x:Name="NetWork_ProxyEnable"
+										  	  Duration="0.2"
+								  			  ChangeToggleSwitch="NetWork_ProxyEnable_Change"
+											  Style="{DynamicResource DefaultToggleSwitchStyle}"/>
+					</Grid>
+
+					<Grid Grid.Row="2">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="200"/>
+							<ColumnDefinition Width="5"/>
+							<ColumnDefinition Width="80"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Grid.Column="0"
+								   FontSize="15"
+								   Text="{x:Static properties:Resources.ProxyType}"
+								   Style="{DynamicResource DefaultTextBlockStyle}"/>
+						<Border Grid.Column="2" Style="{DynamicResource TransparentBorderStyle}">
+							<ComboBox x:Name="NetWork_ProxyMode"
+									  FontSize="15"
+									 SelectedIndex="0"
+									 Style="{DynamicResource DefaultComboBoxStyle}"
+									 ItemContainerStyle="{DynamicResource DefaultComboBoxItemStyle}">
+								<ComboBoxItem Content="HTTP"/>
+								<ComboBoxItem Content="Socks5"/>
+							</ComboBox>
+						</Border>
+					</Grid>
+
+					<Grid Grid.Row="4">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="200"/>
+							<ColumnDefinition Width="5"/>
+							<ColumnDefinition Width="80"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Border Grid.Column="0" Style="{DynamicResource TransparentBorderStyle}">
+							<TextBox x:Name="NetWork_ProxyHost"
+									 FontSize="15"
+									 Tag="{x:Static properties:Resources.Host}"
+									 Style="{DynamicResource DefaultTextBoxStyle}"/>
+						</Border>
+						<Border Grid.Column="2" Style="{DynamicResource TransparentBorderStyle}">
+							<TextBox x:Name="Port"
+									 FontSize="15"
+									 Tag="{x:Static properties:Resources.Port}"
+									 Style="{DynamicResource DefaultTextBoxStyle}"/>
+						</Border>
+					</Grid>
+
+					<Grid Grid.Row="6">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="200"/>
+							<ColumnDefinition Width="5"/>
+							<ColumnDefinition Width="200"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Border Grid.Column="0" Style="{DynamicResource TransparentBorderStyle}">
+							<TextBox x:Name="NetWork_ProxyUser"
+									 FontSize="15"
+									 Tag="{x:Static properties:Resources.User}"
+									 Style="{DynamicResource DefaultTextBoxStyle}"/>
+						</Border>
+						<Border Grid.Column="2" Style="{DynamicResource TransparentBorderStyle}">
+							<TextBox x:Name="NetWork_ProxyPassword"
+									 FontSize="15"
+									 Tag="{x:Static properties:Resources.Password}"
+									 Style="{DynamicResource DefaultTextBoxStyle}"/>
+						</Border>
+					</Grid>
+
+					<Grid Grid.Row="8">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="150"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Button Grid.Column="0"
+								FontSize="15"
+								Content="{x:Static properties:Resources.UpdateProxy}"
+								Style="{DynamicResource BackgroundColerButtonStyle}"/>
+					</Grid>
+				</Grid>
+			</TabItem>
+		</TabControl>
 	</Grid>
 </UserControl>

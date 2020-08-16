@@ -61,7 +61,16 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
-        ///   BGL(仮) に類似しているローカライズされた文字列を検索します。
+        ///   Bishojo Game Launcher に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string AppLongTitle {
+            get {
+                return ResourceManager.GetString("AppLongTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   BGL に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string AppTitle {
             get {
@@ -70,7 +79,7 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
-        ///   BGL(仮) Version Information に類似しているローカライズされた文字列を検索します。
+        ///   BGL Version Information に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string AppVersion {
             get {
@@ -111,6 +120,24 @@ namespace BishojoGameLauncher.Properties {
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Change icon に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ChangeIcon {
+            get {
+                return ResourceManager.GetString("ChangeIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Close button to minimize に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string CloseButtonToMinimize {
+            get {
+                return ResourceManager.GetString("CloseButtonToMinimize", resourceCulture);
             }
         }
         
@@ -241,6 +268,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   General に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string General {
+            get {
+                return ResourceManager.GetString("General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Help に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Help {
@@ -250,11 +286,40 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Homepage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Homepage {
+            get {
+                return ResourceManager.GetString("Homepage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Host に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Host {
             get {
                 return ResourceManager.GetString("Host", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   (アイコン) に類似した型 System.Drawing.Icon のローカライズされたリソースを検索します。
+        /// </summary>
+        public static System.Drawing.Icon Icon {
+            get {
+                object obj = ResourceManager.GetObject("Icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        public static System.Drawing.Bitmap Icon1024 {
+            get {
+                object obj = ResourceManager.GetObject("Icon1024", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -286,11 +351,29 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Local File に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LocalFile {
+            get {
+                return ResourceManager.GetString("LocalFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Network に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Network {
             get {
                 return ResourceManager.GetString("Network", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
             }
         }
         
@@ -309,6 +392,24 @@ namespace BishojoGameLauncher.Properties {
         public static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Open Game Folder に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string OpenGameFolder {
+            get {
+                return ResourceManager.GetString("OpenGameFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Open Save Data Folder に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string OpenSaveDataFolder {
+            get {
+                return ResourceManager.GetString("OpenSaveDataFolder", resourceCulture);
             }
         }
         
@@ -448,6 +549,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Show に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Show {
+            get {
+                return ResourceManager.GetString("Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Singer に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Singer {
@@ -462,6 +572,24 @@ namespace BishojoGameLauncher.Properties {
         public static string SortBy {
             get {
                 return ResourceManager.GetString("SortBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Start at computer startup に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string StartAtComputerStartup {
+            get {
+                return ResourceManager.GetString("StartAtComputerStartup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Minimized に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string StartWithMinimized {
+            get {
+                return ResourceManager.GetString("StartWithMinimized", resourceCulture);
             }
         }
         
@@ -543,6 +671,15 @@ namespace BishojoGameLauncher.Properties {
         public static string WindowMinimizeToolTip {
             get {
                 return ResourceManager.GetString("WindowMinimizeToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Yes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

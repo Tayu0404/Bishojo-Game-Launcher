@@ -3,17 +3,43 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:properties="clr-namespace:BishojoGameLauncher.Properties"
 		xmlns:windows="clr-namespace:BishojoGameLauncher.Windows"
-		Title="MainWindow" Height="720" Width="1280"
+		xmlns:local="clr-namespace:BishojoGameLauncher"
+		xmlns:tb="http://www.hardcodet.net/taskbar"
+		Title="{x:Static properties:Resources.AppLongTitle}"
+		Height="720" Width="1280"
 		Style="{DynamicResource DefaultWindowStyle}"
         StateChanged="window_StateChanged"
+		Closed="window_Closed"
         AllowsTransparency="True"
 		WindowStyle="None"
 		WindowStartupLocation="CenterScreen">
+
 	<Grid x:Name="LayoutRoot">
+		<Grid.Resources>
+			<local:ShowWindowCommand x:Key="ShowWindowCommand"/>
+		</Grid.Resources>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="30"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
+
+		<tb:TaskbarIcon x:Name="NotifyIcon"
+						Visibility="Visible"
+						ToolTipText=""
+						IconSource="Resources/Icon.ico"
+						MenuActivation="LeftOrRightClick"
+						DoubleClickCommand="{StaticResource ShowWindowCommand}"
+						DoubleClickCommandParameter="{Binding ElementName=_this, Path=PreviousState}">
+			<tb:TaskbarIcon.ContextMenu>
+				<ContextMenu>
+					<MenuItem Header="{x:Static properties:Resources.Show}"
+							  Click="TaskBarIcon_Show_Click"/>
+					<MenuItem Header="{x:Static properties:Resources.Exit}"
+							  Click="TaskBarIcon_Exit_Click"/>
+				</ContextMenu>
+			</tb:TaskbarIcon.ContextMenu>
+		</tb:TaskbarIcon>
+
 		<Grid Grid.Row="0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
@@ -102,14 +128,9 @@
 						Style="{DynamicResource DefaultButtonStyle}"/>
 			</Grid>
 
-			<Grid Grid.Row="1">
-				<windows:MainWindowGameList x:Name="GameListWindow"
-											Visibility="Visible"
-											Drop="FilePath_Drop"
-											PreviewDragOver="FilePath_PreviewDragOver"/>
-				<windows:MainWindowDownloadList x:Name="DownloadListWindow" Visibility="Hidden"/>
-				<windows:MainWindowSetting  x:Name="SettingWindow" Visibility="Hidden"/>
-			</Grid>
+			<windows:MainWindowGameList Grid.Row="1" x:Name="GameListWindow" Visibility="Visible"/>
+			<windows:MainWindowDownloadList Grid.Row="1" x:Name="DownloadListWindow" Visibility="Hidden"/>
+			<windows:MainWindowSetting Grid.Row="1" x:Name="SettingWindow" Visibility="Hidden"/>
 
 			<Grid Grid.Row="2">
 				<Grid.ColumnDefinitions>
