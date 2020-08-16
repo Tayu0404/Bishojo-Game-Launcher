@@ -443,6 +443,9 @@ namespace BishojoGameLauncher.Windows {
 			var selectedGameDetaile = GameList.SelectedItem as GameListItem;
 			var processInfo = new ProcessStartInfo();
 			processInfo.FileName = GamesSettings.Instance.Games[selectedGameDetaile.Hash].ExecutableFile;
+			if (GamesSettings.Instance.Games[selectedGameDetaile.Hash].StartOptions != ""){
+				processInfo.Arguments = GamesSettings.Instance.Games[selectedGameDetaile.Hash].StartOptions;
+			}
 			Process.Start(processInfo);
 		}
 
@@ -456,26 +459,37 @@ namespace BishojoGameLauncher.Windows {
 				return;
 			}
 			GameListItem itemToBeSelected;
-			var mode = (int)sortMode;
-			if (mode %2 != 0) {
-				if (selectedIndex == 1) {
-					return;
-				}
-				var index = selectedIndex - 2;
-				var item = GameList.Items[index];
-				itemToBeSelected = item as GameListItem;
-			} else {
-				if (selectedIndex == 0) {
-					return;
-				}
-				var index = selectedIndex - 1;
-				var item = GameList.Items[index];
-				itemToBeSelected = item as GameListItem;
+
+			switch (sortMode) {
+				case SortMode.TitleAscendingOrderWithIndex:
+				case SortMode.TitleDescendingOrderWithIndex:
+				case SortMode.BrandAscendingOrderWithIndex:
+				case SortMode.BrandDescendingOrderWithIndex:
+				case SortMode.SellDayAscendingOrderWithIndex:
+				case SortMode.SellDayDescendingOrderWithIndex:
+					if (selectedIndex == 1) {
+						GameList.SelectedIndex = 1;
+						return;
+					}
+					var index = selectedIndex - 2;
+					var item = GameList.Items[index];
+					itemToBeSelected = item as GameListItem;
+					break;
+				default:
+					if (selectedIndex == 0) {
+						GameList.SelectedIndex = 0;
+						return;
+					}
+					index = selectedIndex - 1;
+					item = GameList.Items[index];
+					itemToBeSelected = item as GameListItem;
+					break;
+
 			}
 
 			if (selectedIndex >= GameList.Items.Count) {
 				GameList.SelectedIndex = GameList.Items.Count - 1;
-			} else if (!itemToBeSelected.Enable) {
+			} else if (itemToBeSelected.Enable) {
 				GameList.SelectedIndex = selectedIndex - 2;
 			} else {
 				GameList.SelectedIndex = selectedIndex - 1;
@@ -509,6 +523,7 @@ namespace BishojoGameLauncher.Windows {
 			var selectedGame = GameList.SelectedItem as GameListItem;
 			var gamePropertiesWindow = new GamePropertiesWindow(selectedGame.Hash);
 			gamePropertiesWindow.ChangeIcon += changeIcon;
+			gamePropertiesWindow.DeleteGame += deleteGame;
 			gamePropertiesWindow.Owner = Window.GetWindow(this);
 			gamePropertiesWindow.Show();
 		}
@@ -523,6 +538,41 @@ namespace BishojoGameLauncher.Windows {
 			selectedItem.AppIcon  = new BitmapImage(new Uri(e.ChangeIconPath));
 			GameList.SelectedItem = selectedItem;
 		*/
+		}
+
+		private void deleteGame(object sender, EventArgs e) {
+			var selectedIndex = GameList.SelectedIndex;
+			Reload();
+			if (GameList.Items.Count == 0) {
+				return;
+			}
+			GameListItem itemToBeSelected;
+			var mode = (int)sortMode;
+			if (mode % 2 != 0) {
+				if (selectedIndex == 1) {
+					GameList.SelectedIndex = 1;
+					return;
+				}
+				var index = selectedIndex - 2;
+				var item = GameList.Items[index];
+				itemToBeSelected = item as GameListItem;
+			} else {
+				if (selectedIndex == 0) {
+					GameList.SelectedIndex = 0;
+					return;
+				}
+				var index = selectedIndex - 1;
+				var item = GameList.Items[index];
+				itemToBeSelected = item as GameListItem;
+			}
+
+			if (selectedIndex >= GameList.Items.Count) {
+				GameList.SelectedIndex = GameList.Items.Count - 1;
+			} else if (!itemToBeSelected.Enable) {
+				GameList.SelectedIndex = selectedIndex - 2;
+			} else {
+				GameList.SelectedIndex = selectedIndex - 1;
+			}
 		}
 	}
 }

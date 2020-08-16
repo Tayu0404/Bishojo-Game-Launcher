@@ -144,6 +144,9 @@
   <data name="CloseButtonToMinimize" xml:space="preserve">
     <value>Close button to minimize</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="Composer" xml:space="preserve">
     <value>Composer</value>
   </data>
@@ -292,8 +295,11 @@
   <data name="StartAtComputerStartup" xml:space="preserve">
     <value>Start at computer startup</value>
   </data>
-  <data name="StartWithMinimized" xml:space="preserve">
+	<data name="StartWithMinimized" xml:space="preserve">
     <value>Minimized</value>
+  </data>
+  <data name="StartOptions" xml:space="preserve">
+    <value>Start Options</value>
   </data>
   <data name="TitleAscendingOrder" xml:space="preserve">
     <value>Title Ascending Order</value>

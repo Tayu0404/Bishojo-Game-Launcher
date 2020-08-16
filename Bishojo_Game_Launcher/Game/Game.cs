@@ -150,6 +150,9 @@ namespace BishojoGameLauncher.Game {
         public string CustomaIconPath { get; set; }
 
         [DataMember]
+        public string StartOptions { get; set; }
+
+        [DataMember]
         public Detaile Detaile { get; private set; }
     }
 }

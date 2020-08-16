@@ -144,6 +144,9 @@
   <data name="CloseButtonToMinimize" xml:space="preserve">
     <value>閉じるボタンで最小化にする</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
   <data name="Composer" xml:space="preserve">
     <value>作曲</value>
   </data>
@@ -285,8 +288,11 @@
   <data name="StartAtComputerStartup" xml:space="preserve">
     <value>コンピューターの起動時に実効する</value>
   </data>
-  <data name="StartWithMinimized" xml:space="preserve">
+	<data name="StartWithMinimized" xml:space="preserve">
     <value>最小化</value>
+  </data>
+  <data name="StartOptions" xml:space="preserve">
+    <value>起動オプション</value>
   </data>
   <data name="TitleAscendingOrder" xml:space="preserve">
     <value>タイトル昇順</value>

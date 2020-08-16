@@ -3,6 +3,7 @@ using BishojoGameLauncher.Properties;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -34,6 +35,18 @@ namespace BishojoGameLauncher.Windows {
 				HPURL.NavigateUri = new Uri(game.Detaile.Web);
 			}
 			HPTitle.Text = game.Detaile.Title;
+			StartOptions.Text = game.StartOptions;
+		}
+
+		private void WindowClosing(object sender, CancelEventArgs e) {
+			try {
+				if (StartOptions.Text != GamesSettings.Instance.Games[Hash].StartOptions) {
+					GamesSettings.Instance.Games[Hash].StartOptions = StartOptions.Text;
+					GamesSettings.Instance.Save();
+				}
+			} catch (KeyNotFoundException) {
+				return;
+			}
 		}
 
 		private string Hash { get; set; }
@@ -126,6 +139,31 @@ namespace BishojoGameLauncher.Windows {
 		public event ChangeIconEventHandler ChangeIcon {
 			add { _ChangeIcon += value; }
 			remove { _ChangeIcon -= value; }
+		}
+
+		private void StartOptions_Click(object sender, RoutedEventArgs e) {
+			StartOptions.Focus();
+		}
+
+		protected virtual void OnDeleteGame(EventArgs e) {
+			var handler = _DeleteGame;
+			if (handler != null) {
+				handler(this, e);
+			}
+		}
+
+		private event EventHandler _DeleteGame;
+
+		public event EventHandler DeleteGame {
+			add { _DeleteGame += value; }
+			remove { _DeleteGame -= value; }
+		}
+
+		private void Delete_Click(object sender, RoutedEventArgs e) {
+			GamesSettings.Instance.Games.Remove(Hash);
+			GamesSettings.Instance.Save();
+			OnDeleteGame(EventArgs.Empty);
+			this.Close();
 		}
 	}
 }
