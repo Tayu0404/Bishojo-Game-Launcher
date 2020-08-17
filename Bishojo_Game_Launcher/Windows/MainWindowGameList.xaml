@@ -163,14 +163,23 @@
 					<Grid Margin="5">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="*"/>
-							<ColumnDefinition Width="100"/>
+							<ColumnDefinition Width="Auto" MinWidth="100"/>
 							<ColumnDefinition Width="5"/>
 							<ColumnDefinition Width="40"/>
 						</Grid.ColumnDefinitions>
-						<TextBlock x:Name="Title" FontSize="30" HorizontalAlignment="Left" Style="{DynamicResource DefaultTextBlockStyle}"/>
-						<Button Grid.Column="1" FontSize="25" Click="Play_Click" Content="{x:Static properties:Resources.Play}" Style="{DynamicResource BackgroundColerButtonStyle}"/>
+						<TextBlock x:Name="Title"
+								   FontSize="30"
+								   Margin="0,0,5,0"
+								   HorizontalAlignment="Left"
+								   Style="{DynamicResource DefaultTextBlockStyle}"/>
+						<Button Grid.Column="1"
+								FontSize="25"
+								x:Name="PlayButton"
+								Click="Play_Click"
+								Content="{x:Static properties:Resources.Play}"
+								Style="{DynamicResource BackgroundColerButtonStyle}"/>
 						<Button Grid.Column="3"
-								Click="GameProperties_Click"
+								FontSize="20"
 								Style="{DynamicResource DefaultButtonStyle}">
 							<Path Style="{DynamicResource GearPathStyle}"/>
 						</Button>
@@ -187,8 +196,53 @@
 								<ColumnDefinition Width="*"/>
 								<ColumnDefinition Width="*"/>
 							</Grid.ColumnDefinitions>
-							<TextBlock Grid.Column="0" x:Name="Brand" FontSize="20" VerticalAlignment="Center" Style="{DynamicResource DefaultTextBlockStyle}"/>
-							<TextBlock Grid.Column="1" x:Name="ReleseData" FontSize="20" VerticalAlignment="Center" Style="{DynamicResource DefaultTextBlockStyle}"/>
+
+							<Grid Grid.Column="0">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock Grid.Column="0"
+										   x:Name="Brand"
+										   FontSize="20"
+										   VerticalAlignment="Center"
+										   Style="{DynamicResource DefaultTextBlockStyle}"/>
+								<TextBlock Grid.Column="1"
+										   x:Name="ReleseData"
+										   FontSize="20"
+										   VerticalAlignment="Center"
+										   Style="{DynamicResource DefaultTextBlockStyle}"/>
+							</Grid>
+							<Grid Grid.Column="2">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="3*"/>
+									<ColumnDefinition Width="2*"/>
+								</Grid.ColumnDefinitions>
+								<StackPanel Grid.Column="0"
+											Orientation="Horizontal">
+									<TextBlock VerticalAlignment="Center"
+											   FontSize="20"
+											   Margin="0,0,5,0"
+											   Text="{x:Static properties:Resources.LastPlayed}"
+											   Style="{DynamicResource DefaultTextBlockStyle}"/>
+									<TextBlock x:Name="LastPlayed"
+											   VerticalAlignment="Center"
+											   FontSize="20"
+											   Style="{DynamicResource DefaultTextBlockStyle}"/>
+								</StackPanel>
+								<StackPanel Grid.Column="1"
+											Orientation="Horizontal">
+									<TextBlock VerticalAlignment="Center"
+											   FontSize="20"
+											   Margin="0,0,5,0"
+											   Text="{x:Static properties:Resources.PlayTime}"
+											   Style="{DynamicResource DefaultTextBlockStyle}"/>
+									<TextBlock x:Name="PlayTime"
+											   VerticalAlignment="Center"
+											   FontSize="20"
+											   Style="{DynamicResource DefaultTextBlockStyle}"/>
+								</StackPanel>
+							</Grid>
 						</Grid>
 						<Border Grid.Row="1" Style="{DynamicResource DefaultBorderStyle}">
 							<ScrollViewer x:Name="SelectedGameDetails"

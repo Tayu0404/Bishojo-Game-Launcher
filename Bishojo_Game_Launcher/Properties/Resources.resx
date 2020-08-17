@@ -205,8 +205,11 @@
   <data name="Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Icon1024" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon1024.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+	<data name="Icon1024" type="System.Resources.ResXFileRef, System.Windows.Forms">
+		<value>..\Resources\Icon1024.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+	</data>
+  <data name="Hours" xml:space="preserve">
+    <value>Hour</value>
   </data>
   <data name="Illustrator" xml:space="preserve">
     <value>Illustrator</value>
@@ -214,11 +217,17 @@
   <data name="Kanji" xml:space="preserve">
     <value>Kanji</value>
   </data>
+  <data name="LastPlayed" xml:space="preserve">
+    <value>Last Played</value>
+  </data>
   <data name="Library" xml:space="preserve">
     <value>Library</value>
   </data>
   <data name="LocalFile" xml:space="preserve">
     <value>Local File</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>Min</value>
   </data>
   <data name="Network" xml:space="preserve">
     <value>Network</value>
@@ -228,6 +237,9 @@
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Not Found</value>
+  </data>
+  <data name="NotPlayed" xml:space="preserve">
+    <value>Not Played</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
@@ -243,6 +255,12 @@
   </data>
   <data name="Play" xml:space="preserve">
     <value>Play</value>
+  </data>
+  <data name="Playing" xml:space="preserve">
+    <value>Playing</value>
+  </data>
+  <data name="PlayTime" xml:space="preserve">
+    <value>Play Time</value>
   </data>
   <data name="Port" xml:space="preserve">
     <value>Port</value>
@@ -306,6 +324,9 @@
   </data>
   <data name="TitleDescendingOrder" xml:space="preserve">
     <value>Title Descending Order</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
   </data>
   <data name="UpdateProxy" xml:space="preserve">
     <value>Update Proxy</value>
