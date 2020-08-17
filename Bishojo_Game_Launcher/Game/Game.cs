@@ -139,6 +139,12 @@ namespace BishojoGameLauncher.Game {
         public bool DownloadComplete { get; set; }
 
         [DataMember]
+        public DateTime LastPlayed { get; set; }
+
+        [DataMember]
+        public TimeSpan PlayTime { get; set; }
+
+        [DataMember]
         public Detaile Detaile { get; private set; }
     }
 }
