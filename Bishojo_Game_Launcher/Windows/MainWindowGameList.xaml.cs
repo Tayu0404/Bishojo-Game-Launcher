@@ -2,7 +2,9 @@
 using BishojoGameLauncher.Properties;
 using Microsoft.VisualBasic;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -330,6 +332,8 @@ namespace BishojoGameLauncher.Windows {
 			Title.Text = "";
 			Brand.Text = "";
 			ReleseData.Text = "";
+			LastPlayed.Text = "";
+			PlayTime.Text = "";
 			MainImage.Source = null;
 			Illustrator.Items.Clear();
 			Scenarios.Items.Clear();
@@ -341,9 +345,31 @@ namespace BishojoGameLauncher.Windows {
 			var selectedItem = listBox.Items[listBox.SelectedIndex] as GameListItem;
 			var selectedGameDetaile = GamesSettings.Instance.Games[selectedItem.Hash];
 
+			if (processList.ContainsValue(selectedItem.Hash)) {
+				PlayButton.Content = Properties.Resources.Playing;
+			} else {
+				PlayButton.Content = Properties.Resources.Play;
+			}
+
 			Title.Text = selectedGameDetaile.Detaile.Title;
 			Brand.Text = selectedGameDetaile.Detaile.Brand;
 			ReleseData.Text = selectedGameDetaile.Detaile.Sellday;
+			
+			if (selectedGameDetaile.LastPlayed == new DateTime()) {
+				LastPlayed.Text = Properties.Resources.NotPlayed;
+			} else if (selectedGameDetaile.LastPlayed.Date == DateTime.Now.Date) {
+				LastPlayed.Text = Properties.Resources.Today;
+			} else {
+				LastPlayed.Text = selectedGameDetaile.LastPlayed.Date.ToString();
+			}
+
+			var playTime = selectedGameDetaile.PlayTime;
+			if (playTime.TotalMinutes < 59.5) {
+				PlayTime.Text = $"{Math.Round(playTime.TotalMinutes)} {Properties.Resources.Minutes}";
+			} else {
+				PlayTime.Text = $"{Math.Round(playTime.TotalHours)} {Properties.Resources.Hours}";
+			}
+
 			foreach (var illustrator in selectedGameDetaile.Detaile.Illustrators) {
 				Illustrator.Items.Add(illustrator);
 			}
@@ -380,11 +406,43 @@ namespace BishojoGameLauncher.Windows {
 			GameSearchWord.Focus();
 		}
 
+		private Dictionary<int, string> processList = new Dictionary<int, string>();
+
 		private void Play_Click(object sender, RoutedEventArgs e) {
+			if (PlayButton.Content.ToString() == Properties.Resources.Playing) {
+				return;
+			}
 			var selectedGameDetaile = GameList.SelectedItem as GameListItem;
+			var hash = selectedGameDetaile.Hash;
+
 			var processInfo = new ProcessStartInfo();
-			processInfo.FileName = GamesSettings.Instance.Games[selectedGameDetaile.Hash].ExecutableFile;
-			Process.Start(processInfo);
+			processInfo.FileName = GamesSettings.Instance.Games[hash].ExecutableFile;
+
+			var process = new Process();
+			process.StartInfo = processInfo;
+			process.Exited += new EventHandler(game_Exited);
+			process.EnableRaisingEvents = true;
+			process.Start();
+
+			processList.Add(process.Id, hash);
+			PlayButton.Content = Properties.Resources.Playing;
+		}
+
+		private void game_Exited(object sender, EventArgs e){
+			var process = sender as Process;
+			var hash = processList[process.Id];
+
+			GamesSettings.Instance.Games[hash].LastPlayed = process.ExitTime;
+
+			var playTime = process.ExitTime - process.StartTime;
+			var totalPlayTime = GamesSettings.Instance.Games[hash].PlayTime + playTime;
+			GamesSettings.Instance.Games[hash].PlayTime = totalPlayTime;
+
+			GamesSettings.Instance.Save();
+			processList.Remove(process.Id);
+			this.Dispatcher.Invoke((Action)(() => {
+				PlayButton.Content = Properties.Resources.Play;
+			}));
 		}
 
 		private void Delete_Click(object sender, RoutedEventArgs e) {

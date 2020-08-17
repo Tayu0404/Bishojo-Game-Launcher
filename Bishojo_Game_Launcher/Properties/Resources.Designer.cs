@@ -259,6 +259,15 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Hour に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Hours {
+            get {
+                return ResourceManager.GetString("Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Illustrator に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Illustrator {
@@ -277,11 +286,29 @@ namespace BishojoGameLauncher.Properties {
         }
         
         /// <summary>
+        ///   Last Played に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LastPlayed {
+            get {
+                return ResourceManager.GetString("LastPlayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Library に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Library {
             get {
                 return ResourceManager.GetString("Library", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Minutes {
+            get {
+                return ResourceManager.GetString("Minutes", resourceCulture);
             }
         }
         
@@ -300,6 +327,15 @@ namespace BishojoGameLauncher.Properties {
         public static string NotFound {
             get {
                 return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Not Played に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NotPlayed {
+            get {
+                return ResourceManager.GetString("NotPlayed", resourceCulture);
             }
         }
         
@@ -327,6 +363,24 @@ namespace BishojoGameLauncher.Properties {
         public static string Play {
             get {
                 return ResourceManager.GetString("Play", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Playing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Playing {
+            get {
+                return ResourceManager.GetString("Playing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Play Time に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PlayTime {
+            get {
+                return ResourceManager.GetString("PlayTime", resourceCulture);
             }
         }
         
@@ -480,6 +534,15 @@ namespace BishojoGameLauncher.Properties {
         public static string TitleDescendingOrder {
             get {
                 return ResourceManager.GetString("TitleDescendingOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Today に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
             }
         }
         

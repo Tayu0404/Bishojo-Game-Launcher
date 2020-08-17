@@ -183,20 +183,32 @@
   <data name="Host" xml:space="preserve">
     <value>ホスト</value>
   </data>
+  <data name="Hours" xml:space="preserve">
+    <value>時間</value>
+  </data>
   <data name="Illustrator" xml:space="preserve">
     <value>原画</value>
   </data>
   <data name="Kanji" xml:space="preserve">
     <value>漢字</value>
   </data>
+  <data name="LastPlayed" xml:space="preserve">
+    <value>最終プレイ日時</value>
+  </data>
   <data name="Library" xml:space="preserve">
     <value>ライブラリ</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>分</value>
   </data>
   <data name="Network" xml:space="preserve">
     <value>ネットワーク</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>見つかりませんでした</value>
+  </data>
+  <data name="NotPlayed" xml:space="preserve">
+    <value>未プレイ</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
@@ -206,6 +218,12 @@
   </data>
   <data name="Play" xml:space="preserve">
     <value>プレイ</value>
+  </data>
+  <data name="Playing" xml:space="preserve">
+    <value>プレイ中</value>
+  </data>
+  <data name="PlayTime" xml:space="preserve">
+    <value>プレイ時間</value>
   </data>
   <data name="Port" xml:space="preserve">
     <value>ポート</value>
@@ -257,6 +275,9 @@
   </data>
   <data name="TitleDescendingOrder" xml:space="preserve">
     <value>タイトル降順</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日</value>
   </data>
   <data name="UpdateProxy" xml:space="preserve">
     <value>プロキシを更新</value>
