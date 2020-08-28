@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GameData" targetNamespace="http://tempuri.org/GameData.xsd" xmlns:mstns="http://tempuri.org/GameData.xsd" xmlns="http://tempuri.org/GameData.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="GameData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="GameData" msprop:Generator_UserDSName="GameData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Games" msprop:Generator_TableClassName="GamesDataTable" msprop:Generator_TableVarName="tableGames" msprop:Generator_TablePropName="Games" msprop:Generator_RowDeletingName="GamesRowDeleting" msprop:Generator_RowChangingName="GamesRowChanging" msprop:Generator_RowEvHandlerName="GamesRowChangeEventHandler" msprop:Generator_RowDeletedName="GamesRowDeleted" msprop:Generator_UserTableName="Games" msprop:Generator_RowChangedName="GamesRowChanged" msprop:Generator_RowEvArgName="GamesRowChangeEvent" msprop:Generator_RowClassName="GamesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Hash" msprop:Generator_ColumnVarNameInTable="columnHash" msprop:Generator_ColumnPropNameInRow="Hash" msprop:Generator_ColumnPropNameInTable="HashColumn" msprop:Generator_UserColumnName="Hash" type="xs:string" />
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title" type="xs:string" minOccurs="0" />
+              <xs:element name="Web" msprop:Generator_ColumnVarNameInTable="columnWeb" msprop:Generator_ColumnPropNameInRow="Web" msprop:Generator_ColumnPropNameInTable="WebColumn" msprop:Generator_UserColumnName="Web" type="xs:string" minOccurs="0" />
+              <xs:element name="Brand" msprop:Generator_ColumnVarNameInTable="columnBrand" msprop:Generator_ColumnPropNameInRow="Brand" msprop:Generator_ColumnPropNameInTable="BrandColumn" msprop:Generator_UserColumnName="Brand" type="xs:string" minOccurs="0" />
+              <xs:element name="Sellday" msprop:Generator_ColumnVarNameInTable="columnSellday" msprop:Generator_ColumnPropNameInRow="Sellday" msprop:Generator_ColumnPropNameInTable="SelldayColumn" msprop:Generator_UserColumnName="Sellday" type="xs:string" minOccurs="0" />
+              <xs:element name="MainImage" msprop:Generator_ColumnVarNameInTable="columnMainImage" msprop:Generator_ColumnPropNameInRow="MainImage" msprop:Generator_ColumnPropNameInTable="MainImageColumn" msprop:Generator_UserColumnName="MainImage" type="xs:string" minOccurs="0" />
+              <xs:element name="Erogame" msprop:Generator_ColumnVarNameInTable="columnErogame" msprop:Generator_ColumnPropNameInRow="Erogame" msprop:Generator_ColumnPropNameInTable="ErogameColumn" msprop:Generator_UserColumnName="Erogame" type="xs:string" minOccurs="0" />
+              <xs:element name="Illustrators" msprop:Generator_ColumnVarNameInTable="columnIllustrators" msprop:Generator_ColumnPropNameInRow="Illustrators" msprop:Generator_ColumnPropNameInTable="IllustratorsColumn" msprop:Generator_UserColumnName="Illustrators" type="xs:string" minOccurs="0" />
+              <xs:element name="Scenarios" msprop:Generator_ColumnVarNameInTable="columnScenarios" msprop:Generator_ColumnPropNameInRow="Scenarios" msprop:Generator_ColumnPropNameInTable="ScenariosColumn" msprop:Generator_UserColumnName="Scenarios" type="xs:string" minOccurs="0" />
+              <xs:element name="Composers" msprop:Generator_ColumnVarNameInTable="columnComposers" msprop:Generator_ColumnPropNameInRow="Composers" msprop:Generator_ColumnPropNameInTable="ComposersColumn" msprop:Generator_UserColumnName="Composers" type="xs:string" minOccurs="0" />
+              <xs:element name="Voices" msprop:Generator_ColumnVarNameInTable="columnVoices" msprop:Generator_ColumnPropNameInRow="Voices" msprop:Generator_ColumnPropNameInTable="VoicesColumn" msprop:Generator_UserColumnName="Voices" type="xs:string" minOccurs="0" />
+              <xs:element name="Characters" msprop:Generator_ColumnVarNameInTable="columnCharacters" msprop:Generator_ColumnPropNameInRow="Characters" msprop:Generator_ColumnPropNameInTable="CharactersColumn" msprop:Generator_UserColumnName="Characters" type="xs:string" minOccurs="0" />
+              <xs:element name="Singers" msprop:Generator_ColumnVarNameInTable="columnSingers" msprop:Generator_ColumnPropNameInRow="Singers" msprop:Generator_ColumnPropNameInTable="SingersColumn" msprop:Generator_UserColumnName="Singers" type="xs:string" minOccurs="0" />
+              <xs:element name="SampleCGs" msprop:Generator_ColumnVarNameInTable="columnSampleCGs" msprop:Generator_ColumnPropNameInRow="SampleCGs" msprop:Generator_ColumnPropNameInTable="SampleCGsColumn" msprop:Generator_UserColumnName="SampleCGs" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="GameKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Games" />
+      <xs:field xpath="mstns:Hash" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

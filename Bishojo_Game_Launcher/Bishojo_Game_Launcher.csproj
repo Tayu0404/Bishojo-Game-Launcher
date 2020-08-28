@@ -115,6 +115,14 @@
     </ApplicationDefinition>
     <Compile Include="Configuration\ISettingsSerializer.cs" />
     <Compile Include="Configuration\SettingsBase.cs" />
+    <Compile Include="Database\GameData.cs">
+      <DependentUpon>GameData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Database\GameData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GameData.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Game\DownloadImage.cs" />
     <Compile Include="Game\ErogameScape.cs" />
     <Compile Include="Game\Game.cs" />
@@ -213,6 +221,17 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Database\GameData.xsc">
+      <DependentUpon>GameData.xsd</DependentUpon>
+    </None>
+    <None Include="Database\GameData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GameData.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Database\GameData.xss">
+      <DependentUpon>GameData.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>
