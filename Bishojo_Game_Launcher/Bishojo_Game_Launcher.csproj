@@ -124,6 +124,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GameData.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Database\Search.cs" />
     <Compile Include="Game\DownloadImage.cs" />
     <Compile Include="Game\ErogameScape.cs" />
     <Compile Include="Game\Game.cs" />
