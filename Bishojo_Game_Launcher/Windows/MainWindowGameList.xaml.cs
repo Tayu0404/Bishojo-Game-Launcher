@@ -74,6 +74,7 @@ namespace BishojoGameLauncher.Windows {
 				GameList.SelectedIndex = 0;
 			}
 		}
+
 		private SortMode _sortMode;
 
 		private SortMode sortMode {
@@ -81,8 +82,8 @@ namespace BishojoGameLauncher.Windows {
 			set {
 				_sortMode = value;
 				if (
-					GamesSettings.Instance.Games == null ||
-					GamesSettings.Instance.Games.Count == 0
+					GameData == null ||
+					GameData.Database.Games.Count == 0
 				) {
 					return;
 				}
@@ -242,32 +243,8 @@ namespace BishojoGameLauncher.Windows {
 							numbersAndSymbolsFlag = true;
 						}
 						firstLetterBefore = firstLetter;
-
-						BitmapSource iconIamge;
-
-						if (
-							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != "" &&
-							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != null
-						) {
-							Console.WriteLine("Debug Point");
-							iconIamge = new BitmapImage(
-								new Uri(GamesSettings.Instance.Games[game.Hash].CustomaIconPath)
-							);
-						} else {
-							iconIamge = Imaging.CreateBitmapSourceFromHIcon(
-								Icon.ExtractAssociatedIcon(game.ExecutableFilePath).Handle,
-								Int32Rect.Empty,
-								BitmapSizeOptions.FromEmptyOptions()
-							);
-						}
-
-						GameList.Items.Add(
-							new GameListItem(
-								game.Hash,
-								iconIamge,
-								game.Title
-							)
-						);
+						
+						addGameToList(game);
 					}
 					break;
 				case SortMode.BrandAscendingOrderWithIndex:
@@ -287,31 +264,7 @@ namespace BishojoGameLauncher.Windows {
 						}
 						brandBefore = brand;
 
-						BitmapSource iconIamge;
-
-						if (
-							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != "" &&
-							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != null
-						) {
-							Console.WriteLine("Debug Point");
-							iconIamge = new BitmapImage(
-								new Uri(GamesSettings.Instance.Games[game.Hash].CustomaIconPath)
-							);
-						} else {
-							iconIamge = Imaging.CreateBitmapSourceFromHIcon(
-								Icon.ExtractAssociatedIcon(game.ExecutableFilePath).Handle,
-								Int32Rect.Empty,
-								BitmapSizeOptions.FromEmptyOptions()
-							);
-						}
-
-						GameList.Items.Add(
-							new GameListItem(
-								game.Hash,
-								iconIamge,
-								game.Title
-							)
-						);
+						addGameToList(game);
 					}
 					break;
 				case SortMode.SellDayAscendingOrderWithIndex:
@@ -331,62 +284,50 @@ namespace BishojoGameLauncher.Windows {
 						}
 						selldayBefore = sellday;
 
-						BitmapSource iconIamge;
-
-						if (
-							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != "" &&
-							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != null
-						) {
-							Console.WriteLine("Debug Point");
-							iconIamge = new BitmapImage(
-								new Uri(GamesSettings.Instance.Games[game.Hash].CustomaIconPath)
-							);
-						} else {
-							iconIamge = Imaging.CreateBitmapSourceFromHIcon(
-								Icon.ExtractAssociatedIcon(game.ExecutableFilePath).Handle,
-								Int32Rect.Empty,
-								BitmapSizeOptions.FromEmptyOptions()
-							);
-						}
-
-						GameList.Items.Add(
-							new GameListItem(
-								game.Hash,
-								iconIamge,
-								game.Title
-							)
-						);
+						addGameToList(game);
 					}
 					break;
 				default:
 					foreach (var game in sortedGames) {
-						BitmapSource iconIamge;
-
-						if (
-							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != "" &&
-							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != null
-						) {
-							iconIamge = new BitmapImage(
-								new Uri(GamesSettings.Instance.Games[game.Hash].CustomaIconPath)
-							);
-						} else {
-							iconIamge = Imaging.CreateBitmapSourceFromHIcon(
-								Icon.ExtractAssociatedIcon(game.ExecutableFilePath).Handle,
-								Int32Rect.Empty,
-								BitmapSizeOptions.FromEmptyOptions()
-							);
-						}
-
-						GameList.Items.Add(
-							new GameListItem(
-								game.Hash,
-								iconIamge,
-								game.Title
-							)
-						);
+						addGameToList(game);
 					}
 					break;
 			}
+		}
+
+
+		private void addGameToList(Database.GameData.GamesRow game) {
+			BitmapSource iconIamge;
+			try {
+				if (
+					game.CustomaIconPath != null &&
+					game.CustomaIconPath != ""
+				) {
+					iconIamge = new BitmapImage(
+						new Uri(game.CustomaIconPath)
+					);
+				} else {
+					iconIamge = Imaging.CreateBitmapSourceFromHIcon(
+						Icon.ExtractAssociatedIcon(game.ExecutableFilePath).Handle,
+						Int32Rect.Empty,
+						BitmapSizeOptions.FromEmptyOptions()
+					);
+				}
+			} catch {
+				iconIamge = Imaging.CreateBitmapSourceFromHIcon(
+					Icon.ExtractAssociatedIcon(game.ExecutableFilePath).Handle,
+					Int32Rect.Empty,
+					BitmapSizeOptions.FromEmptyOptions()
+				);
+			}
+
+			GameList.Items.Add(
+				new GameListItem(
+					game.Hash,
+					iconIamge,
+					game.Title
+				)
+			);
 		}
 
 		private void GameList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -409,7 +350,7 @@ namespace BishojoGameLauncher.Windows {
 			SelectedGameDetails.ScrollToTop();
 
 			var selectedItem = listBox.Items[listBox.SelectedIndex] as GameListItem;
-			var selectedGameDetaile = GamesSettings.Instance.Games[selectedItem.Hash];
+			var selectedGameDetaile = Search.Hash(GameData.Database, selectedItem.Hash);
 
 			if (processList.ContainsValue(selectedItem.Hash)) {
 				PlayButton.Content = Properties.Resources.Playing;
@@ -417,9 +358,9 @@ namespace BishojoGameLauncher.Windows {
 				PlayButton.Content = Properties.Resources.Play;
 			}
 
-			Title.Text = selectedGameDetaile.Detaile.Title;
-			Brand.Text = selectedGameDetaile.Detaile.Brand;
-			ReleseData.Text = selectedGameDetaile.Detaile.Sellday;
+			Title.Text = selectedGameDetaile.Title;
+			Brand.Text = selectedGameDetaile.Brand;
+			ReleseData.Text = selectedGameDetaile.Sellday;
 			
 			if (selectedGameDetaile.LastPlayed == new DateTime()) {
 				LastPlayed.Text = Properties.Resources.NotPlayed;
@@ -436,33 +377,33 @@ namespace BishojoGameLauncher.Windows {
 				PlayTime.Text = $"{Math.Round(playTime.TotalHours)} {Properties.Resources.Hours}";
 			}
 
-			foreach (var illustrator in selectedGameDetaile.Detaile.Illustrators) {
+			foreach (var illustrator in selectedGameDetaile.Illustrators) {
 				Illustrator.Items.Add(illustrator);
 			}
-			foreach (var scenarios in selectedGameDetaile.Detaile.Scenarios) {
+			foreach (var scenarios in selectedGameDetaile.Scenarios) {
 				Scenarios.Items.Add(scenarios);
 			}
-			foreach (var composer in selectedGameDetaile.Detaile.Composers) {
+			foreach (var composer in selectedGameDetaile.Composers) {
 				Composer.Items.Add(composer);
 			}
-			for (var i = 0; i < selectedGameDetaile.Detaile.Voices.Count; i++) {
+			for (var i = 0; i < selectedGameDetaile.Voices.Count(); i++) {
 				VoiceActor.Items.Add(
 					new {
-						Voice = selectedGameDetaile.Detaile.Voices[i],
-						Character = selectedGameDetaile.Detaile.Characters[i]
+						Voice = selectedGameDetaile.Voices[i],
+						Character = selectedGameDetaile.Characters[i]
 					}
 				);
 			}
-			foreach (var singer in selectedGameDetaile.Detaile.Singers) {
+			foreach (var singer in selectedGameDetaile.Singers) {
 				Singer.Items.Add(singer);
 			}
 
-			if (selectedGameDetaile.DownloadComplete) {
+			if (selectedGameDetaile.Downloaded) {
 				MainImage.Source = new BitmapImage(
 					new Uri(
 						AppPath.GamesFolder +
 						selectedGameDetaile.Hash + @"\" +
-						selectedGameDetaile.Hash + Path.GetExtension(selectedGameDetaile.Detaile.MainImage)
+						selectedGameDetaile.Hash + Path.GetExtension(selectedGameDetaile.MainImage)
 					)
 				);
 			}
@@ -480,12 +421,17 @@ namespace BishojoGameLauncher.Windows {
 			}
 			var selectedGameDetaile = GameList.SelectedItem as GameListItem;
 			var hash = selectedGameDetaile.Hash;
-
+			var game = Search.Hash(GameData.Database, selectedGameDetaile.Hash);
+			
 			var processInfo = new ProcessStartInfo();
-			processInfo.FileName = GamesSettings.Instance.Games[selectedGameDetaile.Hash].ExecutableFile;
-			if (GamesSettings.Instance.Games[selectedGameDetaile.Hash].StartOptions != ""){
-				processInfo.Arguments = GamesSettings.Instance.Games[selectedGameDetaile.Hash].StartOptions;
+			processInfo.FileName = game.ExecutableFilePath; 
+			try {
+				if (game.StartOptions != "") {
+					processInfo.Arguments = game.StartOptions;
+				}
+			} catch {
 			}
+			
 
 			var process = new Process();
 			process.StartInfo = processInfo;
@@ -501,13 +447,13 @@ namespace BishojoGameLauncher.Windows {
 			var process = sender as Process;
 			var hash = processList[process.Id];
 
-			GamesSettings.Instance.Games[hash].LastPlayed = process.ExitTime;
+			Search.Hash(GameData.Database, hash).LastPlayed = process.ExitTime;
 
 			var playTime = process.ExitTime - process.StartTime;
-			var totalPlayTime = GamesSettings.Instance.Games[hash].PlayTime + playTime;
-			GamesSettings.Instance.Games[hash].PlayTime = totalPlayTime;
+			var totalPlayTime = Search.Hash(GameData.Database, hash).PlayTime + playTime;
+			Search.Hash(GameData.Database, hash).PlayTime = totalPlayTime;
 
-			GamesSettings.Instance.Save();
+			GameData.Save();
 			processList.Remove(process.Id);
 			this.Dispatcher.Invoke((Action)(() => {
 				PlayButton.Content = Properties.Resources.Play;
@@ -517,8 +463,9 @@ namespace BishojoGameLauncher.Windows {
 		private void Delete_Click(object sender, RoutedEventArgs e) {
 			var selectedIndex = GameList.SelectedIndex;
 			var selectedGameDetaile = GameList.SelectedItem as GameListItem;
-			GamesSettings.Instance.Games.Remove(selectedGameDetaile.Hash);
-			GamesSettings.Instance.Save();
+
+			Search.Hash(GameData.Database, selectedGameDetaile.Hash).Delete();
+			GameData.Save();
 			Reload();
 			if (GameList.Items.Count == 0) {
 				return;
@@ -597,12 +544,6 @@ namespace BishojoGameLauncher.Windows {
 			var selectedIndex = GameList.SelectedIndex;
 			Reload();
 			GameList.SelectedIndex = selectedIndex;
-		/*
-		 * 処理負荷削減のテスト
-			var selectedItem = GameList.SelectedItem as GameListItem;
-			selectedItem.AppIcon  = new BitmapImage(new Uri(e.ChangeIconPath));
-			GameList.SelectedItem = selectedItem;
-		*/
 		}
 
 		private void deleteGame(object sender, EventArgs e) {
