@@ -1,4 +1,5 @@
-﻿using BishojoGameLauncher.Properties;
+﻿using BishojoGameLauncher.Game;
+using BishojoGameLauncher.Properties;
 using BishojoGameLauncher.Windows;
 using Microsoft.Win32;
 using System;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace BishojoGameLauncher {
@@ -133,6 +135,30 @@ namespace BishojoGameLauncher {
             addGameWindow.Owner = GetWindow(this);
             addGameWindow.ShowDialog();
             if ((bool)addGameWindow.DialogResult) {
+                var gameDetaile = addGameWindow.GameDetaile;
+                
+                var game = GameListWindow.GameData.Database.Games.NewGamesRow();
+                game.Hash               = gameDetaile.Hash;
+                game.ExecutableFilePath = gameDetaile.ExecutableFile;
+                game.SaveDataPath       = gameDetaile.SaveFolder;
+                game.Title              = gameDetaile.Detaile.Title;
+                game.Web                = gameDetaile.Detaile.Web;
+                game.Brand              = gameDetaile.Detaile.Brand;
+                game.Sellday            = gameDetaile.Detaile.Sellday;
+                game.MainImage          = gameDetaile.Detaile.MainImage;
+                game.Erogame            = gameDetaile.Detaile.Erogame;
+                game.Illustrators       = gameDetaile.Detaile.Illustrators.ToArray();
+                game.Scenarios          = gameDetaile.Detaile.Scenarios.ToArray();
+                game.Composers          = gameDetaile.Detaile.Composers.ToArray();
+                game.Voices             = gameDetaile.Detaile.Voices.ToArray();
+                game.Characters         = gameDetaile.Detaile.Characters.ToArray();
+                game.Singers            = gameDetaile.Detaile.Singers.ToArray();
+                game.SampleCGs          = gameDetaile.Detaile.SampleCGs.ToArray();
+                game.Downloaded         = gameDetaile.DownloadComplete;
+
+                GameListWindow.GameData.Database.Games.AddGamesRow(game);
+                GameListWindow.GameData.Save();
+
                 GameListWindow.Reload();
                 DownloadListWindow.Reload();
             }
