@@ -1,5 +1,6 @@
 ﻿using BishojoGameLauncher.Game;
 using BishojoGameLauncher.Properties;
+using BishojoGameLauncher.Database;
 using Microsoft.VisualBasic;
 using System;
 using System.CodeDom;
@@ -31,7 +32,14 @@ namespace BishojoGameLauncher.Windows {
 			initialize();
 		}
 
+		private DatabaseContext _GameData;
+		public DatabaseContext GameData {
+			get { return _GameData; }
+			private set { _GameData = value; }
+		}
+
 		private void initialize() {
+			GameData = new DatabaseContext();
 			var mode = Settings.Instance.GameListSortMode;
 			switch (mode) {
 				case 0:
@@ -119,35 +127,34 @@ namespace BishojoGameLauncher.Windows {
 
 		public void Reload() { 
 			GameList.Items.Clear();
-			var games = GamesSettings.Instance.Games;
-			IOrderedEnumerable<KeyValuePair<string, GameDetaile>> sortedGames;
+			List<GameData.GamesRow> sortedGames;
 			switch (sortMode) {
 				case SortMode.TitleAscendingOrder:
 				case SortMode.TitleAscendingOrderWithIndex:
-					sortedGames = Sort.TitleAscendingOrder(games);
+					sortedGames = Sort.TitleAscendingOrder(GameData.Database);
 					break;
 				case SortMode.TitleDescendingOrder:
 				case SortMode.TitleDescendingOrderWithIndex:
-					sortedGames = Sort.TitleDescendingOrder(games);
+					sortedGames = Sort.TitleDescendingOrder(GameData.Database);
 					break;
 				case SortMode.BrandAscendingOrder:
 				case SortMode.BrandAscendingOrderWithIndex:
-					sortedGames = Sort.BrandAscendingOrder(games);
+					sortedGames = Sort.BrandAscendingOrder(GameData.Database);
 					break;
 				case SortMode.BrandDescendingOrder:
 				case SortMode.BrandDescendingOrderWithIndex:
-					sortedGames = Sort.BrandDescendingOrder(games);
+					sortedGames = Sort.BrandDescendingOrder(GameData.Database);
 					break;
 				case SortMode.SellDayAscendingOrder:
 				case SortMode.SellDayAscendingOrderWithIndex:
-					sortedGames = Sort.SellDayAscendingOrder(games);
+					sortedGames = Sort.SellDayAscendingOrder(GameData.Database);
 					break;
 				case SortMode.SellDayDescendingOrder:
 				case SortMode.SellDayDescendingOrderWithIndex:
-					sortedGames = Sort.SellDayDescendingOrder(games);
+					sortedGames = Sort.SellDayDescendingOrder(GameData.Database);
 					break;
 				default:
-					sortedGames = Sort.TitleAscendingOrder(games);
+					sortedGames = Sort.TitleAscendingOrder(GameData.Database);
 					break;
 			}
 			
@@ -158,7 +165,7 @@ namespace BishojoGameLauncher.Windows {
 					var numbersAndSymbolsFlag = false;
 					var kanjiiFlag = false;
 					foreach (var game in sortedGames) {
-						var firstLetter = Convert.ToChar(game.Value.Detaile.Title.Substring(0, 1));
+						var firstLetter = Convert.ToChar(game.Title.Substring(0, 1));
 
 						//If it is the first character that has never existed, register it as an index
 						//Check if the first letteris Hiragana or Katakana
@@ -239,16 +246,16 @@ namespace BishojoGameLauncher.Windows {
 						BitmapSource iconIamge;
 
 						if (
-							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != "" &&
-							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != null
+							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != "" &&
+							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != null
 						) {
 							Console.WriteLine("Debug Point");
 							iconIamge = new BitmapImage(
-								new Uri(GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath)
+								new Uri(GamesSettings.Instance.Games[game.Hash].CustomaIconPath)
 							);
 						} else {
 							iconIamge = Imaging.CreateBitmapSourceFromHIcon(
-								Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
+								Icon.ExtractAssociatedIcon(game.ExecutableFilePath).Handle,
 								Int32Rect.Empty,
 								BitmapSizeOptions.FromEmptyOptions()
 							);
@@ -256,9 +263,9 @@ namespace BishojoGameLauncher.Windows {
 
 						GameList.Items.Add(
 							new GameListItem(
-								game.Value.Hash,
+								game.Hash,
 								iconIamge,
-								game.Value.Detaile.Title
+								game.Title
 							)
 						);
 					}
@@ -267,7 +274,7 @@ namespace BishojoGameLauncher.Windows {
 				case SortMode.BrandDescendingOrderWithIndex:
 					var brandBefore = "";
 					foreach (var game in sortedGames) {
-						var brand = game.Value.Detaile.Brand;
+						var brand = game.Brand;
 						if (brand != brandBefore) {
 							GameList.Items.Add(
 								new GameListItem(
@@ -283,16 +290,16 @@ namespace BishojoGameLauncher.Windows {
 						BitmapSource iconIamge;
 
 						if (
-							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != "" &&
-							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != null
+							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != "" &&
+							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != null
 						) {
 							Console.WriteLine("Debug Point");
 							iconIamge = new BitmapImage(
-								new Uri(GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath)
+								new Uri(GamesSettings.Instance.Games[game.Hash].CustomaIconPath)
 							);
 						} else {
 							iconIamge = Imaging.CreateBitmapSourceFromHIcon(
-								Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
+								Icon.ExtractAssociatedIcon(game.ExecutableFilePath).Handle,
 								Int32Rect.Empty,
 								BitmapSizeOptions.FromEmptyOptions()
 							);
@@ -300,9 +307,9 @@ namespace BishojoGameLauncher.Windows {
 
 						GameList.Items.Add(
 							new GameListItem(
-								game.Value.Hash,
+								game.Hash,
 								iconIamge,
-								game.Value.Detaile.Title
+								game.Title
 							)
 						);
 					}
@@ -311,7 +318,7 @@ namespace BishojoGameLauncher.Windows {
 				case SortMode.SellDayDescendingOrderWithIndex:
 					var selldayBefore = "";
 					foreach (var game in sortedGames) {
-						var sellday = game.Value.Detaile.Sellday.Substring(0,7);
+						var sellday = game.Sellday.Substring(0,7);
 						if (sellday != selldayBefore) {
 							GameList.Items.Add(
 								new GameListItem(
@@ -327,16 +334,16 @@ namespace BishojoGameLauncher.Windows {
 						BitmapSource iconIamge;
 
 						if (
-							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != "" &&
-							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != null
+							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != "" &&
+							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != null
 						) {
 							Console.WriteLine("Debug Point");
 							iconIamge = new BitmapImage(
-								new Uri(GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath)
+								new Uri(GamesSettings.Instance.Games[game.Hash].CustomaIconPath)
 							);
 						} else {
 							iconIamge = Imaging.CreateBitmapSourceFromHIcon(
-								Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
+								Icon.ExtractAssociatedIcon(game.ExecutableFilePath).Handle,
 								Int32Rect.Empty,
 								BitmapSizeOptions.FromEmptyOptions()
 							);
@@ -344,9 +351,9 @@ namespace BishojoGameLauncher.Windows {
 
 						GameList.Items.Add(
 							new GameListItem(
-								game.Value.Hash,
+								game.Hash,
 								iconIamge,
-								game.Value.Detaile.Title
+								game.Title
 							)
 						);
 					}
@@ -356,15 +363,15 @@ namespace BishojoGameLauncher.Windows {
 						BitmapSource iconIamge;
 
 						if (
-							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != "" &&
-							GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath != null
+							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != "" &&
+							GamesSettings.Instance.Games[game.Hash].CustomaIconPath != null
 						) {
 							iconIamge = new BitmapImage(
-								new Uri(GamesSettings.Instance.Games[game.Value.Hash].CustomaIconPath)
+								new Uri(GamesSettings.Instance.Games[game.Hash].CustomaIconPath)
 							);
 						} else {
 							iconIamge = Imaging.CreateBitmapSourceFromHIcon(
-								Icon.ExtractAssociatedIcon(game.Value.ExecutableFile).Handle,
+								Icon.ExtractAssociatedIcon(game.ExecutableFilePath).Handle,
 								Int32Rect.Empty,
 								BitmapSizeOptions.FromEmptyOptions()
 							);
@@ -372,9 +379,9 @@ namespace BishojoGameLauncher.Windows {
 
 						GameList.Items.Add(
 							new GameListItem(
-								game.Value.Hash,
+								game.Hash,
 								iconIamge,
-								game.Value.Detaile.Title
+								game.Title
 							)
 						);
 					}
@@ -611,6 +618,7 @@ namespace BishojoGameLauncher.Windows {
 					GameList.SelectedIndex = 1;
 					return;
 				}
+
 				var index = selectedIndex - 2;
 				var item = GameList.Items[index];
 				itemToBeSelected = item as GameListItem;
