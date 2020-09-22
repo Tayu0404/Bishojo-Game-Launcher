@@ -74,17 +74,7 @@ namespace BishojoGameLauncher.Windows {
 			}
 		}
 
-		public string Hash {
-			get;
-			private set;
-		}
-
-		public string AddGameTitle {
-			get;
-			private set;
-		}
-
-		public string ExecutableFile {
+		public GameDetaile GameDetaile {
 			get;
 			private set;
 		}
@@ -192,21 +182,13 @@ namespace BishojoGameLauncher.Windows {
 				@"\" + hash + Path.GetExtension(detaile.MainImage)
 			);
 
-			GamesSettings.Instance.Games.Add(
+			GameDetaile = new GameDetaile(
 				hash,
-				new GameDetaile(
-					hash,
-					ExecutableFilePath.Text,
-					SaveDataPath.Text,
-					detaile,
-					downloaded
-				)
+				ExecutableFilePath.Text,
+				SaveDataPath.Text,
+				detaile,
+				downloaded
 			);
-			GamesSettings.Instance.Save();
-
-			this.Hash = GamesSettings.Instance.Games[hash].Hash;
-			this.AddGameTitle = GamesSettings.Instance.Games[hash].Detaile.Title;
-			this.ExecutableFile = GamesSettings.Instance.Games[hash].ExecutableFile;
 
 			this.DialogResult = true;
 			this.Close();
