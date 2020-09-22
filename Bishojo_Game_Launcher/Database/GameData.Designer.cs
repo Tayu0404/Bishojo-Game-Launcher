@@ -10,6 +10,8 @@
 
 #pragma warning disable 1591
 
+using System;
+
 namespace BishojoGameLauncher.Database {
     
     
@@ -313,6 +315,14 @@ namespace BishojoGameLauncher.Database {
             
             private global::System.Data.DataColumn columnDownloaded;
             
+            private global::System.Data.DataColumn columnCustomaIconPath;
+            
+            private global::System.Data.DataColumn columnLastPlayed;
+            
+            private global::System.Data.DataColumn columnPlayTime;
+            
+            private global::System.Data.DataColumn columnStartOptions;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public GamesDataTable() {
@@ -484,6 +494,38 @@ namespace BishojoGameLauncher.Database {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CustomaIconPathColumn {
+                get {
+                    return this.columnCustomaIconPath;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn LastPlayedColumn {
+                get {
+                    return this.columnLastPlayed;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn PlayTimeColumn {
+                get {
+                    return this.columnPlayTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn StartOptionsColumn {
+                get {
+                    return this.columnStartOptions;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -536,7 +578,11 @@ namespace BishojoGameLauncher.Database {
                         string SampleCGs, 
                         string ExecutableFilePath, 
                         string SaveDataPath, 
-                        string Downloaded) {
+                        string Downloaded, 
+                        string CustomaIconPath, 
+                        string LastPlayed, 
+                        string PlayTime, 
+                        string StartOptions) {
                 GamesRow rowGamesRow = ((GamesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Hash,
@@ -555,7 +601,11 @@ namespace BishojoGameLauncher.Database {
                         SampleCGs,
                         ExecutableFilePath,
                         SaveDataPath,
-                        Downloaded};
+                        Downloaded,
+                        CustomaIconPath,
+                        LastPlayed,
+                        PlayTime,
+                        StartOptions};
                 rowGamesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGamesRow);
                 return rowGamesRow;
@@ -602,6 +652,10 @@ namespace BishojoGameLauncher.Database {
                 this.columnExecutableFilePath = base.Columns["ExecutableFilePath"];
                 this.columnSaveDataPath = base.Columns["SaveDataPath"];
                 this.columnDownloaded = base.Columns["Downloaded"];
+                this.columnCustomaIconPath = base.Columns["CustomaIconPath"];
+                this.columnLastPlayed = base.Columns["LastPlayed"];
+                this.columnPlayTime = base.Columns["PlayTime"];
+                this.columnStartOptions = base.Columns["StartOptions"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -641,6 +695,14 @@ namespace BishojoGameLauncher.Database {
                 base.Columns.Add(this.columnSaveDataPath);
                 this.columnDownloaded = new global::System.Data.DataColumn("Downloaded", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDownloaded);
+                this.columnCustomaIconPath = new global::System.Data.DataColumn("CustomaIconPath", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCustomaIconPath);
+                this.columnLastPlayed = new global::System.Data.DataColumn("LastPlayed", typeof(DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLastPlayed);
+                this.columnPlayTime = new global::System.Data.DataColumn("PlayTime", typeof(TimeSpan), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlayTime);
+                this.columnStartOptions = new global::System.Data.DataColumn("StartOptions", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStartOptions);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("GameKey", new global::System.Data.DataColumn[] {
                                 this.columnHash}, true));
                 this.columnHash.AllowDBNull = false;
@@ -1054,6 +1116,70 @@ namespace BishojoGameLauncher.Database {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string CustomaIconPath {
+                get {
+                    try {
+                        return ((string)(this[this.tableGames.CustomaIconPathColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("テーブル \'Games\' にある列 \'CustomaIconPath\' の値は DBNull です。", e);
+                    }
+                }
+                set {
+                    this[this.tableGames.CustomaIconPathColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public DateTime LastPlayed {
+                get {
+                    try {
+                        return ((DateTime)(this[this.tableGames.LastPlayedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("テーブル \'Games\' にある列 \'LastPlayed\' の値は DBNull です。", e);
+                    }
+                }
+                set {
+                    this[this.tableGames.LastPlayedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public TimeSpan PlayTime {
+                get {
+                    try {
+                        return ((TimeSpan)(this[this.tableGames.PlayTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("テーブル \'Games\' にある列 \'PlayTime\' の値は DBNull です。", e);
+                    }
+                }
+                set {
+                    this[this.tableGames.PlayTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string StartOptions {
+                get {
+                    try {
+                        return ((string)(this[this.tableGames.StartOptionsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("テーブル \'Games\' にある列 \'StartOptions\' の値は DBNull です。", e);
+                    }
+                }
+                set {
+                    this[this.tableGames.StartOptionsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsTitleNull() {
                 return this.IsNull(this.tableGames.TitleColumn);
             }
@@ -1242,6 +1368,54 @@ namespace BishojoGameLauncher.Database {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetDownloadedNull() {
                 this[this.tableGames.DownloadedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCustomaIconPathNull() {
+                return this.IsNull(this.tableGames.CustomaIconPathColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCustomaIconPathNull() {
+                this[this.tableGames.CustomaIconPathColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsLastPlayedNull() {
+                return this.IsNull(this.tableGames.LastPlayedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetLastPlayedNull() {
+                this[this.tableGames.LastPlayedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsPlayTimeNull() {
+                return this.IsNull(this.tableGames.PlayTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetPlayTimeNull() {
+                this[this.tableGames.PlayTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsStartOptionsNull() {
+                return this.IsNull(this.tableGames.StartOptionsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetStartOptionsNull() {
+                this[this.tableGames.StartOptionsColumn] = global::System.Convert.DBNull;
             }
         }
         
