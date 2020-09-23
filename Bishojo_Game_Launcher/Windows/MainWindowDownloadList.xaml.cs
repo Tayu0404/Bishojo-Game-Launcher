@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BishojoGameLauncher.Database;
 using BishojoGameLauncher.Game;
 using BishojoGameLauncher.Properties;
 
@@ -24,27 +25,22 @@ namespace BishojoGameLauncher.Windows {
 	public partial class MainWindowDownloadList : UserControl {
 		public MainWindowDownloadList() {
 			InitializeComponent();
-		}
+			initialize();
+			}
 
 		private void initialize() {
-			if (
-				GamesSettings.Instance.Games == null ||
-				GamesSettings.Instance.Games.Count == 0
-			) {
-				return;
-			}
 			Reload();
 		}
 
 		private Dictionary<string, downloadDetaile> downloadList = new Dictionary<string, downloadDetaile>();
 
 		private class downloadDetaile {
-			public downloadDetaile(GameDetaile gameDetaile, bool downloading = false) {
+			public downloadDetaile(GameData.GamesRow gameDetaile, bool downloading = false) {
 				this.GameDetaile = gameDetaile;
 				this.Downloading = downloading;
 			}
 
-			public GameDetaile GameDetaile { get; private set; }
+			public GameData.GamesRow GameDetaile { get; private set; }
 
 			public bool Downloading { get; set; }
 		}
@@ -64,26 +60,30 @@ namespace BishojoGameLauncher.Windows {
 		}
 
 		public void Reload() {
-			foreach (var game in GamesSettings.Instance.Games) {
-				if (game.Value.DownloadComplete) {
+			var gameData = new DatabaseContext();
+			if (gameData.Database.Games.Count == 0) {
+				return;
+			}
+			foreach (var game in gameData.Database.Games) {
+				if (game.Downloaded) {
 					continue;
 				}
-				downloadList.Add(game.Value.Hash, new downloadDetaile(game.Value));
+				downloadList.Add(game.Hash, new downloadDetaile(game));
 				DownloadList.Items.Add(new ListItem(
-					game.Value.Hash,
+					game.Hash,
 					Imaging.CreateBitmapSourceFromHIcon(
 						Icon.ExtractAssociatedIcon(
-							game.Value.ExecutableFile).Handle,
+							game.ExecutableFilePath).Handle,
 							Int32Rect.Empty,
 							BitmapSizeOptions.FromEmptyOptions()
 						),
-					game.Value.Detaile.Title
+					game.Title
 				));
 			}
-			downloadStart();
+			downloadStart(gameData);
 		}
 
-		private async void downloadStart() {
+		private async void downloadStart(DatabaseContext gameData) {
 			if (DownloadList.Items.Count == 0) {
 				return;
 			}	
@@ -134,21 +134,21 @@ namespace BishojoGameLauncher.Windows {
 
 				downloadList[game.Hash].Downloading = true;
 				await downloadImage.Run(downloadList[game.Hash].GameDetaile);
-				GamesSettings.Instance.Games[game.Hash].DownloadComplete = true;
+				Search.Hash(gameData.Database, game.Hash).Downloaded = true;
 				DownloadList.Items.Remove(
 					new ListItem(
 						downloadList[game.Hash].GameDetaile.Hash,
 						Imaging.CreateBitmapSourceFromHIcon(
 							Icon.ExtractAssociatedIcon(
-								downloadList[game.Hash].GameDetaile.ExecutableFile).Handle,
+								downloadList[game.Hash].GameDetaile.ExecutableFilePath).Handle,
 								Int32Rect.Empty,
 								BitmapSizeOptions.FromEmptyOptions()
 							),
-						downloadList[game.Hash].GameDetaile.Detaile.Title
+						downloadList[game.Hash].GameDetaile.Title
 					)
 				);
 			}
-			GamesSettings.Instance.Save();
+			gameData.Save();
 		}
 	}
 }

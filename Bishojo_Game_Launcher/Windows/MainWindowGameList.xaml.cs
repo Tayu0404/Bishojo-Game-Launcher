@@ -296,7 +296,7 @@ namespace BishojoGameLauncher.Windows {
 		}
 
 
-		private void addGameToList(Database.GameData.GamesRow game) {
+		private void addGameToList(GameData.GamesRow game) {
 			BitmapSource iconIamge;
 			try {
 				if (
